@@ -1,7 +1,7 @@
 // Script:    TesteLista.script
-// Autor:     Jonny
+// Autor:     Rodrigo Monteiro Pereira
 // Data:      20/abr/2019
-// Prop�sito: Testar o m�dulo lista gen�rica duplamente encadeada
+// Prop�sito: Testar o m�dulo lista circular gen�rica duplamente encadeada
 //
 
 == Inicializar valores
@@ -25,6 +25,17 @@
 
 =declararparm   pNULL          int  0
 =declararparm   pNaoNULL       int  1
+
+==Testa ObtemValor em lista não existente 
+=obtervalorelem  lista0   "???"     pNULL
+
+==Testa criar lista
+=criarLista   lista0
+
+==Testa ObtemValor em lista vazia  
+=obtervalorelem  lista0   "???"     pNULL
+
+
 
 == Criar a lista 0
 =criarlista      lista0 
@@ -161,4 +172,3 @@
 == Verificar tentativa de percorrer elementos em lista vazia
 =avancarelem	lista9 		1	 ListaVazia
 
-// fim
