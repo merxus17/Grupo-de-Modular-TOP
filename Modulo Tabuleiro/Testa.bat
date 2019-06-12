@@ -1,0 +1,1 @@
+Modulo_Lista.exe  /sTesteLista    /lTesteLista   /aestatisticas

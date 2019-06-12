@@ -1,0 +1,1 @@
+TestePeca.exe  /sTestePeca    /lTestePeca   /aestatisticas

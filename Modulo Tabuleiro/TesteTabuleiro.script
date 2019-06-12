@@ -1,0 +1,202 @@
+// Script:    TestePeca.script
+// Autor:     Jonny , Rodrigo
+// Data:      11/mai/2019
+// Propósito: Testar o Módulo Peca
+//
+
+== Inicializar valores
+=declararparm   tab0  int 0
+=declararparm   tab1  int 1
+=declararparm   tab3  int 3
+=declararparm   tab4  int 4
+=declararparm   tab5  int 5
+=declararparm   tab6  int 6
+=declararparm   tab7  int 7
+=declararparm   tab10  int 10
+
+=declararparm   Vermelho int 0
+=declararparm   Azul int 1
+=declararparm   Amarelo int 2
+=declararparm   Verde int 3
+=declararparm   Branco int 4
+
+=declararparm   Peca1 int 0
+=declararparm   Peca2 int 1
+=declararparm   Peca3 int 2
+=declararparm   Peca4 int 3
+=declararparm   Peca5 int 4
+
+=declararparm   MovimentoValido int 2
+=declararparm   MovimentoProibido int -1
+=declararparm   MovimentoVitoria int 57
+=declararparm   MovimentoEntrada6 int 6
+=declararparm   MovimentoEntrada1 int 1
+=declararparm   MovimentoEntradaInvalido int 3
+=declararparm   MovimentoComer int 15
+=declararparm   MovimentoPreVitoria int 55
+
+=declararparm   OK             int  0
+=declararparm   FalhouDelecao  int  1
+=declararparm   Vitoria        int  2
+=declararparm   NaoVitoria     int  3
+=declararparm   PecaInvalida   int  4
+=declararparm   NumPecaInvalida   int  5 
+=declararparm   PonteiroTABNULL   int  6
+=declararparm   NaoEntrouAinda   int  7
+=declararparm   MovimentoInvalido   int  8
+
+=declararparm   pNULL          int  0
+=declararparm   pNaoNULL       int  1
+
+== Criar Tabuleiro
+=TAB_criaTabuleiro      tab0
+
+== Verificar vitória em caso de não vitória
+=TAB_verificaVitoria  tab0  Amarelo  NaoVitoria
+
+== Colocar peça em jogo com movimento de 1
+=TAB_moverPeca  tab0   Amarelo  Peca1  MovimentoEntrada1 OK
+
+== Colocar peça em jogo com movimento de 6
+=TAB_moverPeca  tab0   Amarelo  Peca2  MovimentoEntrada6 OK
+
+== Colocar peça em jogo com movimento de 3
+=TAB_moverPeca  tab0   Amarelo  Peca3  MovimentoEntradaInvalido NaoEntrouAinda
+
+== Mover peca com movimento válido
+=TAB_moverPeca  tab0   Amarelo  Peca1  MovimentoValido OK
+
+== Mover peca com cor de peca inválida
+=TAB_moverPeca  tab0   Branco  Peca1  MovimentoValido PecaInvalida
+
+== Mover peca com número inválido (uma peca que nao seja uma das 4 de cada jogador)
+=TAB_moverPeca  tab0   Amarelo  Peca5  MovimentoValido NumPecaInvalida
+
+== Mover peca com movimento inválido 
+=TAB_moverPeca  tab0   Amarelo  Peca1  MovimentoEntrada1 OK
+=TAB_moverPeca  tab0   Amarelo  Peca1  MovimentoProibido MovimentoInvalido
+
+== Verificar vitória de uma cor inválida
+=TAB_verificaVitoria  tab0  Branco  NaoVitoria
+
+== Destruir Tabuleiro 
+=TAB_destroiTabuleiro     tab0   OK
+
+== Destruir o Tabuleiro que ja foi destruido
+=TAB_destroiTabuleiro     tab0   OK
+
+== Destruir Tabuleiro que não foi criado
+=TAB_destroiTabuleiro     tab1   OK
+=recuperar
+
+== Criar Tabuleiro (Para testar vitoria)
+=TAB_criaTabuleiro      tab3
+
+== Colocar peça 1 em jogo
+=TAB_moverPeca  tab3   Amarelo  Peca1  MovimentoEntrada1 OK
+
+== Colocar peça 2 em jogo
+=TAB_moverPeca  tab3   Amarelo  Peca2  MovimentoEntrada1 OK
+
+== Colocar peça 3 em jogo
+=TAB_moverPeca  tab3   Amarelo  Peca3  MovimentoEntrada1 OK
+
+== Colocar peça 4 em jogo
+=TAB_moverPeca  tab3   Amarelo  Peca4  MovimentoEntrada1 OK
+
+== Mover peca1 para casa final
+=TAB_moverPeca  tab3   Amarelo  Peca1  MovimentoVitoria OK
+
+== Mover peca2 para casa final
+=TAB_moverPeca  tab3   Amarelo  Peca2  MovimentoVitoria OK
+
+== Mover peca3 para casa final
+=TAB_moverPeca  tab3   Amarelo  Peca3  MovimentoVitoria OK
+
+== Mover peca4 para casa final
+=TAB_moverPeca  tab3   Amarelo  Peca4  MovimentoVitoria OK
+
+== Verificar vitória Quando amarelo é vitorioso
+=TAB_verificaVitoria  tab3  Amarelo  Vitoria
+
+== Criar Tabuleiro (Para testar Falsa Vitoria [3peças na casa final])
+=TAB_criaTabuleiro      tab4
+
+== Colocar peça 1 em jogo
+=TAB_moverPeca  tab4   Amarelo  Peca1  MovimentoEntrada1 OK
+
+== Colocar peça 2 em jogo
+=TAB_moverPeca  tab4   Amarelo  Peca2  MovimentoEntrada1 OK
+
+== Colocar peça 3 em jogo
+=TAB_moverPeca  tab4   Amarelo  Peca3  MovimentoEntrada1 OK
+
+== Colocar peça 4 em jogo
+=TAB_moverPeca  tab4   Amarelo  Peca4  MovimentoEntrada1 OK
+
+== Mover peca1 para casa final
+=TAB_moverPeca  tab4   Amarelo  Peca1  MovimentoVitoria OK
+
+== Mover peca2 para casa final
+=TAB_moverPeca  tab4   Amarelo  Peca2  MovimentoVitoria OK
+
+== Mover peca3 para casa final
+=TAB_moverPeca  tab4   Amarelo  Peca3  MovimentoPreVitoria OK
+
+== Mover peca4 para casa final
+=TAB_moverPeca  tab4   Amarelo  Peca4  MovimentoVitoria OK
+
+== Verificar vitória Quando amarelo é não é vitorioso(3 peças na casa final)
+=TAB_verificaVitoria  tab3  Amarelo  Vitoria
+
+== Criar Tabuleiro (Para testar comer uma peça)
+=TAB_criaTabuleiro      tab5
+
+== Colocar peça 1 Amarela em jogo
+=TAB_moverPeca  tab5   Amarelo  Peca1  MovimentoEntrada1 OK
+
+== Colocar peça 1 Vermelha em jogo
+=TAB_moverPeca  tab5   Vermelho  Peca1  MovimentoEntrada1 OK
+
+== Mover peca1 Amarela para a casa 2 a partir de sua saida
+=TAB_moverPeca  tab5   Amarelo  Peca1  MovimentoValido OK
+
+== Mover peca1 Vermelha para a mesma casa que se encontra a peça 1 Amarela para comer a Amarela
+=TAB_moverPeca  tab5   Vermelho  Peca1  MovimentoComer OK
+
+== Tentar colocar a peça1 Amarela em jogo com movimento de 3 para testar se foi comida
+=TAB_moverPeca  tab5   Amarelo  Peca1  MovimentoEntradaInvalido NaoEntrouAinda
+
+== Criar Tabuleiro (Para tentar comer um conjunto de peças da mesma cor)
+=TAB_criaTabuleiro      tab6
+
+== Colocar peça 1 Amarela em jogo
+=TAB_moverPeca  tab6   Amarelo  Peca1  MovimentoEntrada1 OK
+
+== Colocar peça 2 Amarela em jogo
+=TAB_moverPeca  tab6   Amarelo  Peca2  MovimentoEntrada1 OK
+
+== Colocar peça 1 Vermelha em jogo
+=TAB_moverPeca  tab6   Vermelho  Peca1  MovimentoEntrada1 OK
+
+== Mover peca1 Amarela para a casa 2 a partir de sua saida
+=TAB_moverPeca  tab6   Amarelo  Peca1  MovimentoValido OK
+
+== Mover peca2 Amarela para a casa 2 a partir de sua saida (mesma casa da peca1)
+=TAB_moverPeca  tab6   Amarelo  Peca2  MovimentoValido OK
+
+== Mover peca1 Vermelha para a mesma casa que se encontra a peca1/peca2 Amarela(Não deve comer)
+=TAB_moverPeca  tab6   Vermelho  Peca1  MovimentoComer OK
+
+== Mover com um movimento de entrada invalido a Peca1 Amarela(garantir que nao foi comida)
+=TAB_moverPeca  tab6   Amarelo  Peca1  MovimentoEntradaInvalido OK
+
+== Mover com um movimento de entrada invalido a Peca2 Amarela(garantir que nao foi comida)
+=TAB_moverPeca  tab6   Amarelo  Peca2  MovimentoEntradaInvalido OK
+
+== Verificar vitória em um tabuleiro que não foi criado
+=TAB_verificaVitoria  tab1  Amarelo  PonteiroTABNULL
+
+== Mover peca em um tabuleiro que não foi criado
+=TAB_moverPeca  tab1   Amarelo  Peca1  MovimentoValido PonteiroTABNULL
+

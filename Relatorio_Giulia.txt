@@ -1,0 +1,12 @@
+20/04; 1h     ;  projetar                                               : realização do modelo estrutural do programa
+21/04; 5h20min;  codificar módulo          				: implementação do módulo lista circular
+		 revisar código do módulo                               : revisão do módulo lista circular
+29/04; 2h     ;  codificar módulo          				: implementação do módulo de teste da lista circular
+		 revisar código do módulo                               : revisão do módulo de teste da lista circular
+01/05; 6h20min;  realizar os testes        				: teste realizado no módulo lista circular, diversos erros foram encontrados
+		 diagnosticar e corrigir os problemas encontrados	: quase todos os problemas foram corrigidos, menos um que na verdade foi causado por faltas no prórpio módulo de teste
+10/05; 1h40min;  diagnosticar e corrigir os problemas encontrados	: correções de faltas no módulo de teste da lista circular   
+12/05; 10h    ;	 codificar módulo          				: implementação da função MovePeça no módulo tabuleiro
+13/05; 10h    ;  realizar os testes					: teste realizado no módulo Tabuleiro, diversos erros foram encontrados
+		 diagnosticar e corrigir os problemas encontrados       : os erros encontrados foram corrigidos
+		

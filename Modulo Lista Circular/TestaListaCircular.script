@@ -1,0 +1,134 @@
+﻿// Script:    TestaListaCircular.script
+// Autor:     Rodrigo Monteiro Pereira
+// Data:      20/abr/2019
+// Prop�sito: Testar o m�dulo lista circular gen�rica duplamente encadeada
+//
+
+== Inicializar valores
+=declararparm   lista0  int 0
+=declararparm   lista1  int 1
+=declararparm   lista2  int 2
+=declararparm	lista9	int 9
+=declararparm	lista7	int 7
+=declararparm	lista10	int 10
+
+=declararparm   str0    string  "abcdefg"
+=declararparm   str1    string  "qwerty"
+=declararparm   str2    string  "xxx"
+=declararparm   str3    string  "xpto"
+=declararparm 	str4	string	"touche"
+
+=declararparm   OK             int  0
+=declararparm   ListaVazia     int  1
+=declararparm   NaoAchou       int  2
+=declararparm   FaltouMemoria  int  3
+
+=declararparm   pNULL          int  0
+=declararparm   pNaoNULL       int  1
+
+
+
+
+
+
+
+
+
+== Criar a lista 0
+=criarlista      lista0 
+
+== Verificar ObterValor relativo a lista vazia
+=obtervalorelem  lista0   "???"     pNULL
+
+== Inserir elemento em lista vazia
+=inselemantes    lista0   str0   OK
+=obtervalorelem  lista0   str0   pNaoNULL
+
+== Inserir elemento ap�s primeiro
+=inselemapos     lista0   str1   OK
+=obtervalorelem  lista0   str1   pNaoNULL
+
+== Inserir elemento antes do �ltimo
+=inselemantes    lista0   str2   OK
+=obtervalorelem  lista0   str2   pNaoNULL
+
+== Excluir elemento do meio
+=obtervalorelem  lista0   str2   pNaoNULL
+=excluirelem     lista0             OK
+
+== Excluir elemento do final
+=obtervalorelem  lista0   str1   pNaoNULL
+=excluirelem     lista0             OK
+
+== Excluir elemento final, �nico 
+=obtervalorelem  lista0   str0   pNaoNULL
+=excluirelem     lista0             OK
+
+== Ver se a lista ficou vazia
+=obtervalorelem  lista0   "???"     pNULL
+
+== Destruir a lista
+=destruirlista   lista0
+
+== Criar uma lista com dois elementos
+=criarlista      lista1 
+=inselemapos     lista1   str0   OK
+=inselemapos     lista1   str1   OK
+
+== Esvaziar a lista e ver se ficou vazia
+=esvaziarlista   lista1
+=obtervalorelem  lista1   "???"     pNULL
+
+
+
+== Criar uma lista com quatro elementos
+=criarlista      lista2 
+=inselemapos     lista2   str0   OK
+=inselemapos     lista2   str1   OK
+=inselemapos     lista2   str2   OK
+=inselemapos     lista2   str3   OK
+
+== Verificar a lista de tr�s para frente
+=obtervalorelem  lista2   str3   pNaoNULL
+=avancarelem     lista2   -1     OK
+=obtervalorelem  lista2   str2   pNaoNULL
+=avancarelem     lista2   -1     OK
+=obtervalorelem  lista2   str1   pNaoNULL
+=avancarelem     lista2   -1     OK
+=obtervalorelem  lista2   str0   pNaoNULL
+=avancarelem     lista2   -1     OK
+=obtervalorelem  lista2   str3   pNaoNULL
+
+== Verificar a lista de frente para tr�s
+=obtervalorelem  lista2   str3   pNaoNULL
+=avancarelem     lista2   1      OK
+=obtervalorelem  lista2   str0   pNaoNULL
+=avancarelem     lista2   1      OK
+=obtervalorelem  lista2   str1   pNaoNULL
+=avancarelem     lista2   1      OK
+=obtervalorelem  lista2   str2   pNaoNULL
+=avancarelem     lista2   1      OK
+=obtervalorelem  lista2   str3   pNaoNULL
+
+== Destruir a lista
+=destruirlista   lista2
+
+== Destruir todas as listas
+=resetteste
+
+== Cria uma lista com ind�ce maior que o limite de listas definido
+=criarlista 	 lista10
+=recuperar
+
+== Inserir valor em uma lista que n�o foi criada com anteced�ncia (teste insereelemapos)
+=inselemapos	 lista0   str4	 OK
+=recuperar
+
+== Procurar str3 em lista (existe)
+=procurarelem	 lista9	  str2   str3   str4   str3   OK
+
+== Procurar str1 em lista (n�o existe)
+=procurarelem	 lista7	  str2   str3   str4   str1   NaoAchou
+
+
+ 
