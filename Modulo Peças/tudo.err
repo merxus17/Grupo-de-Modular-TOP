@@ -1,0 +1,11 @@
+Teste_Pecas.c
+Pecas.c
+Microsoft (R) Incremental Linker Version 10.00.30319.01
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/OUT:TestePeca.exe 
+/INCREMENTAL:NO 
+/MACHINE:IX86 
+Teste_Pecas.obj Pecas.obj 
+ArcaboucoTeste.lib 
+

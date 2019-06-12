@@ -1,0 +1,6 @@
+/OUT:TesteLista.exe
+/INCREMENTAL:NO
+/MACHINE:IX86
+TESTLIS.obj  LISTA.obj  
+ArcaboucoTeste.lib
+

@@ -1,4 +1,4 @@
-// Script:    TesteLista.script
+﻿// Script:    TestaListaCircular.script
 // Autor:     Rodrigo Monteiro Pereira
 // Data:      20/abr/2019
 // Prop�sito: Testar o m�dulo lista circular gen�rica duplamente encadeada
@@ -9,6 +9,7 @@
 =declararparm   lista1  int 1
 =declararparm   lista2  int 2
 =declararparm	lista9	int 9
+=declararparm	lista7	int 7
 =declararparm	lista10	int 10
 
 =declararparm   str0    string  "abcdefg"
@@ -19,21 +20,17 @@
 
 =declararparm   OK             int  0
 =declararparm   ListaVazia     int  1
-=declararparm   FimLista       int  2
-=declararparm   NaoAchou       int  3
-=declararparm   FaltouMemoria  int  4
+=declararparm   NaoAchou       int  2
+=declararparm   FaltouMemoria  int  3
 
 =declararparm   pNULL          int  0
 =declararparm   pNaoNULL       int  1
 
-==Testa ObtemValor em lista não existente 
-=obtervalorelem  lista0   "???"     pNULL
 
-==Testa criar lista
-=criarLista   lista0
 
-==Testa ObtemValor em lista vazia  
-=obtervalorelem  lista0   "???"     pNULL
+
+
+
 
 
 
@@ -59,12 +56,12 @@
 =obtervalorelem  lista0   str2   pNaoNULL
 =excluirelem     lista0             OK
 
-== Excluir elemento do in�cio
-=obtervalorelem  lista0   str0   pNaoNULL
+== Excluir elemento do final
+=obtervalorelem  lista0   str1   pNaoNULL
 =excluirelem     lista0             OK
 
 == Excluir elemento final, �nico 
-=obtervalorelem  lista0   str1   pNaoNULL
+=obtervalorelem  lista0   str0   pNaoNULL
 =excluirelem     lista0             OK
 
 == Ver se a lista ficou vazia
@@ -82,8 +79,7 @@
 =esvaziarlista   lista1
 =obtervalorelem  lista1   "???"     pNULL
 
-== Destruir a lista
-=destruirlista   lista1
+
 
 == Criar uma lista com quatro elementos
 =criarlista      lista2 
@@ -92,7 +88,7 @@
 =inselemapos     lista2   str2   OK
 =inselemapos     lista2   str3   OK
 
-== Verificar a lista de tr�s para diante
+== Verificar a lista de tr�s para frente
 =obtervalorelem  lista2   str3   pNaoNULL
 =avancarelem     lista2   -1     OK
 =obtervalorelem  lista2   str2   pNaoNULL
@@ -100,30 +96,22 @@
 =obtervalorelem  lista2   str1   pNaoNULL
 =avancarelem     lista2   -1     OK
 =obtervalorelem  lista2   str0   pNaoNULL
-=avancarelem     lista2   -1     FimLista
+=avancarelem     lista2   -1     OK
+=obtervalorelem  lista2   str3   pNaoNULL
 
 == Verificar a lista de frente para tr�s
+=obtervalorelem  lista2   str3   pNaoNULL
+=avancarelem     lista2   1      OK
 =obtervalorelem  lista2   str0   pNaoNULL
 =avancarelem     lista2   1      OK
 =obtervalorelem  lista2   str1   pNaoNULL
 =avancarelem     lista2   1      OK
 =obtervalorelem  lista2   str2   pNaoNULL
 =avancarelem     lista2   1      OK
-=obtervalorelem  lista2   str3   pNaoNULL
-=avancarelem     lista2   1      FimLista
-
-== Verificar a lista andando demais de tr�s para diante
-=avancarelem     lista2   -10     FimLista
-=obtervalorelem  lista2   str0   pNaoNULL
-
-== Verificar a lista andando demais de frente para tr�s
-=avancarelem     lista2   10     FimLista
 =obtervalorelem  lista2   str3   pNaoNULL
 
 == Destruir a lista
 =destruirlista   lista2
-
-// ---------------Testes para melhorar o script------------------------
 
 == Destruir todas as listas
 =resetteste
@@ -136,39 +124,11 @@
 =inselemapos	 lista0   str4	 OK
 =recuperar
 
-== Inserir valor em uma lista que n�o foi criada com anteced�ncia (teste insereelemantes)
-=inselemantes	 lista0   str4	 OK
-=recuperar
+== Procurar str3 em lista (existe)
+=procurarelem	 lista9	  str2   str3   str4   str3   OK
 
-== Criar uma lista com tr�s elementos
-=criarlista 	 lista9
-=inselemapos     lista9   str0   OK
-=inselemapos     lista9   str4   OK
-=inselemapos     lista9   str2   OK
+== Procurar str1 em lista (n�o existe)
+=procurarelem	 lista7	  str2   str3   str4   str1   NaoAchou
 
-== Verificar obterValor com string diferente da armazenada no n�
-=obtervalorelem	 lista9	  str4	 pNaoNULL
-=recuperar
 
-== Procurar str2 em lista (existe valor em lista)
-=irinicio		 lista9
-=procurarelem	 lista9	  str2   OK
-
-== Procurar str1 em lista (n�o existe valor em lista)
-=irinicio		 lista9
-=procurarelem	 lista9	  str1   NaoAchou
-
-== Excluir todos os elementos um a um
-=excluirelem	 lista9	  		 OK
-=excluirelem	 lista9			 OK
-=excluirelem	 lista9			 OK
-
-== Exluir valor em lista vazia
-=excluirelem	lista9 		 	 ListaVazia
-
-== Procurar valor em lista vazia
-=procurarelem	lista9 	  str0 	 ListaVazia
-
-== Verificar tentativa de percorrer elementos em lista vazia
-=avancarelem	lista9 		1	 ListaVazia
-
+ 

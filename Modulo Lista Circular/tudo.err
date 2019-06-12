@@ -1,0 +1,12 @@
+TESTLIC.c
+lista_circular.c
+.\lista_circular.c(308) : warning C4047: 'return' : 'void *' differs in levels of indirection from 'int'
+Microsoft (R) Incremental Linker Version 10.00.30319.01
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/OUT:TesteListaCircular.exe 
+/INCREMENTAL:NO 
+/MACHINE:IX86 
+TESTLIC.obj lista_circular.obj 
+ArcaboucoTeste.lib 
+

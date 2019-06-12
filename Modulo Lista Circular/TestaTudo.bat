@@ -1,0 +1,1 @@
+TesteListaCircular.exe  /sTestaListaCircular    /lTestaListaCircular   /aestatisticas

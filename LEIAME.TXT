@@ -1,0 +1,16 @@
+Instruções para utilizar módulos:
+
+obs1:Executar comandos no Prompt de Comando
+
+1-  Colocar o ArcaboucoTeste.lib compilado no seu computador na pasta do módulo
+2 - Colocar vsvars32(Arquivo do Visual Studios) na pasta do módulo e executar 
+3 - Executar o GeraTudo com o arquivo .comp
+4 - Compilar com o CompilaTudo
+5 - Executar TestaTudo
+
+Ou
+1-  Colocar o ArcaboucoTeste.lib compilado no seu computador na pasta do módulo
+2 - Colocar vsvars32(Arquivo do Visual Studios)  , e na pasta do módulo e executar
+3 - Executar Tudo.bat
+
+Obs: Casos deseje executar um script de teste sua autoria abrir o bat TestaTudo e modificar o parametro /s"Nome do seu script aki" 

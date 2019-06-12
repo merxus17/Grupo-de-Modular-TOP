@@ -1,0 +1,70 @@
+// Script:    TestePeça.script
+// Autor:     Jonny 
+// Data:      11/mai/2019
+// Propósito: Testar o Módulo Peça
+//
+
+== Inicializar valores
+=declararparm   peca0  int 0
+=declararparm   peca1  int 5
+=declararparm   peca2  int 2
+=declararparm	peca9	int 9
+=declararparm	peca10	int 10
+=declararparm	casaNaoDeclarada	int 11
+
+=declararparm   casa0   int  20
+=declararparm   casa1   int  23
+=declararparm   casa2   int  24
+
+=declararparm   OK             int  0
+=declararparm   PonteiroPecaNULL   int  1
+=declararparm   NaoAchou       int  2
+=declararparm   FaltouMemoria  int  3
+=declararparm   FalhouDelecao  int  4
+
+=declararparm   pNULL          int  0
+=declararparm   pNaoNULL       int  1
+
+== Criar peca
+=criaPeca  peca0
+
+
+== Mover para casa para a casa 20
+=setCasa     peca0   casa0   OK
+
+
+== Encontra casa da peça 
+=getCasa    peca0   casa0
+
+
+== Destruir peça
+=destruirPeca  peca0  OK
+
+
+== Criar peca
+=criaPeca      peca1
+
+== Encontra casa da peça que não teve sua casa declarada
+=getCasa    peca1    pNULL
+
+== Mover para casa 20
+=setCasa     peca1   casa0  OK
+
+
+== Mover para casa 23
+=setCasa     peca1   casa1  OK
+
+
+== Encontra casa da peça após mover consecutivas vezes
+=getCasa    peca1    casa1   pNaoNULL
+
+
+== Destruir novamente 
+=destruirPeca  peca0  OK
+
+
+== Set numa peca q não existe
+=setCasa  peca2    casa2  PonteiroPecaNULL
+
+== Set numa peca q não existe
+=getCasa  peca2  PonteiroPecaNULL

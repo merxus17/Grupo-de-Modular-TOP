@@ -1,0 +1,23 @@
+
+[Diretorios]
+
+Nome        =  TesteTabuleiro
+PathDefault =  .
+err         =  .
+
+[Modulos]
+TesteTabuleiro
+Tabuleiro
+LISTA
+lista_circular
+Pecas
+
+[BuildInicio]
+/OUT:TesteTabuleiro.exe
+/INCREMENTAL:NO
+/MACHINE:IX86
+
+[BuildFim]
+ArcaboucoTeste.lib
+
+[Fim]

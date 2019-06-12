@@ -1,0 +1,33 @@
+
+!!! Inicio dos testes
+!!!      Construto sob teste: TestePeca.exe
+!!!      Script de teste:     TestePeca.script
+
+!!!    0  Linha:     1  // Script:    TestePeça.script 
+!!!    0  Linha:     2  // Autor:     Jonny 
+!!!    0  Linha:     3  // Data:      11/mai/2019 
+!!!    0  Linha:     4  // Propósito: Testar o Módulo Peça 
+!!!    0  Linha:     5  // 
+    7  == Inicializar valores
+   28  == Criar peca
+   32  == Mover para casa para a casa 20
+   36  == Encontra casa da peça
+   40  == Destruir peça
+   44  == Criar peca
+   47  == Encontra casa da peça que não teve sua casa declarada
+   50  == Mover para casa 20
+   54  == Mover para casa 23
+   58  == Encontra casa da peça após mover consecutivas vezes
+   62  == Destruir novamente
+   66  == Set numa peca q não existe
+   69  == Set numa peca q não existe
+
+!!! N�mero de linhas lidas:          70
+!!! N�mero de casos de teste:        13
+!!! N�mero comandos corretos:        26
+!!! N�mero de falhas encontradas:     0
+
+!!! N�o foram encontrados problemas
+
+
+!!! Numero de espacos ainda alocados: 0

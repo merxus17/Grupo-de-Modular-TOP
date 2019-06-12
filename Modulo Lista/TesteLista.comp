@@ -1,0 +1,20 @@
+
+[Diretorios]
+
+Nome        =  TesteLista
+PathDefault =  .
+err         =  .
+
+[Modulos]
+TESTLIS
+LISTA
+
+[BuildInicio]
+/OUT:TesteLista.exe
+/INCREMENTAL:NO
+/MACHINE:IX86
+
+[BuildFim]
+ArcaboucoTeste.lib
+
+[Fim]

@@ -1,0 +1,6 @@
+/OUT:TesteListaCircular.exe
+/INCREMENTAL:NO
+/MACHINE:IX86
+TESTLIC.obj  lista_circular.obj  
+ArcaboucoTeste.lib
+

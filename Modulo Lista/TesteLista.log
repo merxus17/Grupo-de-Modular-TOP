@@ -1,62 +1,54 @@
 
 !!! Inicio dos testes
-!!!      Construto sob teste: Modulo_Lista.exe
+!!!      Construto sob teste: TesteLista.exe
 !!!      Script de teste:     TesteLista.script
 
-!!!    0  Linha:     1  // Script:    TesteLista.script 
-!!!    0  Linha:     2  // Autor:     Arndt von Staa 
-!!!    0  Linha:     3  // Data:      02/abr/2008 
-!!!    0  Linha:     4  // Propósito: Testar superficialmente o módulo lista genérica duplamente encadeada 
-!!!    0  Linha:     5  // 
+>>>    1  Linha:     1  Comando de teste ignorado:  ï»¿// Script:    TesteLista.script
+!!!    1  Linha:     2  // Autor:     Jonny 
+!!!    1  Linha:     3  // Data:      20/abr/2019 
+!!!    1  Linha:     4  // Propï¿½sito: Testar o mï¿½dulo lista genï¿½rica duplamente encadeada 
+!!!    1  Linha:     5  // 
     7  == Inicializar valores
    29  == Criar a lista 0
    32  == Verificar ObterValor relativo a lista vazia
    35  == Inserir elemento em lista vazia
-   39  == Inserir elemento após primeiro
-   43  == Inserir elemento antes do último
+   39  == Inserir elemento apï¿½s primeiro
+   43  == Inserir elemento antes do ï¿½ltimo
    47  == Excluir elemento do meio
-   51  == Excluir elemento do início
-   55  == Excluir elemento final, único
+   51  == Excluir elemento do inï¿½cio
+   55  == Excluir elemento final, ï¿½nico
    59  == Ver se a lista ficou vazia
    62  == Destruir a lista
    65  == Criar uma lista com dois elementos
    70  == Esvaziar a lista e ver se ficou vazia
    74  == Destruir a lista
    77  == Criar uma lista com quatro elementos
-   84  == Verificar a lista de trás para diante
-   94  == Verificar a lista de frente para trás
-  104  == Verificar a lista andando demais de trás para diante
-  108  == Verificar a lista andando demais de frente para trás
+   84  == Verificar a lista de trï¿½s para diante
+   94  == Verificar a lista de frente para trï¿½s
+  104  == Verificar a lista andando demais de trï¿½s para diante
+  108  == Verificar a lista andando demais de frente para trï¿½s
   112  == Destruir a lista
-!!!    0  Linha:   115  // ---------------Testes para melhorar o script------------------------ 
+!!!    1  Linha:   115  // ---------------Testes para melhorar o script------------------------ 
   117  == Destruir todas as listas
-  120  == Cria uma lista com indíce maior que o limite de listas definido
->>>    1  Linha:   121  Erro nos parâmetros do comando:  =criarlista 	 lista10
-<<<    0  Linha:   122  Falha esperada foi recuperada. 
-  124  == Inserir valor em uma lista que não foi criada com antecedência (teste insereelemapos)
->>>    1  Linha:   125  Erro nos parâmetros do comando:  =inselemapos	 lista0   str4	 OK
-<<<    0  Linha:   126  Falha esperada foi recuperada. 
-  128  == Inserir valor em uma lista que não foi criada com antecedência (teste insereelemantes)
->>>    1  Linha:   129  Erro nos parâmetros do comando:  =inselemantes	 lista0   str4	 OK
-<<<    0  Linha:   130  Falha esperada foi recuperada. 
-  132  == Criar uma lista com três elementos
-  138  == Verificar obterValor com string diferente da armazenada no nó
->>>    1  Linha:   139  Valor do elemento errado. Deveria ser: >touche<  É: >xxx<
-<<<    0  Linha:   140  Falha esperada foi recuperada. 
-  142  == Procurar str2 em lista (existe valor em lista)
-  146  == Procurar str1 em lista (não existe valor em lista)
-  150  == Excluir todos os elementos um a um
-  155  == Exluir valor em lista vazia
-  158  == Procurar valor em lista vazia
-  161  == Verificar tentativa de percorrer elementos em lista vazia
-!!!    0  Linha:   164  // fim 
+  120  == Cria uma lista com indï¿½ce maior que o limite de listas definido
+>>>    2  Linha:   121  Erro nos parâmetros do comando:  =criarlista 	 lista10
+<<<    1  Linha:   122  Falha esperada foi recuperada. 
+  124  == Inserir valor em uma lista que nï¿½o foi criada com antecedï¿½ncia (teste insereelemapos)
+>>>    2  Linha:   125  Erro nos parâmetros do comando:  =inselemapos	 lista0   str4	 OK
+<<<    1  Linha:   126  Falha esperada foi recuperada. 
+  128  == Inserir valor em uma lista que nï¿½o foi criada com antecedï¿½ncia (teste insereelemantes)
+>>>    2  Linha:   129  Erro nos parâmetros do comando:  =inselemantes	 lista0   str4	 OK
+<<<    1  Linha:   130  Falha esperada foi recuperada. 
+  132  == Procurar str2 em lista (existe valor em lista)
+  135  == Procurar str1 em lista (nï¿½o existe valor em lista)
+!!!    1  Linha:   139  // fim 
 
-!!! Número de linhas lidas:         164
-!!! Número de casos de teste:        32
-!!! Número comandos corretos:        80
-!!! Número de falhas encontradas:     0
+!!! Número de linhas lidas:         139
+!!! Número de casos de teste:        26
+!!! Número comandos corretos:        68
+!!! Número de falhas encontradas:     1
 
-!!! Não foram encontrados problemas
+!!! Foram encontrados problemas
 
 
 !!! Numero de espacos ainda alocados: 0
