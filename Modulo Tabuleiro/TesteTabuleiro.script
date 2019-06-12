@@ -28,11 +28,11 @@
 
 =declararparm   MovimentoValido int 2
 =declararparm   MovimentoProibido int -1
-=declararparm   MovimentoVitoria int 57
+=declararparm   MovimentoVitoria int 58
 =declararparm   MovimentoEntrada6 int 6
 =declararparm   MovimentoEntrada1 int 1
 =declararparm   MovimentoEntradaInvalido int 3
-=declararparm   MovimentoComer int 15
+=declararparm   MovimentoComer int 14
 =declararparm   MovimentoPreVitoria int 55
 
 =declararparm   OK             int  0
