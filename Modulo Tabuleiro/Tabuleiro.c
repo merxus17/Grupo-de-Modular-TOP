@@ -67,7 +67,7 @@ TAB_Head* TAB_criaTabuleiro()
 		if(casa == NULL){
 			return NULL;
 		}
-		if (nCasa == 0)
+		if (nCasa == 1)
 			casa->entrada = Vermelho;
 		else if (nCasa == 13)
 			casa->entrada = Amarelo;
@@ -225,6 +225,22 @@ void TAB_showTab (TAB_Head * tabuleiro){
 	for(i = 0; i < 51; i++){
 		casa = (CasaNormal*) LIC_ObterValor(tabuleiro->tab->Tab_principal);
 		printf("%d: ", casa->nCasa);
+		if(casa->entrada == Vermelho)
+		{
+			printf("Entrada Vermelha ");
+		}
+		if(casa->entrada == Verde)
+		{
+			printf("Entrada Verde ");
+		}
+		if(casa->entrada == Amarelo)
+		{
+			printf("Entrada Amarela ");
+		}
+		if(casa->entrada == Azul)
+		{
+			printf("Entrada Azul ");
+		}
 		if(casa->pecas[0]){
 			for(j = 0; j < casa->pecas[0]; j++){
 				printf("R ");
@@ -254,7 +270,7 @@ void TAB_showTab (TAB_Head * tabuleiro){
 		}
 		LIC_Avancar(tabuleiro->tab->Tab_principal, 1);
 	}
-	printf("\n|");
+	printf("\n\n|");
 	IrInicioLista(tabuleiro->tab->Reta_Final_Vermelha);
 	printf("Reta Vermelha: ");
 	for(i = 0; i < 6; i++){
@@ -290,11 +306,11 @@ void TAB_showTab (TAB_Head * tabuleiro){
 		printf("|");
 		LIS_AvancarElementoCorrente(tabuleiro->tab->Reta_Final_Verde, 1);
 	}
-	printf("\n");
+	printf("\n\n");
 	printf("Pecas Amarelas: ");
 	for (l=0 ; l<4 ; l++)
 	{
-		casa = P_getCasa(tabuleiro->pecasAmarelas[l]);
+		casa = (CasaNormal*) P_getCasa(tabuleiro->pecasAmarelas[l]);
 		if ( casa != NULL)
 			printf("%d ", casa->nCasa );
 		else
@@ -304,7 +320,7 @@ void TAB_showTab (TAB_Head * tabuleiro){
 	printf("Pecas Vermelhas: ");
 	for (l=0 ; l<4 ; l++)
 	{
-		casa = P_getCasa(tabuleiro->pecasVermelhas[l]);
+		casa = (CasaNormal*)P_getCasa(tabuleiro->pecasVermelhas[l]);
 		if ( casa != NULL)
 			printf("%d ", casa->nCasa );
 		else
@@ -314,7 +330,7 @@ void TAB_showTab (TAB_Head * tabuleiro){
 	printf("Pecas Azul: ");
 	for (l=0 ; l<4 ; l++)
 	{
-		casa = P_getCasa(tabuleiro->pecasAzuis[l]);
+		casa = (CasaNormal*)P_getCasa(tabuleiro->pecasAzuis[l]);
 		if ( casa != NULL)
 			printf("%d ", casa->nCasa );
 		else
@@ -324,7 +340,7 @@ void TAB_showTab (TAB_Head * tabuleiro){
 	printf("Pecas Verdes: ");
 	for (l=0 ; l<4 ; l++)
 	{
-		casa = P_getCasa(tabuleiro->pecasVerdes[l]);
+		casa = (CasaNormal*)P_getCasa(tabuleiro->pecasVerdes[l]);
 		if ( casa != NULL)
 			printf("%d ", casa->nCasa );
 		else
@@ -352,22 +368,25 @@ TAB_tpCondRet TAB_MoverVermelha (TAB_Head* tabuleiro, int nPeca, int casas){
 			int i=0;
 			CasaNormal* Casa = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
 			Casa->pecas[0]--;
-			while(i<=casas && Casa->entrada!=Vermelho){
+			LIC_Avancar(tabuleiro->tab->Tab_principal, 1);
+			Casa = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
+			i++;
+			while(i<casas && Casa->entrada!=Vermelho){
 				LIC_Avancar(tabuleiro->tab->Tab_principal, 1);
 				Casa = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
 				i++;
 			}
-			if(i-1==casas){ // andou tudo sem passar por entrada (ou parou bem sobre uma) (moviento branco a branco)
+			if(i==casas){ // andou tudo sem passar por entrada (ou parou bem sobre uma) (moviento branco a branco)
 				int k=0;
 
 				CasaNormal* iAzul;
 				CasaNormal* iAmarelo;
 				CasaNormal* iVerde;
-				LIC_Avancar(tabuleiro->tab->Tab_principal, 13);
+				LIC_Avancar(tabuleiro->tab->Tab_principal, 12);
 				iAzul = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
-				LIC_Avancar(tabuleiro->tab->Tab_principal, 13);
+				LIC_Avancar(tabuleiro->tab->Tab_principal, 12);
 				iAmarelo = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
-				LIC_Avancar(tabuleiro->tab->Tab_principal, 13);
+				LIC_Avancar(tabuleiro->tab->Tab_principal, 12);
 				iVerde = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
 
 				P_setCasa(tabuleiro->pecasVermelhas[nPeca], (void*)Casa);
@@ -446,7 +465,7 @@ TAB_tpCondRet TAB_MoverAzul (TAB_Head* tabuleiro, int nPeca, int casas){
 	if((casas == 1 || casas ==6) && P_getCasa(tabuleiro->pecasAzuis[nPeca]) == NULL){
 		CasaNormal* Casa;
 		LIC_IrInicioLista(tabuleiro->tab->Tab_principal);
-		LIC_Avancar(tabuleiro->tab->Tab_principal, 26);
+		LIC_Avancar(tabuleiro->tab->Tab_principal, 25);
 		Casa = (CasaNormal*) LIC_ObterValor(tabuleiro->tab->Tab_principal);
 		P_setCasa(tabuleiro->pecasAzuis[nPeca], Casa);
 		Casa->pecas[1]++;
@@ -459,12 +478,15 @@ TAB_tpCondRet TAB_MoverAzul (TAB_Head* tabuleiro, int nPeca, int casas){
 			int i=0;
 			CasaNormal* Casa = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
 			Casa->pecas[1]--;
-			while(i<=casas && Casa->entrada!=Azul){
+			LIC_Avancar(tabuleiro->tab->Tab_principal, 1);
+			Casa = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
+			i++;
+			while(i<casas && Casa->entrada!=Azul){
 				LIC_Avancar(tabuleiro->tab->Tab_principal, 1);
 				Casa = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
 				i++;
 			}
-			if(i-1==casas){ // andou tudo sem passar por entrada (ou parou bem sobre uma) (moviento branco a branco)
+			if(i==casas){ // andou tudo sem passar por entrada (ou parou bem sobre uma) (moviento branco a branco) em direção a uma casa branca agora !!!
 				int k=0;
 
 				CasaNormal* iVermelho;
@@ -472,9 +494,9 @@ TAB_tpCondRet TAB_MoverAzul (TAB_Head* tabuleiro, int nPeca, int casas){
 				CasaNormal* iVerde;
 				LIC_IrInicioLista(tabuleiro->tab->Tab_principal);
 				iVermelho = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
-				LIC_Avancar(tabuleiro->tab->Tab_principal, 13);
+				LIC_Avancar(tabuleiro->tab->Tab_principal, 12);
 				iAmarelo = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
-				LIC_Avancar(tabuleiro->tab->Tab_principal, 13);
+				LIC_Avancar(tabuleiro->tab->Tab_principal, 12);
 				iVerde = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
 
 				P_setCasa(tabuleiro->pecasAzuis[nPeca], (void*)Casa);
@@ -552,7 +574,7 @@ TAB_tpCondRet TAB_MoverAmarela (TAB_Head* tabuleiro, int nPeca, int casas){
 	if((casas == 1 || casas ==6) && P_getCasa(tabuleiro->pecasAmarelas[nPeca]) == NULL){
 		CasaNormal* Casa;
 		LIC_IrInicioLista(tabuleiro->tab->Tab_principal);
-		LIC_Avancar(tabuleiro->tab->Tab_principal, 13);
+		LIC_Avancar(tabuleiro->tab->Tab_principal, 12);
 		Casa = (CasaNormal*) LIC_ObterValor(tabuleiro->tab->Tab_principal);
 		P_setCasa(tabuleiro->pecasAmarelas[nPeca], Casa);
 		Casa->pecas[2]++;
@@ -565,12 +587,15 @@ TAB_tpCondRet TAB_MoverAmarela (TAB_Head* tabuleiro, int nPeca, int casas){
 			int i=0;
 			CasaNormal* Casa = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
 			Casa->pecas[2]--;
-			while(i<=casas && Casa->entrada!=Amarelo){
+			LIC_Avancar(tabuleiro->tab->Tab_principal, 1);
+			Casa = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
+			i++;
+			while(i<casas && Casa->entrada!=Amarelo){
 				LIC_Avancar(tabuleiro->tab->Tab_principal, 1);
 				Casa = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
 				i++;
 			}
-			if(i-1==casas){ // andou tudo sem passar por entrada (ou parou bem sobre uma) (moviento branco a branco)
+			if(i==casas){ // andou tudo sem passar por entrada (ou parou bem sobre uma) (moviento branco a branco)
 				int k=0;
 
 				CasaNormal* iVermelho;
@@ -578,9 +603,9 @@ TAB_tpCondRet TAB_MoverAmarela (TAB_Head* tabuleiro, int nPeca, int casas){
 				CasaNormal* iVerde;
 				LIC_IrInicioLista(tabuleiro->tab->Tab_principal);
 				iVermelho = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
-				LIC_Avancar(tabuleiro->tab->Tab_principal, 13);
+				LIC_Avancar(tabuleiro->tab->Tab_principal, 12);
 				iAzul = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
-				LIC_Avancar(tabuleiro->tab->Tab_principal, 13);
+				LIC_Avancar(tabuleiro->tab->Tab_principal, 12);
 				iVerde = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
 
 				P_setCasa(tabuleiro->pecasAmarelas[nPeca], (void*)Casa);
@@ -660,7 +685,7 @@ TAB_tpCondRet TAB_MoverVerde (TAB_Head* tabuleiro, int nPeca, int casas){
 	if((casas == 1 || casas ==6) && P_getCasa(tabuleiro->pecasVerdes[nPeca]) == NULL){
 		CasaNormal* Casa;
 		LIC_IrInicioLista(tabuleiro->tab->Tab_principal);
-		LIC_Avancar(tabuleiro->tab->Tab_principal, 39);
+		LIC_Avancar(tabuleiro->tab->Tab_principal, 38);
 		Casa = (CasaNormal*) LIC_ObterValor(tabuleiro->tab->Tab_principal);
 		P_setCasa(tabuleiro->pecasVerdes[nPeca], Casa);
 		Casa->pecas[3]++;
@@ -673,12 +698,15 @@ TAB_tpCondRet TAB_MoverVerde (TAB_Head* tabuleiro, int nPeca, int casas){
 			int i=0;
 			CasaNormal* Casa = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
 			Casa->pecas[3]--;
-			while(i<=casas && Casa->entrada!=Verde){
+			LIC_Avancar(tabuleiro->tab->Tab_principal, 1);
+			Casa = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
+			i++;
+			while(i<casas && Casa->entrada!=Verde){
 				LIC_Avancar(tabuleiro->tab->Tab_principal, 1);
 				Casa = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
 				i++;
 			}
-			if(i-1==casas){ // andou tudo sem passar por entrada (ou parou bem sobre uma) (moviento branco a branco)
+			if(i==casas){ // andou tudo sem passar por entrada (ou parou bem sobre uma) (moviento branco a branco)
 				int k=0;
 
 				CasaNormal* iVermelho;
@@ -686,9 +714,9 @@ TAB_tpCondRet TAB_MoverVerde (TAB_Head* tabuleiro, int nPeca, int casas){
 				CasaNormal* iAmarelo;
 				LIC_IrInicioLista(tabuleiro->tab->Tab_principal);
 				iVermelho = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
-				LIC_Avancar(tabuleiro->tab->Tab_principal, 13);
+				LIC_Avancar(tabuleiro->tab->Tab_principal, 12);
 				iAzul = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
-				LIC_Avancar(tabuleiro->tab->Tab_principal, 13);
+				LIC_Avancar(tabuleiro->tab->Tab_principal, 12);
 				iAmarelo = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
 
 				P_setCasa(tabuleiro->pecasVerdes[nPeca], (void*)Casa);
