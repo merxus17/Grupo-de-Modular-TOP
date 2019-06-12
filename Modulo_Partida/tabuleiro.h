@@ -45,8 +45,10 @@ typedef struct Head TAB_Head;
 		 TAB_CondRetNotYet,
 			/* Não tirou numero exato para por a peça no centro */
 
-		 TAB_CondRetNaoMoveu
-			/* A peça nao foi movida */
+		 TAB_CondRetNaoMoveu,
+			/* A peça nao foi movida */ 
+		 TAB_CondRetJaTaNoFim
+			/* Tentou mover uma peça que ja chegou no centro*/
 
    } TAB_tpCondRet ;
 

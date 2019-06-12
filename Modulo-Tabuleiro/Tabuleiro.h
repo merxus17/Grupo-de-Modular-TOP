@@ -1,42 +1,144 @@
-$MCD Mï¿½dulo de definiï¿½ï¿½o: Tabuleiro do jogo de Ludo
+#pragma once
+//#include<stdbool.h>
+
+typedef struct Head TAB_Head;
+
+/***********************************************************************
 *
-*  Arquivo gerado:              Tabuleiro.h
-*  Letras identificadoras:      TAB
+*  $TC Tipo de dados: TAB Condições de retorno
 *
-*  Projeto: INF 1301 / 1628 Automatizaï¿½ï¿½o dos testes de mï¿½dulos C
-*  Gestor:  LES/DI/PUC-Rio
-*  Autores: avs
 *
-*  $HA Histï¿½rico de evoluï¿½ï¿½o:
-*     Versï¿½o  Autor    Data     Observaï¿½ï¿½es
-*     1       avs   29/abr/2019 inï¿½cio desenvolvimento
+*  $ED Descrição do tipo
+*     Condições de retorno das funções do tabuleiro
 *
-*  $ED Descriï¿½ï¿½o do mï¿½dulo
-*     Implementa listas genï¿½ricas duplamente encadeadas.
-*     Podem existir n listas em operaï¿½ï¿½o simultaneamente.
-*     As listas possuem uma cabeï¿½a encapsulando o seu estado.
+***********************************************************************/
+
+   typedef enum {
+
+         TAB_CondRetOK ,
+            /* Concluiu corretamente */
+
+         TAB_CondRetDestruirFalhou,
+            /* Falha ao destruir */
+
+		 TAB_CondRetVitoria,
+			/* O jogo tem um vencedor */
+
+		 TAB_CondRetNotThisTime,
+			/* Ainda não acabou o jogo */
+
+		 TAB_CondRetPecaBranca,
+			/* Peca branca nao é peca */
+
+	     TAB_CondRetNumDePecasInvalida,
+			/* Numero de pecas invalidas */
+
+		 TAB_CondRetTABNULL,
+            /* Ponteiro para tabuleiro NULL */
+			
+		 TAB_CondRetNaoEstaEmJogo,
+		 /* A peca ainda não entrou em jogo*/
+
+		 TAB_CondRetMovimentoInvalido,
+            /* Tentativa de movimento invalido */
+
+		 TAB_CondRetNotYet,
+			/* Não tirou numero exato para por a peça no centro */
+
+		 TAB_CondRetNaoMoveu,
+			/* A peça nao foi movida */ 
+		 TAB_CondRetJaTaNoFim
+			/* Tentou mover uma peça que ja chegou no centro*/
+
+   } TAB_tpCondRet ;
+
+// enum da classe  peças 
+typedef enum Cor {
+	Vermelho,
+	Azul,
+	Amarelo,
+	Verde,
+	Branca
+}Cor;
+
+/***********************************************************************
 *
-*     Cada lista ï¿½ homogï¿½nea quanto ao tipo dos dados que armazena.
-*     Cada elemento da lista referencia o valor que contï¿½m.
+*  $FC Função: TAB  &Criar tabuleiro
 *
-*     Os ponteiros para os dados sï¿½o copiados para elementos da lista.
-*        Nï¿½o ï¿½ copiado o valor apontado por estes ponteiros.
+*  $ED Descrição da função
+*     Inicia o tabuleiro e aloca todas as estruturas de dados.
 *
-*     O controle da destruiï¿½ï¿½o do valor de um elemento a ser excluï¿½do
-*        ï¿½ realizado por uma funï¿½ï¿½o fornecida pelo usuï¿½rio.
+*  $FV Valor retornado
+*     NULL - Ocorreu problema durante a criação do tabuleiro. Não será dada mais informação quanto ao problema ocorrido.
+*	  Ponteiro nao NULL - criou com sucesso.
 *
-*     Cada lista referencia uma funï¿½ï¿½o que determina como devem ser
-*        desalocados os dados nela contidos.
+***********************************************************************/
+TAB_Head*  TAB_criaTabuleiro();
+
+
+/***********************************************************************
 *
-*     A funï¿½ï¿½o de liberaï¿½ï¿½o dos valores contidos nos elementos deve
-*        assegurar a liberaï¿½ï¿½o de todos os espaï¿½os referï¿½nciados pelo
-*        valor contido em um elemento.
-*        Esta funï¿½ï¿½o ï¿½ chamada antes de se desalocar um elemento
-*        de uma lista.
-*        Caso nï¿½o seja necessï¿½rio desalocar o valor referenciado pelo
-*        elemento, o ponteiro para a funï¿½ï¿½o de liberaï¿½ï¿½o poderï¿½ ser NULL .
-*        Caso o elemento da lista seja a ï¿½nica ï¿½ncora do valor referenciado,
-*        esta funï¿½ï¿½o deve promover a destruiï¿½ï¿½o (free) desse valor e
-*        de todos os dados nele ancorados.
+*  $FC Função: TAB  &Destroi tabuleiro
 *
-***************************************************************************/
+*  $ED Descrição da função
+*     Desaloca todas as estruturas.
+*
+*  $EP Parâmetros
+*     Parâmetros
+*        tab - um ponteiro para um TAB_Head.
+*        
+*  $FV Valor retornado
+*     TAB_CondRetOK - Deletou o tabuleiro sem problemas ou o tabuleiro enviado ja era NULL.
+*	  OBS. não existe previsão para possíveis falhas de execução.
+*
+***********************************************************************/
+TAB_tpCondRet TAB_destroiTabuleiro(TAB_Head* tab);
+
+
+/***********************************************************************
+*
+*  $FC Função: TAB  &Verifica vitoria
+*
+*  $ED Descrição da função
+*     Verifica se a cor passada como parametro atingiu a condição de vitoria.
+*
+*  $EP Parâmetros
+*        tabuleiro - um ponteiro para um TAB_Head.
+*        cor - cor (ou jogador) em questao a ser testado condicao de vitoria.
+*        
+*  $FV Valor retornado
+*     TAB_CondRetVitoria - Cor enviada ganhou o jogo.
+*	  TAB_CondRetNotThisTime - Cor enviada nao ganhou o jogo.
+*
+***********************************************************************/
+TAB_tpCondRet TAB_verificaVitoria(TAB_Head* tabuleiro, Cor cor);
+
+
+/***********************************************************************
+*
+*  $FC Função: TAB  &Mover peca
+*
+*  $ED Descrição da função
+*     Move a peça da cor e numero correpondente para a casa.
+*
+*  $EP Parâmetros
+*     Parâmetros
+*        cor - cor (ou jogador) em questao a ser movido.
+*        nPeça - peca (do jogador) em questao a ser movido.
+*		 casas - número e casas a mover (numero tirado no dado)
+*        
+*  $FV Valor retornado
+*	  TAB_CondRetOK - Cor e peca enviada moveu e nao ganhou o jogo.
+*	  TAB_CondRetPecaBranca - Cor enviada nao existe.
+*	  TAB_CondRetNumDePecasInvalida - Peca enviada nao existe.
+*	  TAB_CondRetTABNULL - Ponteiro para tabuleiro NULL.
+*	  TAB_CondRetMovimentoInvalido - Tentativa de movimento invalido.
+*	  TAB_CondRetNotYet - Nao tirou o numero exato para por a peça no centro
+*	  TAB_CondRetNaoMoveu - A peça nao foi movida (nao diz porque) 
+*
+***********************************************************************/
+TAB_tpCondRet TAB_moverPeca(TAB_Head* tabuleiro, Cor cor, int nPeça ,int casas);
+
+
+
+void TAB_showTab (TAB_Head * tabuleiro);
