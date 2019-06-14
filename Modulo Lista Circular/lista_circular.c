@@ -15,6 +15,11 @@
 #include	<malloc.h>
 #include	<assert.h>
 
+#ifdef _DEBUG
+   #include   "Generico.h"
+   #include   "Conta.h"
+#endif
+
 #define listac_OWN
 #include	"lista_circular.h"
 #undef listac_OWN
@@ -81,8 +86,11 @@
 
    LIC_Lista LIC_CriarLista( void   ( * ExcluirValor ) ( void * Dado ) )
    {
+	  LIC_tLista * Lista = NULL ;
 
-      LIC_tLista * Lista = NULL ;
+	   #ifdef _DEBUG
+         CNT_CONTAR( "LIC_CriarLista" ) ;
+      #endif
 
       Lista = ( LIC_tLista * ) malloc( sizeof( LIC_tLista )) ;
       if ( Lista == NULL )
@@ -104,6 +112,10 @@
 
    void LIC_DestruirLista( LIC_Lista Lista )
    {
+	   #ifdef _DEBUG
+         CNT_CONTAR( "LIC_DestruirLista" ) ;
+      #endif
+
       if (Lista==NULL){
 		  printf("\nLista vazia\n");
 		  return;
@@ -121,9 +133,14 @@
 
    void LIC_EsvaziarLista( LIC_Lista Lista )
    {
+	   
 
       ElemLista * Elem ;
       ElemLista * Prox ;
+
+	  #ifdef _DEBUG
+         CNT_CONTAR( "LIC_EsvaziarLista" ) ;
+      #endif
 
       if (Lista==NULL){
 		  printf("\nLista vazia\n");
@@ -158,8 +175,11 @@
 
    LIC_CondRet LIC_InserirAntes( LIC_Lista Lista, void * Valor )
    {
+	  ElemLista * Elem ;
 
-      ElemLista * Elem ;
+	    #ifdef _DEBUG
+         CNT_CONTAR( "LIC_InserirAntes" ) ;
+      #endif
 
       if (Lista==NULL){
 		  printf("\nLista vazia\n");
@@ -208,8 +228,11 @@
    LIC_CondRet LIC_InserirApos( LIC_Lista Lista , void * Valor  )
       
    {
+	  ElemLista * Elem ;
 
-      ElemLista * Elem ;
+	   #ifdef _DEBUG
+         CNT_CONTAR( "LIC_InserirApos" ) ;
+      #endif
 
       if (Lista==NULL){
 		  printf("\nLista vazia\n");
@@ -257,8 +280,11 @@
 
    LIC_CondRet LIC_ExcluirElemento( LIC_Lista Lista )
    {
-
       ElemLista * Elem ;
+
+	   #ifdef _DEBUG
+         CNT_CONTAR( "LIC_ExcluirElemento" ) ;
+      #endif
 
       if (Lista==NULL){
 		  printf("\nLista vazia\n");
@@ -302,6 +328,9 @@
 
    void * LIC_ObterValor( LIC_Lista Lista )
    {
+	   #ifdef _DEBUG
+         CNT_CONTAR( "LIC_ObterValor" ) ;
+      #endif
 
       if (Lista==NULL){
 		  printf("\nLista vazia\n");
@@ -323,6 +352,9 @@
 
    void LIC_IrInicioLista( LIC_Lista Lista )
    {
+	   #ifdef _DEBUG
+         CNT_CONTAR( "LIC_IrInicioLista" ) ;
+      #endif
 
       if (Lista==NULL){
 		  printf("\nLista vazia\n");
@@ -339,6 +371,9 @@
 
    void LIC_IrFinalLista( LIC_Lista Lista )
    {
+	   #ifdef _DEBUG
+         CNT_CONTAR( "LIC_IrFinalLista" ) ;
+      #endif
 
       if (Lista==NULL){
 		  printf("\nLista vazia\n");
@@ -355,10 +390,13 @@
 
    LIC_CondRet LIC_Avancar( LIC_Lista Lista, int x )
    {
-
-      int i ;
+	  int i ;
 
       ElemLista * Elem ;
+
+	   #ifdef _DEBUG
+         CNT_CONTAR( "LIC_Avancar" ) ;
+      #endif
 
       if (Lista==NULL){
 		  printf("\nLista vazia\n");
@@ -427,9 +465,12 @@
 
    LIC_CondRet LIC_ProcurarValor( LIC_Lista Lista , void * Valor )
    {
-
-      ElemLista * Elem ;
+	  ElemLista * Elem ;
 	  int n =0;
+
+	     #ifdef _DEBUG
+         CNT_CONTAR( "LIC_ProcurarValor" ) ;
+      #endif
 
       if (Lista==NULL){
 		  printf("\nLista vazia\n");
