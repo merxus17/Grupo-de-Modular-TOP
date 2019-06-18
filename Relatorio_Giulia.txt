@@ -1,3 +1,4 @@
+T2:
 20/04; 1h     ;  projetar                                               : realização do modelo estrutural do programa
 21/04; 5h20min;  codificar módulo          				: implementação do módulo lista circular
 		 revisar código do módulo                               : revisão do módulo lista circular
@@ -9,4 +10,8 @@
 12/05; 10h    ;	 codificar módulo          				: implementação da função MovePeça no módulo tabuleiro
 13/05; 10h    ;  realizar os testes					: teste realizado no módulo Tabuleiro, diversos erros foram encontrados
 		 diagnosticar e corrigir os problemas encontrados       : os erros encontrados foram corrigidos
-		
+=============================================================================================================================================================================================================
+T4:
+06/06; 3h30   ; codificar módulo, realizar os testes                    : implementação do módulo partida com testes manuais usando uma função main
+11/06; 4h30   ; codificar módulo, realizar os testes                    : implementação do módulo partida com testes manuais usando uma função main
+18/06; 5h30   ; codificar módulo, realizar os testes                    : implementação do módulo partida com testes manuais usando uma função main
