@@ -14,4 +14,4 @@ T2:
 T4:
 06/06; 3h30   ; codificar módulo, realizar os testes                    : implementação do módulo partida com testes manuais usando uma função main
 11/06; 4h30   ; codificar módulo, realizar os testes                    : implementação do módulo partida com testes manuais usando uma função main
-18/06; 5h30   ; codificar módulo, realizar os testes                    : implementação do módulo partida com testes manuais usando uma função main
+18/06; 7h     ; codificar módulo, realizar os testes                    : implementação do módulo partida com testes manuais usando uma função main
