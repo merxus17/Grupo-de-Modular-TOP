@@ -140,5 +140,15 @@ TAB_tpCondRet TAB_verificaVitoria(TAB_Head* tabuleiro, Cor cor);
 TAB_tpCondRet TAB_moverPeca(TAB_Head* tabuleiro, Cor cor, int nPeça ,int casas);
 
 
+/***************************************************************
 
+$FC Função: TAB &showTab
+
+$ED Descrição da função
+	Mostra o estado atual do tabuleiro.
+
+$EP Parâmetros
+	tabuleiro - ponteiro para o tabuleiro
+
+***************************************************************/
 void TAB_showTab (TAB_Head * tabuleiro);
