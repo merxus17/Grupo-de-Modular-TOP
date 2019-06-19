@@ -20,7 +20,7 @@ void PAR_Move(char ** colors, Cor cor[4], int i,  TAB_Head *Tabuleiro);
 //============================================================================
 
 
-// FUNCAO EXTERNADA PELO MÓDULO
+// FUNCAO EXTERNADA PELO Mï¿½DULO
 PAR_tpCondRet  PAR_Ready (){
 	int players = 0;
 	PAR_tpCondRet CondSet, CondGo;
@@ -51,19 +51,19 @@ PAR_tpCondRet  PAR_Ready (){
 
 /***************************************************************
 
-$FC Função: PAR &Set
+$FC Funï¿½ï¿½o: PAR &Set
 
-$ED Descrição da função
-	Recebe o número de jogadores que participarão da partida e armazena no ponteiro recebido;
+$ED Descriï¿½ï¿½o da funï¿½ï¿½o
+	Recebe o nï¿½mero de jogadores que participarï¿½o da partida e armazena no ponteiro recebido;
 	Pergunta a cada jogador que cor ele deseja e armazena esses dados num vetor do tipo Cor;
-	Roda os dados inicias para verificar qual jogador será o primeiro, então ordena os vetores 
+	Roda os dados inicias para verificar qual jogador serï¿½ o primeiro, entï¿½o ordena os vetores 
 									do tipo Cor e tipo char de acordo com a ordem determinada;
-	Ou seja, a função "seta" todas as informações necessárias para que o jogo comece.
+	Ou seja, a funï¿½ï¿½o "seta" todas as informaï¿½ï¿½es necessï¿½rias para que o jogo comece.
 
 
-$EP Parâmetros
-	*players - ponteiro para a variavel que armazena o número de jogadores
-	cor      - vetor do tipo enumerado Cor onde são armazenados, em ordem, a cor de cada jogador
+$EP Parï¿½metros
+	*players - ponteiro para a variavel que armazena o nï¿½mero de jogadores
+	cor      - vetor do tipo enumerado Cor onde sï¿½o armazenados, em ordem, a cor de cada jogador
 	colors   - vetor de strings correspondente ao vetor cor, serve para facilitar os prints
 
 $FV Valor retornado
@@ -73,16 +73,16 @@ $FV Valor retornado
 ***************************************************************/
 PAR_tpCondRet  PAR_Set (int *players, Cor cor[4], char ** colors){
 	int i, c, n;
-	int jafoi[4] ={0,0,0,0}; // onde tem 1 é uma cor que ja foi
+	int jafoi[4] ={0,0,0,0}; // onde tem 1 ï¿½ uma cor que ja foi
 	int d[4]; // valor do dado de cada jogador
-	int same[4] = {0,0,0,0}; // onde tem 1 é o valor maior entre os dados
-	int first; //numero q identifica o jogador que começa
+	int same[4] = {0,0,0,0}; // onde tem 1 ï¿½ o valor maior entre os dados
+	int first; //numero q identifica o jogador que comeï¿½a
 
-	//recebe o nº de jogadores
+	//recebe o nï¿½ de jogadores
 	printf("======LUDO=====\n======BEM VINDO\nDigite o numero de jogadores: ");
 	scanf("%i", &n);
 
-	//repete ate receber nº valido
+	//repete ate receber nï¿½ valido
 	while(n < 2 || n > 4){
 		printf("\nNumero de jogadores invalido.\nDigite o numero de jogadores: ");
 		scanf("%i", &n);
@@ -149,24 +149,24 @@ PAR_tpCondRet  PAR_Set (int *players, Cor cor[4], char ** colors){
 
 /***************************************************************
 
-$FC Função: PAR &Go
+$FC Funï¿½ï¿½o: PAR &Go
 
-$ED Descrição da função
+$ED Descriï¿½ï¿½o da funï¿½ï¿½o
 	Mostra o estado do tabuleiro a cada turno;
-	Faz com que os turnos continuem acontecendo até que um dos jogadores vença e diz quem ganhou no final;
-	Ou seja, é quem da o "go" da partida.
+	Faz com que os turnos continuem acontecendo atï¿½ que um dos jogadores venï¿½a e diz quem ganhou no final;
+	Ou seja, ï¿½ quem da o "go" da partida.
 
 
-$EP Parâmetros
-	*players - ponteiro para a variavel que armazena o número de jogadores
-	cor      - vetor do tipo enumerado Cor onde são armazenados, em ordem, a cor de cada jogador
+$EP Parï¿½metros
+	*players - ponteiro para a variavel que armazena o nï¿½mero de jogadores
+	cor      - vetor do tipo enumerado Cor onde sï¿½o armazenados, em ordem, a cor de cada jogador
 	Tabuleiro- ponteiro para o tabuleiro da partida
 	colors   - vetor de strings correspondente ao vetor cor, serve para facilitar os prints
 
 $FV Valor retornado
 	CondRetOK			   - tudo funcionou como esperado
 	CondRetErroDesconhecido- houve um erro onde valores foram verificados anteriormente, entao nao deveria haver
-	CondRetNinguemGanhou   - por algum erro interno, não houve retorno de condição de vitória
+	CondRetNinguemGanhou   - por algum erro interno, nï¿½o houve retorno de condiï¿½ï¿½o de vitï¿½ria
 
 ***************************************************************/
 
@@ -193,21 +193,21 @@ PAR_tpCondRet  PAR_Go (int players, Cor cor[4], TAB_Head *Tabuleiro, char **colo
 
 /***************************************************************
 
-$FC Função: PAR &Turn
+$FC Funï¿½ï¿½o: PAR &Turn
 
-$ED Descrição da função
-	Realiza a organização dos turnos da partida, chamando a função que permite aos jogadores fazerem seus movimentos.
+$ED Descriï¿½ï¿½o da funï¿½ï¿½o
+	Realiza a organizaï¿½ï¿½o dos turnos da partida, chamando a funï¿½ï¿½o que permite aos jogadores fazerem seus movimentos.
 
 
-$EP Parâmetros
-	*players - ponteiro para a variavel que armazena o número de jogadores
-	cor      - vetor do tipo enumerado Cor onde são armazenados, em ordem, a cor de cada jogador
+$EP Parï¿½metros
+	*players - ponteiro para a variavel que armazena o nï¿½mero de jogadores
+	cor      - vetor do tipo enumerado Cor onde sï¿½o armazenados, em ordem, a cor de cada jogador
 	Tabuleiro- ponteiro para o tabuleiro da partida
 	colors   - vetor de strings correspondente ao vetor cor, serve para facilitar os prints
 
 $FV Valor retornado
-	1 - quando ninguém venceu ainda
-	0 - quando alguém vence
+	1 - quando ninguï¿½m venceu ainda
+	0 - quando alguï¿½m vence
 
 ***************************************************************/
 
@@ -238,24 +238,24 @@ int PAR_Turn (int players, char ** colors, Cor cor[4], TAB_Head * Tabuleiro){
 
 /***************************************************************
 
-$FC Função: PAR &Move
+$FC Funï¿½ï¿½o: PAR &Move
 
-$ED Descrição da função
-	Pergunta ao jogador da vez que peça ele deseja mover;
-	Chama a função de mover peça do módulo tabuleiro, usando o valor retirado no dado;
+$ED Descriï¿½ï¿½o da funï¿½ï¿½o
+	Pergunta ao jogador da vez que peï¿½a ele deseja mover;
+	Chama a funï¿½ï¿½o de mover peï¿½a do mï¿½dulo tabuleiro, usando o valor retirado no dado;
 	Faz o tratamento de cada caso de retorno dela:
-		Se a peça escolhida está fora de jogo e o dado não deu 1 ou 6 a função termina;
-		Se a peça escolhida já está na reta final e o valor no dado não é o exato necessario para o fim, a função termina;
-		Se a peça já está no fim o jogador deve escolher outra. A função é chamada de novo, recursivamente;
-		Se o jogador tirou 6 no dado ele tem direito a um turno extra. A função é chamada de novo, recursivamente.
+		Se a peï¿½a escolhida estï¿½ fora de jogo e o dado nï¿½o deu 1 ou 6 a funï¿½ï¿½o termina;
+		Se a peï¿½a escolhida jï¿½ estï¿½ na reta final e o valor no dado nï¿½o ï¿½ o exato necessario para o fim, a funï¿½ï¿½o termina;
+		Se a peï¿½a jï¿½ estï¿½ no fim o jogador deve escolher outra. A funï¿½ï¿½o ï¿½ chamada de novo, recursivamente;
+		Se o jogador tirou 6 no dado ele tem direito a um turno extra. A funï¿½ï¿½o ï¿½ chamada de novo, recursivamente.
 
 
-$EP Parâmetros
-	*players - ponteiro para a variavel que armazena o número de jogadores
-	cor      - vetor do tipo enumerado Cor onde são armazenados, em ordem, a cor de cada jogador
+$EP Parï¿½metros
+	*players - ponteiro para a variavel que armazena o nï¿½mero de jogadores
+	cor      - vetor do tipo enumerado Cor onde sï¿½o armazenados, em ordem, a cor de cada jogador
 	Tabuleiro- ponteiro para o tabuleiro da partida
 	colors   - vetor de strings correspondente ao vetor cor, serve para facilitar os prints
-	i		 - inteiro que identifica de qual jogador é a vez
+	i		 - inteiro que identifica de qual jogador ï¿½ a vez
 
 ***************************************************************/
 void PAR_Move(char ** colors, Cor cor[4], int i,  TAB_Head *Tabuleiro){
@@ -298,18 +298,18 @@ void PAR_Move(char ** colors, Cor cor[4], int i,  TAB_Head *Tabuleiro){
 
 /***************************************************************
 
-$FC Função: PAR &Order
+$FC Funï¿½ï¿½o: PAR &Order
 
-$ED Descrição da função
+$ED Descriï¿½ï¿½o da funï¿½ï¿½o
 	Modifica a ordem dos vetores cor e colors de acordo com a ordem determinada por quem tirou o maior valor no dado inicial;
-	O jogador que vai primeiro é identificado pelo inteiro first e resto é organizado levando em conta o sentido horário.
+	O jogador que vai primeiro ï¿½ identificado pelo inteiro first e resto ï¿½ organizado levando em conta o sentido horï¿½rio.
 
 
-$EP Parâmetros
-	players  - inteiro que armazena o número de jogadores
-	cor      - vetor do tipo enumerado Cor onde são armazenados, em ordem, a cor de cada jogador
+$EP Parï¿½metros
+	players  - inteiro que armazena o nï¿½mero de jogadores
+	cor      - vetor do tipo enumerado Cor onde sï¿½o armazenados, em ordem, a cor de cada jogador
 	colors   - vetor de strings correspondente ao vetor cor, serve para facilitar os prints
-	first    - inteiro que identifica qual jogador é o primeiro
+	first    - inteiro que identifica qual jogador ï¿½ o primeiro
 
 ***************************************************************/
 
@@ -338,14 +338,14 @@ void PAR_Order (int first, Cor cor[4], char **colors, int players){
 
 /***************************************************************
 
-$FC Função: PAR &Colors
+$FC Funï¿½ï¿½o: PAR &Colors
 
-$ED Descrição da função
-	Faz a equivalencia entre o vetor do tipo Cor e do tipo char, de forma que cada entrada de cor corresponda à entrada de mesmo indice em colors;
+$ED Descriï¿½ï¿½o da funï¿½ï¿½o
+	Faz a equivalencia entre o vetor do tipo Cor e do tipo char, de forma que cada entrada de cor corresponda ï¿½ entrada de mesmo indice em colors;
 	Essa equivalencia serve para facilitar os prints.
 
-$EP Parâmetros
-	cor      - vetor do tipo enumerado Cor onde são armazenados, em ordem, a cor de cada jogador
+$EP Parï¿½metros
+	cor      - vetor do tipo enumerado Cor onde sï¿½o armazenados, em ordem, a cor de cada jogador
 	colors   - vetor de strings correspondente ao vetor cor, serve para facilitar os prints
 
 ***************************************************************/
@@ -370,10 +370,10 @@ void PAR_Colors (Cor cor[], char **colors){
 
 /***************************************************************
 
-$FC Função: PAR &Dice
+$FC Funï¿½ï¿½o: PAR &Dice
 
-$ED Descrição da função
-	Usa uma função da biblioteca de C para gerar um número aleatorio entre 1 e 6, simulando um dado;
+$ED Descriï¿½ï¿½o da funï¿½ï¿½o
+	Usa uma funï¿½ï¿½o da biblioteca de C para gerar um nï¿½mero aleatorio entre 1 e 6, simulando um dado;
 
 ***************************************************************/
 
@@ -383,15 +383,15 @@ int  PAR_Dice(){
 
 /***************************************************************
 
-$FC Função: PAR &Max
+$FC Funï¿½ï¿½o: PAR &Max
 
-$ED Descrição da função
-	Encontra o maior número entre os fornecidos pelo vetor d, que contem o valor dos dados inicias;
-	O vetor same é recebido com todas as entradas iguais a 0, quando é verificado que um jogador tirou o valor maximo encontrado no dado, 
+$ED Descriï¿½ï¿½o da funï¿½ï¿½o
+	Encontra o maior nï¿½mero entre os fornecidos pelo vetor d, que contem o valor dos dados inicias;
+	O vetor same ï¿½ recebido com todas as entradas iguais a 0, quando ï¿½ verificado que um jogador tirou o valor maximo encontrado no dado, 
 				a entrada no vetor same referente a ele vira 1, assim o programa sabe quais jogadores empataram para realizar o desempate,
-				e ao fim dos desempates sabe-se quem começa.
+				e ao fim dos desempates sabe-se quem comeï¿½a.
 
-$EP Parâmetros
+$EP Parï¿½metros
 	d	 - vetor de inteiros que armazena, em ordem, o valor retirado no dado incial de cada jogador
 	same - vetor de inteiros que indica quais jogadores tiraram o mesmo maior valor
 
@@ -415,13 +415,13 @@ void PAR_Max(int d[], int same[]){
 
 /***************************************************************
 
-$FC Função: PAR &zera
+$FC Funï¿½ï¿½o: PAR &zera
 
-$ED Descrição da função
-	Todo o programa faz uso de muitos vetores de inteiros com 4 elementos, por isso essa função serve apenas para
+$ED Descriï¿½ï¿½o da funï¿½ï¿½o
+	Todo o programa faz uso de muitos vetores de inteiros com 4 elementos, por isso essa funï¿½ï¿½o serve apenas para
 	auxiliar quando um desses vetores precisa ser zerado.
 
-$EP Parâmetros
+$EP Parï¿½metros
 	x - vetor de inteiros a ser zerado
 
 ***************************************************************/
@@ -435,23 +435,23 @@ void zera (int x[4]){
 
 /***************************************************************
 
-$FC Função: PAR &First
+$FC Funï¿½ï¿½o: PAR &First
 
-$ED Descrição da função
-	Primeiro  chama a função PAR_Max e verifica se apenas uma das entradas do vetor same é 1, se sim retorna o índice da entrada vencedora;
-	Se não, informa quais os jogadores que empataram e roda novos dados iniciais apenas para eles;
-	Zera o vetor same, chama novamente a função PAR_Max para atualizar o vetor same e chama a função de novo, recursivamente, até que
+$ED Descriï¿½ï¿½o da funï¿½ï¿½o
+	Primeiro  chama a funï¿½ï¿½o PAR_Max e verifica se apenas uma das entradas do vetor same ï¿½ 1, se sim retorna o ï¿½ndice da entrada vencedora;
+	Se nï¿½o, informa quais os jogadores que empataram e roda novos dados iniciais apenas para eles;
+	Zera o vetor same, chama novamente a funï¿½ï¿½o PAR_Max para atualizar o vetor same e chama a funï¿½ï¿½o de novo, recursivamente, atï¿½ que
 	apenas um jogador tenha o maior valor. 
 
-$EP Parâmetros
+$EP Parï¿½metros
 	same	 - vetor de inteiros que diz qual/quais jogadores tiraram o valor maior no dado inicial
 	d		 - vetor de inteiros que tem os valores tirados nos dados
-	players  - inteiro que diz o número de jogadores na partida
+	players  - inteiro que diz o nï¿½mero de jogadores na partida
 	colors   - vetor de strings correspondente ao vetor cor, serve para facilitar os prints
 
 $EV Valor Retornado
 
-	Retorna o índice correspondente ao jogador que começa
+	Retorna o ï¿½ndice correspondente ao jogador que comeï¿½a
 
 ***************************************************************/
 

@@ -9,21 +9,21 @@ typedef enum{
 	PAR_CondRetErroDesconhecido,
 		//Houve um erro onde valores foram verificados anteriormente, entao nao deveria haver
 	PAR_CondRetNinguemGanhou
-		//Nao foi retornada condicao de vitoria, mesmo que o loop tenha parado (so devia parar com condição de vitoria)
+		//Nao foi retornada condicao de vitoria, mesmo que o loop tenha parado (so devia parar com condiï¿½ï¿½o de vitoria)
 } PAR_tpCondRet;
 
 /***************************************************************
 
-$FC Função: PAR &Ready
+$FC Funï¿½ï¿½o: PAR &Ready
 
-$ED Descrição da função
-	Ela cria o tabuleiro, um vetor de cores do tipo Cor e um do tipo char e chama as funções que fazem o jogo funcionar;
-	Ou seja, ela é uma preparação inical para a partida.
+$ED Descriï¿½ï¿½o da funï¿½ï¿½o
+	Ela cria o tabuleiro, um vetor de cores do tipo Cor e um do tipo char e chama as funï¿½ï¿½es que fazem o jogo funcionar;
+	Ou seja, ela ï¿½ uma preparaï¿½ï¿½o inical para a partida.
 
 $FV Valor retornado
 	CondRetOK			   - tudo funcionou como esperado
-	CondRetFaltouMemoria   - falta de memória ao criar o tabuleiro
-	CondRetNinguemGanhou   - por algum erro interno, não houve retorno de condição de vitória
+	CondRetFaltouMemoria   - falta de memï¿½ria ao criar o tabuleiro
+	CondRetNinguemGanhou   - por algum erro interno, nï¿½o houve retorno de condiï¿½ï¿½o de vitï¿½ria
 	CondRetErroDesconhecido- houve um erro onde valores foram verificados anteriormente, entao nao deveria haver
 
 ***************************************************************/
