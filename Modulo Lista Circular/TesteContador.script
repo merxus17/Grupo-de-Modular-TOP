@@ -1,12 +1,13 @@
-﻿// Script:    TestaListaCircular.script
-// Autor:     Rodrigo Monteiro Pereira
-// Data:      20/abr/2019
-// Prop�sito: Testar o m�dulo lista circular gen�rica duplamente encadeada
+// Script:    TesteContador-ListaCircular.script
+// Autor:     Rodrigo
+// Data:      21/06/2019
+// Prop�sito: Script para controle de cobertura
 //
 
-
-== Iniciar controle de espa�o din�mico
-=inicializarcontadores  "."
+== Iniciar contagem
+=inicializarcontadores  ""
+=lercontadores          "ListaCircular"
+=iniciarcontagem
 
 
 == Inicializar valores
@@ -30,12 +31,6 @@
 
 =declararparm   pNULL          int  0
 =declararparm   pNaoNULL       int  1
-
-
-
-
-
-
 
 
 
@@ -135,5 +130,9 @@
 == Procurar str1 em lista (n�o existe)
 =procurarelem	 lista7	  str2   str3   str4   str1   NaoAchou
 
+== Terminar controlar contadores
+=pararcontagem
+=verificarcontagens    0
 
- 
+== Terminar contagem
+=terminarcontadores

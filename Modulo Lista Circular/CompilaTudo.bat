@@ -1,16 +1,22 @@
 @ECHO  OFF
 REM  Compila todos os exemplos simples 
 
-pushd  .
 
 del *.err
-del TesteListaCircular.exe
+del *.obj
+
+pushd  .
+nmake /FTesteListaCircular.make 
+popd
 
 del *.obj
-nmake /FTesteListaCircular.make 
+pushd . 
+nmake /FTesteListaCircularDebug.make
+del *.obj
+
+popd
 
 copy  *.err  tudo.err
 
 notepad tudo.err
 
-popd

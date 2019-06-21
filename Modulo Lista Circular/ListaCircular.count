@@ -1,0 +1,19 @@
+////////////////////////////////////////////////
+//
+// Exemplo de arquivo de declara��o de contadores
+// Conta m�dulo Lista marcado
+//
+///////////////////////////////////////////////
+    
+    LIC_CriarLista
+    LIC_InserirAntes
+    LIC_EsvaziarLista
+    LIC_DestruirLista
+    LIC_InserirApos
+    LIC_ExcluirElemento
+    LIC_ObterValor
+    LIC_IrInicioLista
+    LIC_IrFinalLista
+    LIC_Avancar
+    LIC_ProcurarValor
+	 XPTO nome adicionado para fins de teste\=-2

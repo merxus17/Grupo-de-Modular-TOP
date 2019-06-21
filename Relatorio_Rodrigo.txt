@@ -39,3 +39,5 @@ Data - Horas trabalhadas - Tipo de tarefa - Descrição da tarefa
 
 
 13/05 - 6h - Trabalho generalizado para concluir a tarefa  
+
+20/06 - 5h - Inserção da instrumentação de contagem
