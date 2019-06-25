@@ -76,7 +76,7 @@
 
    static ElemLista * CriarElemento( LIC_Lista Lista, void * Valor ) ;
 
-   static void LimparCabeca( LIC_Lista Lista ) ;
+   static LIC_CondRet LimparCabeca( LIC_Lista Lista ) ;
 
 /*****  C�digo das fun��es exportadas pelo m�dulo  *****/
 
@@ -110,7 +110,7 @@
 
 /*  Fun��o: LIC  &Destruir lista*/
 
-   void LIC_DestruirLista( LIC_Lista Lista )
+   LIC_CondRet LIC_DestruirLista( LIC_Lista Lista )
    {
 	   #ifdef _DEBUG
          CNT_CONTAR( "LIC_DestruirLista" ) ;
@@ -118,7 +118,7 @@
 
       if (Lista==NULL){
 		  printf("\nLista vazia\n");
-		  return;
+		  return LIC_CondRetListaVazia;
 	  }
 
       LIC_EsvaziarLista( Lista ) ;
@@ -131,7 +131,7 @@
 
 /*	Fun��o: LIC  &Esvaziar lista*/
 
-   void LIC_EsvaziarLista( LIC_Lista Lista )
+   LIC_CondRet LIC_EsvaziarLista( LIC_Lista Lista )
    {
 	   
 
@@ -144,7 +144,7 @@
 
       if (Lista==NULL){
 		  printf("\nLista vazia\n");
-		  return;
+		  return LIC_CondRetListaVazia;
 	  }
 
       if (Lista->numElem == 0){
@@ -350,7 +350,7 @@
 
 /*  Fun��o: LIC  &Ir para o elemento inicial*/
 
-   void LIC_IrInicioLista( LIC_Lista Lista )
+   LIC_CondRet LIC_IrInicioLista( LIC_Lista Lista )
    {
 	   #ifdef _DEBUG
          CNT_CONTAR( "LIC_IrInicioLista" ) ;
@@ -358,7 +358,7 @@
 
       if (Lista==NULL){
 		  printf("\nLista vazia\n");
-		  return;
+		  return LIC_CondRetListaVazia;
 	  }
 
       Lista->ElemCorr = Lista->Origem ;
@@ -369,7 +369,7 @@
 
 /*  Fun��o: LIC  &Ir para o elemento final*/
 
-   void LIC_IrFinalLista( LIC_Lista Lista )
+   LIC_CondRet LIC_IrFinalLista( LIC_Lista Lista )
    {
 	   #ifdef _DEBUG
          CNT_CONTAR( "LIC_IrFinalLista" ) ;
@@ -377,7 +377,7 @@
 
       if (Lista==NULL){
 		  printf("\nLista vazia\n");
-		  return;
+		  return LIC_CondRetListaVazia;
 	  }
 
       Lista->ElemCorr = Lista->Fim ;
@@ -563,9 +563,12 @@
 *
 ***********************************************************************/
 
-   void LimparCabeca( LIC_Lista Lista )
+   LIC_CondRet LimparCabeca( LIC_Lista Lista )
    {
-
+       if ( Lista == NULL )
+      {
+         return LIC_CondRetListaVazia ;
+      } 
       Lista->Origem = NULL ;
       Lista->Fim = NULL ;
       Lista->ElemCorr = NULL ;

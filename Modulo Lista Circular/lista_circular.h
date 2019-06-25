@@ -2,7 +2,7 @@
 #define lista_circular_
 /***************************************************************************
 *
-*  $MCD Módulo de definição: LIC  Lista circular duplamente encadeada
+*  $MCD Mï¿½dulo de definiï¿½ï¿½o: LIC  Lista circular duplamente encadeada
 *
 *  Arquivo gerado:              lista_circular.h
 *  Letras identificadoras:      LIC
@@ -10,32 +10,32 @@
 *  Projeto: INF 1301 / T2
 *  Autores: Giulia Mahovlic
 *
-*  $ED Descrição do módulo
-*     Implementa listas circulares genéricas duplamente encadeadas.
-*     Podem existir n listas circulares em operação simultaneamente.
-*     As listas possuem uma cabeça encapsulando o seu estado.
+*  $ED Descriï¿½ï¿½o do mï¿½dulo
+*     Implementa listas circulares genï¿½ricas duplamente encadeadas.
+*     Podem existir n listas circulares em operaï¿½ï¿½o simultaneamente.
+*     As listas possuem uma cabeï¿½a encapsulando o seu estado.
 *
-*     Cada lista circular é homogênea quanto ao tipo dos dados que armazena.
-*     Cada elemento da lista referencia o valor que contém.
+*     Cada lista circular ï¿½ homogï¿½nea quanto ao tipo dos dados que armazena.
+*     Cada elemento da lista referencia o valor que contï¿½m.
 *
-*     Os ponteiros para os dados são copiados para elementos da lista.
-*        Não é copiado o valor apontado por estes ponteiros.
+*     Os ponteiros para os dados sï¿½o copiados para elementos da lista.
+*        Nï¿½o ï¿½ copiado o valor apontado por estes ponteiros.
 *
-*     O controle da destruição do valor de um elemento a ser excluído
-*        é realizado por uma função fornecida pelo usuário.
+*     O controle da destruiï¿½ï¿½o do valor de um elemento a ser excluï¿½do
+*        ï¿½ realizado por uma funï¿½ï¿½o fornecida pelo usuï¿½rio.
 *
-*     Cada lista referencia uma função que determina como devem ser
+*     Cada lista referencia uma funï¿½ï¿½o que determina como devem ser
 *        desalocados os dados nela contidos.
 *
-*     A função de liberação dos valores contidos nos elementos deve
-*        assegurar a liberação de todos os espaços referênciados pelo
+*     A funï¿½ï¿½o de liberaï¿½ï¿½o dos valores contidos nos elementos deve
+*        assegurar a liberaï¿½ï¿½o de todos os espaï¿½os referï¿½nciados pelo
 *        valor contido em um elemento.
-*        Esta função é chamada antes de se desalocar um elemento
+*        Esta funï¿½ï¿½o ï¿½ chamada antes de se desalocar um elemento
 *        de uma lista.
-*        Caso não seja necessário desalocar o valor referenciado pelo
-*        elemento, o ponteiro para a função de liberação poderá ser NULL .
-*        Caso o elemento da lista seja a única âncora do valor referenciado,
-*        esta função deve promover a destruição (free) desse valor e
+*        Caso nï¿½o seja necessï¿½rio desalocar o valor referenciado pelo
+*        elemento, o ponteiro para a funï¿½ï¿½o de liberaï¿½ï¿½o poderï¿½ ser NULL .
+*        Caso o elemento da lista seja a ï¿½nica ï¿½ncora do valor referenciado,
+*        esta funï¿½ï¿½o deve promover a destruiï¿½ï¿½o (free) desse valor e
 *        de todos os dados nele ancorados.
 *
 ***************************************************************************/
@@ -46,20 +46,20 @@
    #define listac_EXT extern
 #endif
 
-/***** Declarações exportadas pelo módulo *****/
+/***** Declaraï¿½ï¿½es exportadas pelo mï¿½dulo *****/
 
-/* Tipo referência para uma lista */
+/* Tipo referï¿½ncia para uma lista */
 
 typedef struct LIC_tagLista * LIC_Lista ;
 
 
 /***********************************************************************
 *
-*  $TC Tipo de dados: LIS Condições de retorno
+*  $TC Tipo de dados: LIS Condiï¿½ï¿½es de retorno
 *
 *
-*  $ED Descrição do tipo
-*     Condições de retorno das funções da lista
+*  $ED Descriï¿½ï¿½o do tipo
+*     Condiï¿½ï¿½es de retorno das funï¿½ï¿½es da lista
 *
 ***********************************************************************/
 
@@ -69,39 +69,39 @@ typedef struct LIC_tagLista * LIC_Lista ;
                /* Concluiu corretamente */
 
          LIC_CondRetListaVazia ,
-               /* A lista não contém elementos */
+               /* A lista nï¿½o contï¿½m elementos */
 
          LIC_CondRetNaoAchou ,
-               /* Não encontrou o valor procurado */
+               /* Nï¿½o encontrou o valor procurado */
 
          LIC_CondRetFaltouMemoria
-               /* Faltou memória ao tentar criar um elemento de lista */
+               /* Faltou memï¿½ria ao tentar criar um elemento de lista */
 
    } LIC_CondRet ;
 
 
 /***********************************************************************
 *
-*  $FC Função: LIC  &Criar lista
+*  $FC Funï¿½ï¿½o: LIC  &Criar lista
 *
-*  $ED Descrição da função
-*     Cria uma lista circular genérica duplamente encadeada.
-*     Os possíveis tipos são desconhecidos a priori.
-*     A tipagem é implicita.
-*     Não existe identificador de tipo associado à lista.
+*  $ED Descriï¿½ï¿½o da funï¿½ï¿½o
+*     Cria uma lista circular genï¿½rica duplamente encadeada.
+*     Os possï¿½veis tipos sï¿½o desconhecidos a priori.
+*     A tipagem ï¿½ implicita.
+*     Nï¿½o existe identificador de tipo associado ï¿½ lista.
 *
-*  $EP Parâmetros
-*     ExcluirValor  - ponteiro para a função que processa a
-*                     exclusão do valor referenciado pelo elemento
-*                     a ser excluído.
-*                     Ver descrição do módulo.
+*  $EP Parï¿½metros
+*     ExcluirValor  - ponteiro para a funï¿½ï¿½o que processa a
+*                     exclusï¿½o do valor referenciado pelo elemento
+*                     a ser excluï¿½do.
+*                     Ver descriï¿½ï¿½o do mï¿½dulo.
 *
 *  $FV Valor retornado
 *     Se executou corretamente retorna o ponteiro para a lista.
-*     Este ponteiro será utilizado pelas funções que manipulem esta lista.
+*     Este ponteiro serï¿½ utilizado pelas funï¿½ï¿½es que manipulem esta lista.
 *
-*     Se ocorreu algum erro, por exemplo falta de memória ou dados errados,
-*     a função retornará NULL.
+*     Se ocorreu algum erro, por exemplo falta de memï¿½ria ou dados errados,
+*     a funï¿½ï¿½o retornarï¿½ NULL.
 *
 ***********************************************************************/
 
@@ -110,47 +110,47 @@ typedef struct LIC_tagLista * LIC_Lista ;
 
 /***********************************************************************
 *
-*  $FC Função: LIC  &Destruir lista
+*  $FC Funï¿½ï¿½o: LIC  &Destruir lista
 *
-*  $ED Descrição da função
-*     Destrói a lista fornecida.
-*     O parâmetro ponteiro para a lista não é modificado.
+*  $ED Descriï¿½ï¿½o da funï¿½ï¿½o
+*     Destrï¿½i a lista fornecida.
+*     O parï¿½metro ponteiro para a lista nï¿½o ï¿½ modificado.
 *  
-*  $EP Parâmetros
-*	  Lista - ponteiro para a lista a ser destruída
+*  $EP Parï¿½metros
+*	  Lista - ponteiro para a lista a ser destruï¿½da
 *
 *  $FV Valor retornado
 *     LIC_CondRetOK    - destruiu sem problemas
 *
 ***********************************************************************/
 
-   void LIC_DestruirLista( LIC_Lista Lista ) ;
+   LIC_CondRet LIC_DestruirLista( LIC_Lista Lista ) ;
 
 
 /***********************************************************************
 *
-*  $FC Função: LIC  &Esvaziar lista
+*  $FC Funï¿½ï¿½o: LIC  &Esvaziar lista
 *
-*  $ED Descrição da função
+*  $ED Descriï¿½ï¿½o da funï¿½ï¿½o
 *     Elimina todos os elementos, sem contudo eliminar a lista
 *
-*  $EP Parâmetros
+*  $EP Parï¿½metros
 *     Lista - ponteiro para a lista a ser esvaziada
 *
 ***********************************************************************/
 
-   void LIC_EsvaziarLista( LIC_Lista Lista ) ;
+   LIC_CondRet LIC_EsvaziarLista( LIC_Lista Lista ) ;
 
 
 /***********************************************************************
 *
-*  $FC Função: LIC  &Inserir elemento antes
+*  $FC Funï¿½ï¿½o: LIC  &Inserir elemento antes
 *
-*  $ED Descrição da função
+*  $ED Descriï¿½ï¿½o da funï¿½ï¿½o
 *     Insere novo elemento antes do elemento corrente.
 *     Caso a lista esteja vazia, insere o primeiro elemento da lista.
 *
-*  $EP Parâmetros
+*  $EP Parï¿½metros
 *     Lista - ponteiro para a lista onde deve ser inserido o elemento
 *     Valor - ponteiro para o valor do novo elemento
 *              Pode ser NULL
@@ -166,13 +166,13 @@ typedef struct LIC_tagLista * LIC_Lista ;
 
 /***********************************************************************
 *
-*  $FC Função: LIC  &Inserir elemento após
+*  $FC Funï¿½ï¿½o: LIC  &Inserir elemento apï¿½s
 *
-*  $ED Descrição da função
-*     Insere novo elemento após o elemento corrente.
+*  $ED Descriï¿½ï¿½o da funï¿½ï¿½o
+*     Insere novo elemento apï¿½s o elemento corrente.
 *     Caso a lista esteja vazia, insere o primeiro elemento da lista.
 *
-*  $EP Parâmetros
+*  $EP Parï¿½metros
 *        Lista - ponteiro para a lista onde deve ser inserido o elemento
 *        Valor - ponteiro para o valor do novo elemento
 *                 Pode ser NULL
@@ -190,15 +190,15 @@ typedef struct LIC_tagLista * LIC_Lista ;
 
 /***********************************************************************
 *
-*  $FC Função: LIC  &Excluir elemento
+*  $FC Funï¿½ï¿½o: LIC  &Excluir elemento
 *
-*  $ED Descrição da função
+*  $ED Descriï¿½ï¿½o da funï¿½ï¿½o
 *     Exclui o elemento corrente da lista dada.
-*     Se existir o elemento aa esquerda do corrente será o novo corrente.
-*     Se não existir e existir o elemento à direita, este se tornará corrente.
-*     Se este também não existir a lista tornou-se vazia.
+*     Se existir o elemento aa esquerda do corrente serï¿½ o novo corrente.
+*     Se nï¿½o existir e existir o elemento ï¿½ direita, este se tornarï¿½ corrente.
+*     Se este tambï¿½m nï¿½o existir a lista tornou-se vazia.
 *
-*  $EP Parâmetros
+*  $EP Parï¿½metros
 *     Lista    - ponteiro para a lista na qual deve excluir.
 *
 *  $FV Valor retornado
@@ -212,16 +212,16 @@ typedef struct LIC_tagLista * LIC_Lista ;
 
 /***********************************************************************
 *
-*  $FC Função: LIC  &Obter referência para o valor contido no elemento
+*  $FC Funï¿½ï¿½o: LIC  &Obter referï¿½ncia para o valor contido no elemento
 *
-*  $ED Descrição da função
-*     Obtem a referência para o valor contido no elemento corrente da lista
+*  $ED Descriï¿½ï¿½o da funï¿½ï¿½o
+*     Obtem a referï¿½ncia para o valor contido no elemento corrente da lista
 *
-*  $EP Parâmetros
+*  $EP Parï¿½metros
 *     Lista - ponteiro para a lista de onde se quer o valor
 *
 *  $FV Valor retornado
-*     não NULL - se o elemento corrente existe ele é retornado
+*     nï¿½o NULL - se o elemento corrente existe ele ï¿½ retornado
 *     NULL     - se a lista estiver vazia
 *                Pode retornar NULL se o valor inserido no elemento for NULL.
 *
@@ -232,56 +232,56 @@ typedef struct LIC_tagLista * LIC_Lista ;
 
 /***********************************************************************
 *
-*  $FC Função: LIC  &Ir para o elemento inicial
+*  $FC Funï¿½ï¿½o: LIC  &Ir para o elemento inicial
 *
-*  $ED Descrição da função
+*  $ED Descriï¿½ï¿½o da funï¿½ï¿½o
 *     Torna corrente o primeiro elemento da lista.
-*     Faz nada se a lista está vazia.
+*     Faz nada se a lista estï¿½ vazia.
 *
-*  $EP Parâmetros
+*  $EP Parï¿½metros
 *     Lista - ponteiro para a lista a manipular
 *
 ***********************************************************************/
 
-   void LIC_IrInicioLista( LIC_Lista Lista ) ;
+   LIC_CondRet LIC_IrInicioLista( LIC_Lista Lista ) ;
 
 
 /***********************************************************************
 *
-*  $FC Função: LIC  &Ir para o elemento final
+*  $FC Funï¿½ï¿½o: LIC  &Ir para o elemento final
 *
-*  $ED Descrição da função
+*  $ED Descriï¿½ï¿½o da funï¿½ï¿½o
 *     Torna corrente o elemento final da lista.
-*     Faz nada se a lista está vazia.
+*     Faz nada se a lista estï¿½ vazia.
 *
-*  $EP Parâmetros
+*  $EP Parï¿½metros
 *     Lista - ponteiro para a lista a manipular
 *
 ***********************************************************************/
 
-   void LIC_IrFinalLista( LIC_Lista Lista ) ;
+   LIC_CondRet LIC_IrFinalLista( LIC_Lista Lista ) ;
 
 
 /***********************************************************************
 *
-*  $FC Função: LIC  &Avançar elemento
+*  $FC Funï¿½ï¿½o: LIC  &Avanï¿½ar elemento
 *
-*  $ED Descrição da função
-*     Avança o elemento corrente x elementos na lista
-*     Se x for positivo avança em sentido horário
-*     Se x for negativo avança em sentido anti-horário
-*     Se x for zero somente verifica se a lista está vazia
+*  $ED Descriï¿½ï¿½o da funï¿½ï¿½o
+*     Avanï¿½a o elemento corrente x elementos na lista
+*     Se x for positivo avanï¿½a em sentido horï¿½rio
+*     Se x for negativo avanï¿½a em sentido anti-horï¿½rio
+*     Se x for zero somente verifica se a lista estï¿½ vazia
 *     Faz nada se a lista possui apenas um elemento 
-*				(avançar qualquer número em qualquer sentido 
+*				(avanï¿½ar qualquer nï¿½mero em qualquer sentido 
 *								sempre da no mesmo elemento)
 *
-*  $EP Parâmetros
+*  $EP Parï¿½metros
 *     Lista  - ponteiro para a lista a ser manipulada
-*     x - o número de elementos a andar
+*     x - o nï¿½mero de elementos a andar
 *
 *  $FV Valor retornado
 *     CondRetOK         - se x elementos tiverem sido andados
-*     CondRetListaVazia - se a lista está vazia
+*     CondRetListaVazia - se a lista estï¿½ vazia
 *
 ***********************************************************************/
 
@@ -290,13 +290,13 @@ typedef struct LIC_tagLista * LIC_Lista ;
 
 /***********************************************************************
 *
-*  $FC Função: LIC  &Procurar elemento contendo valor
+*  $FC Funï¿½ï¿½o: LIC  &Procurar elemento contendo valor
 *
-*  $ED Descrição da função
+*  $ED Descriï¿½ï¿½o da funï¿½ï¿½o
 *     Procura o elemento que referencia o valor dado.
-*     A função compara ponteiro e não conteúdo apontado.
+*     A funï¿½ï¿½o compara ponteiro e nï¿½o conteï¿½do apontado.
 *
-*  $EP Parâmetros
+*  $EP Parï¿½metros
 *     Lista  - ponteiro para a lista onde ocorre a procura
 *     Valor  - ponteiro para o valor procurado
 *               Pode ser NULL
@@ -304,7 +304,7 @@ typedef struct LIC_tagLista * LIC_Lista ;
 *  $FV Valor retornado
 *     LIC_CondRetOK  - se encontrou
 *                      O elemento corrente passa a ser o que possui o valor procurado
-*     LIC_CondRetNaoEncontrou - se o ponteiro não foi encontrado
+*     LIC_CondRetNaoEncontrou - se o ponteiro nï¿½o foi encontrado
 *                      O elemento corrente continua o mesmo
 *     LIC_CondRetListaVazia   - se a lista estiver vazia
 *
@@ -314,7 +314,7 @@ typedef struct LIC_tagLista * LIC_Lista ;
 
 #undef listac_EXT
 
-/********** Fim do módulo de definição: LIC  Lista circular duplamente encadeada **********/
+/********** Fim do mï¿½dulo de definiï¿½ï¿½o: LIC  Lista circular duplamente encadeada **********/
 
 #else
 #endif

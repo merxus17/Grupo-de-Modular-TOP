@@ -4,7 +4,7 @@ REM  Compila todos os exemplos simples
 pushd  .
 
 del *.err
-del TestePecas.exe
+del TestePeca.exe
 
 del *.obj
 nmake /FTestePeca.make 
