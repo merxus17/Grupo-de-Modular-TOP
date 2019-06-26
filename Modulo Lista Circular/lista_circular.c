@@ -124,7 +124,7 @@
       LIC_EsvaziarLista( Lista ) ;
 
       free( Lista ) ;
-
+      return LIC_CondRetOK;
    } /* Fim fun��o: LIC  &Destruir lista */
 
 /*==========================================================*/
@@ -165,7 +165,7 @@
       }while ( Elem->Prox != Lista->Origem );
 
       LimparCabeca( Lista ) ;
-	  return;
+	  return LIC_CondRetOK;;
 
    } /* Fim fun��o: LIS  &Esvaziar lista */
 
@@ -363,6 +363,8 @@
 
       Lista->ElemCorr = Lista->Origem ;
 
+      return LIC_CondRetOK;
+
    } /* Fim fun��o: LIC  &Ir para o elemento inicial */
 
 /*==========================================================*/
@@ -381,7 +383,7 @@
 	  }
 
       Lista->ElemCorr = Lista->Fim ;
-
+      return LIC_CondRetOK;
    } /* Fim fun��o: LIC  &Ir para o elemento final */
 
 /*==========================================================*/
@@ -574,6 +576,7 @@
       Lista->ElemCorr = NULL ;
       Lista->numElem   = 0 ;
 
+      return LIC_CondRetOK;
    } /* Fim fun��o: LIC  -Limpar a cabe�a da lista */
 
 /********** Fim do m�dulo de implementa��o: LIC  Lista circular duplamente encadeada **********/
