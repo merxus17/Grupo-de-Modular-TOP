@@ -8,8 +8,10 @@ typedef enum{
 		//Nao teve memoria para criar o tabuleiro
 	PAR_CondRetErroDesconhecido,
 		//Houve um erro onde valores foram verificados anteriormente, entao nao deveria haver
-	PAR_CondRetNinguemGanhou
+	PAR_CondRetNinguemGanhou,
 		//Nao foi retornada condicao de vitoria, mesmo que o loop tenha parado (so devia parar com condição de vitoria)
+	PAR_CondRetPonteiroNulo
+		//A funcao recebeu algum ponteiro nulo
 } PAR_tpCondRet;
 
 /***************************************************************
