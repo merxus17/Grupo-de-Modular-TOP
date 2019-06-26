@@ -9,14 +9,14 @@
 // CABECALHO DAS FUNCOES ENCAPSULADAS DO MODULO
 PAR_tpCondRet  PAR_Set (int *players, Cor cor[4]);
 PAR_tpCondRet  PAR_Go (int players, Cor cor[4], TAB_Head *Tabuleiro);
-void PAR_Colors (Cor cor[], char **colors);
+PAR_tpCondRet PAR_Colors (Cor cor[], char **colors);
 int  PAR_Dice();
-void PAR_Max(int d[], int same[]);
-void zera (int x[4]);
+PAR_tpCondRet PAR_Max(int d[], int same[]);
+PAR_tpCondRet zera (int x[4]);
 int PAR_First (int same[], int d[], int players, char **colors);
-void PAR_Order (int first, Cor cor[4], char **colors, int players);
+PAR_tpCondRet PAR_Order (int first, Cor cor[4], char **colors, int players);
 int PAR_Turn (int players, char ** colors, Cor cor[4], TAB_Head * Tabuleiro);
-void PAR_Move(char ** colors, Cor cor[4], int i,  TAB_Head *Tabuleiro);
+PAR_tpCondRet PAR_Move(char ** colors, Cor cor[4], int i,  TAB_Head *Tabuleiro);
 //============================================================================
 
 
@@ -77,6 +77,10 @@ PAR_tpCondRet  PAR_Set (int *players, Cor cor[4], char ** colors){
 	int d[4]; // valor do dado de cada jogador
 	int same[4] = {0,0,0,0}; // onde tem 1 � o valor maior entre os dados
 	int first; //numero q identifica o jogador que come�a
+
+	if (cor == NULL || colors == NULL || players == NULL){
+		return PAR_CondRetPonteiroNulo;
+	}
 
 	//recebe o n� de jogadores
 	printf("======LUDO=====\n======BEM VINDO\nDigite o numero de jogadores: ");
@@ -167,6 +171,7 @@ $FV Valor retornado
 	CondRetOK			   - tudo funcionou como esperado
 	CondRetErroDesconhecido- houve um erro onde valores foram verificados anteriormente, entao nao deveria haver
 	CondRetNinguemGanhou   - por algum erro interno, n�o houve retorno de condi��o de vit�ria
+	CondRetPonteiroNulo    - a fun��o recebeu um ponteiro nulo
 
 ***************************************************************/
 
@@ -174,6 +179,10 @@ PAR_tpCondRet  PAR_Go (int players, Cor cor[4], TAB_Head *Tabuleiro, char **colo
 	int i,j;
 	int noWin = 1;
 	
+	if (cor == NULL || colors == NULL || Tabuleiro == NULL){
+		return PAR_CondRetPonteiroNulo;
+	}
+
 	TAB_showTab(Tabuleiro);
 
 	while(noWin){
@@ -206,17 +215,19 @@ $EP Par�metros
 	colors   - vetor de strings correspondente ao vetor cor, serve para facilitar os prints
 
 $FV Valor retornado
-	1 - quando ningu�m venceu ainda
-	0 - quando algu�m vence
+	1  - quando ningu�m venceu ainda
+	0  - quando algu�m vence
+	-1 - recebeu um ponteiro nulo
 
 ***************************************************************/
 
 int PAR_Turn (int players, char ** colors, Cor cor[4], TAB_Head * Tabuleiro){
 	int i,j, noWin = 1;
 
-	if(Tabuleiro == NULL){ // assertiva
-		return NULL;
+	if (cor == NULL || colors == NULL || Tabuleiro == NULL){
+		return -1;
 	}
+
 
 	for (i = 0; i < players; i++){
 		PAR_Move(colors, cor, i, Tabuleiro);
@@ -257,10 +268,24 @@ $EP Par�metros
 	colors   - vetor de strings correspondente ao vetor cor, serve para facilitar os prints
 	i		 - inteiro que identifica de qual jogador � a vez
 
+$FV Valor retornado
+	PAR_CondRetPonteiroNulo - a fun��o recebeu um ponteiro nulo
+	PAR_CondRetOK           - tudo certo
+
 ***************************************************************/
-void PAR_Move(char ** colors, Cor cor[4], int i,  TAB_Head *Tabuleiro){
+PAR_tpCondRet PAR_Move(char ** colors, Cor cor[4], int i,  TAB_Head *Tabuleiro){
 	int dice, nPeca;
 	TAB_tpCondRet MovRet;
+
+	if (cor == NULL || colors == NULL ||  Tabuleiro == NULL){
+		return PAR_CondRetPonteiroNulo;
+	}
+
+
+
+	dice = PAR_Dice();
+	printf("\n valor no dado: %i", dice);
+
 
 
 	printf("\n%s, que peca deseja mover? ", colors[i]);
@@ -272,9 +297,7 @@ void PAR_Move(char ** colors, Cor cor[4], int i,  TAB_Head *Tabuleiro){
 		scanf("%i", &nPeca);
 	}
 
-	dice = PAR_Dice();
-	printf("\n valor no dado: %i", dice);
-
+	
 	MovRet = TAB_moverPeca(Tabuleiro, cor[i], nPeca-1 , dice); //realiza o movimento
 	TAB_showTab(Tabuleiro);
 
@@ -293,7 +316,7 @@ void PAR_Move(char ** colors, Cor cor[4], int i,  TAB_Head *Tabuleiro){
 		printf("\nTirou 6! Jogue novamente! :D");
 		PAR_Move(colors, cor, i, Tabuleiro);
 	}
-		
+	return PAR_CondRetOK;
 }
 
 /***************************************************************
@@ -311,11 +334,20 @@ $EP Par�metros
 	colors   - vetor de strings correspondente ao vetor cor, serve para facilitar os prints
 	first    - inteiro que identifica qual jogador � o primeiro
 
+$FV Valor retornado
+	PAR_CondRetPonteiroNulo - a fun��o recebeu um ponteiro nulo
+	PAR_CondRetOK           - tudo certo
+
 ***************************************************************/
 
-void PAR_Order (int first, Cor cor[4], char **colors, int players){
+PAR_tpCondRet PAR_Order (int first, Cor cor[4], char **colors, int players){
 	int i;
 	Cor aux[4];
+
+	if (cor == NULL || colors == NULL){
+		return PAR_CondRetPonteiroNulo;
+	}
+
 	for (i = 0; i < players; i++){
 		aux[i] = cor[first];
 		if(first < players-1){
@@ -333,7 +365,7 @@ void PAR_Order (int first, Cor cor[4], char **colors, int players){
 	for (i=0;i<players;i++){
 		printf("\t %s", colors[i]);
 	}
-
+	return PAR_CondRetOK;
 }
 
 /***************************************************************
@@ -348,10 +380,19 @@ $EP Par�metros
 	cor      - vetor do tipo enumerado Cor onde s�o armazenados, em ordem, a cor de cada jogador
 	colors   - vetor de strings correspondente ao vetor cor, serve para facilitar os prints
 
+$FV Valor retornado
+	PAR_CondRetPonteiroNulo - a fun��o recebeu um ponteiro nulo
+	PAR_CondRetOK           - tudo certo
+
 ***************************************************************/
 
-void PAR_Colors (Cor cor[], char **colors){
+PAR_tpCondRet PAR_Colors (Cor cor[], char **colors){
 	int i;
+
+	if (cor == NULL || colors == NULL){
+		return PAR_CondRetPonteiroNulo;
+	}
+
 	for (i=0; i<4; i++){
 		if(cor[i]==Azul){
 			colors[i] = "Azul";
@@ -366,6 +407,8 @@ void PAR_Colors (Cor cor[], char **colors){
 			colors[i] = "Vermelho";
 		}
 	}
+
+	return PAR_CondRetOK;
 }
 
 /***************************************************************
@@ -395,11 +438,20 @@ $EP Par�metros
 	d	 - vetor de inteiros que armazena, em ordem, o valor retirado no dado incial de cada jogador
 	same - vetor de inteiros que indica quais jogadores tiraram o mesmo maior valor
 
+$FV Valor retornado
+	PAR_CondRetPonteiroNulo - a fun��o recebeu um ponteiro nulo
+	PAR_CondRetOK           - tudo certo
+
 ***************************************************************/
 
-void PAR_Max(int d[], int same[]){
+PAR_tpCondRet PAR_Max(int d[], int same[]){
 	int i;
 	int max = 0;
+
+	if (d == NULL || same == NULL){
+		return PAR_CondRetPonteiroNulo;
+	}
+
 	for (i=0; i<4; i++){
 		if(d[i] > max){
 			max = d[i];
@@ -410,7 +462,7 @@ void PAR_Max(int d[], int same[]){
 			same[i] = 1;
 		}
 	}
-	return;
+	return PAR_CondRetOK;
 }
 
 /***************************************************************
@@ -424,13 +476,20 @@ $ED Descri��o da fun��o
 $EP Par�metros
 	x - vetor de inteiros a ser zerado
 
+$FV Valor retornado
+	PAR_CondRetPonteiroNulo - a fun��o recebeu um ponteiro nulo
+	PAR_CondRetOK           - tudo certo
+
 ***************************************************************/
-void zera (int x[4]){
+ PAR_tpCondRet zera (int x[4]){
 	int i;
+	if (x == NULL){
+		return PAR_CondRetPonteiroNulo;
+	}
 	for(i = 0; i < 4; i++){
 		x[i] = 0;
 	}
-	return;
+	return PAR_CondRetOK;
 }
 
 /***************************************************************
@@ -451,13 +510,17 @@ $EP Par�metros
 
 $EV Valor Retornado
 
-	Retorna o �ndice correspondente ao jogador que come�a
+	Retorna o �ndice correspondente ao jogador que come�a ou -1 quando recebe um ponteiro nulo
 
 ***************************************************************/
 
 int PAR_First (int same[], int d[], int players, char **colors){
 	int i;
 	
+	if (same == NULL || colors == NULL ||  d == NULL){
+		return -1;
+	}
+
 	PAR_Max(d,same);
 	if (same[0] == 1 && same[1] == 0 && same[2] == 0 && same[3] == 0){
 		printf("\n%s comeca!", colors[0]);

@@ -150,5 +150,9 @@ $ED Descri��o da fun��o
 $EP Par�metros
 	tabuleiro - ponteiro para o tabuleiro
 
+$FV Valor retornado
+	TAB_CondRetTABNULL - recebeu um tabuleiro nulo
+	TAB_CondRetOK      - tudo certo
+
 ***************************************************************/
-void TAB_showTab (TAB_Head * tabuleiro);
+TAB_tpCondRet TAB_showTab (TAB_Head * tabuleiro);
