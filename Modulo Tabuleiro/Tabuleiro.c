@@ -215,7 +215,7 @@ TAB_tpCondRet TAB_moverPeca(TAB_Head* tabuleiro, Cor cor, int nPeca, int casas)
 	return TAB_CondRetNaoMoveu;
 }
 
-void TAB_showTab (TAB_Head * tabuleiro){
+TAB_tpCondRet TAB_showTab (TAB_Head * tabuleiro){
 	int i,j,k,l;
 	CasaNormal* casa;
 	CasaEspecial* casaEspecial;
@@ -350,6 +350,8 @@ void TAB_showTab (TAB_Head * tabuleiro){
 			printf("0 ");
 	}
 	printf("\n\n");
+
+	return TAB_CondRetOK;
 }
 
 // FUN��ES AUXILIARES DO M�DULO
