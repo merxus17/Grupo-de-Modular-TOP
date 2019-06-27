@@ -1,9 +1,11 @@
 ﻿#include <stdio.h>
 #include <malloc.h>
+#include <windows.h>
 #include "tabuleiro.h"
 #include "lista.h"
 #include "lista_circular.h"
 #include "pecas.h"
+
 
 typedef struct 
 {
@@ -15,7 +17,7 @@ typedef struct
 }Tabuleiro;
 
 typedef struct {
-	int pecas[4]; // cada entrada do vetor contem o numero de pe�as de cada cor, 0-vermelho, 1-azul, 2-amarelo, 3-verde //
+	int pecas[4]; // cada entrada do vetor contem o numero de peças de cada cor, 0-vermelho, 1-azul, 2-amarelo, 3-verde //
 	int num; // branca caso nao seja uma entrada, caso seja diz a cor //
 } CasaNormal;
 
@@ -34,20 +36,34 @@ typedef struct Head
 
 }Head;
 
-// FUN��ES AUXILIARES DO M�DULO
+// FUNÇÕES AUXILIARES DO MÓDULO
 void DestruirCasa(void * pValor);
 TAB_tpCondRet TAB_MoverVermelha (TAB_Head* tabuleiro, int nPeca, int casas);
 TAB_tpCondRet TAB_MoverAzul (TAB_Head* tabuleiro, int nPeca, int casas);
 TAB_tpCondRet TAB_MoverAmarela (TAB_Head* tabuleiro, int nPeca, int casas);
 TAB_tpCondRet TAB_MoverVerde (TAB_Head* tabuleiro, int nPeca, int casas);
+void redT();
+void yellowT();
+void greenT();
+void blueT();
+void redB();
+void yellowB();
+void greenB();
+void blueB();
+void reset();
+void qualPeca(TAB_Head * tabuleiro, CasaNormal * casa, Cor cor, int nPeca[4]);
+void qualPecaEsp (TAB_Head * tabuleiro, CasaEspecial * casa, Cor cor, int nPeca[4]);
+void zerar (int x[4]);
 
+
+// FUNÇÕES EXTERNADAS DO MÓDULO
 TAB_Head* TAB_criaTabuleiro()
 {
 	int nCasa, CorCasa ,nCasaEspecial,PecaCor, CorReta;
-	/* ncasa � o iterador de casas alocando e settando as 51 casas do tabuleiro externo
-	   CorCasa s�o quantas cores pdoem estar numa casa 
+	/* ncasa é o iterador de casas alocando e settando as 51 casas do tabuleiro externo
+	   CorCasa são quantas cores pdoem estar numa casa 
 	   nCasaEspecial iterador de casas especiais alocando e settando as 6 casas do tabuleiro interno de casa cor
-	   PecaCor s�o quantas pecas cada cor tem 
+	   PecaCor são quantas pecas cada cor tem 
 	*/
 	TAB_Head* tabuleiro = (TAB_Head*)malloc(sizeof(TAB_Head));
 	if (tabuleiro == NULL){
@@ -92,27 +108,16 @@ TAB_Head* TAB_criaTabuleiro()
 	if (tabuleiro->tab->Reta_Final_Verde == NULL){
 		return NULL;
 	}
-<<<<<<< Updated upstream
 
 	for (CorReta = 0; CorReta<4; CorReta++){
 		for (nCasaEspecial = 0; nCasaEspecial < 6; nCasaEspecial++){
 			CasaEspecial* casaEspecial =  (CasaEspecial*) malloc(sizeof(CasaEspecial));
 			if(casaEspecial == NULL){
-=======
-	for( CorReta = 0 ; CorReta < 4; CorReta++)
-	{
-		for (nCasaEspecial = 0; nCasaEspecial < 6; nCasaEspecial++)
-		{
-			CasaEspecial* casaEspecial =  (CasaEspecial*) malloc(sizeof(CasaEspecial));
-			if(casaEspecial == NULL)
-			{
->>>>>>> Stashed changes
 				return NULL;
 			}
 		
 			casaEspecial->pecas=0;
 			casaEspecial->num = nCasaEspecial;
-<<<<<<< Updated upstream
 		
 			if(CorReta == 0)
 				LIS_InserirElementoApos(tabuleiro->tab->Reta_Final_Vermelha,casaEspecial);
@@ -122,16 +127,6 @@ TAB_Head* TAB_criaTabuleiro()
 				LIS_InserirElementoApos(tabuleiro->tab->Reta_Final_Azul, casaEspecial);
 			else if(CorReta == 3) 
 				LIS_InserirElementoApos(tabuleiro->tab->Reta_Final_Verde, casaEspecial);		
-=======
-			if( CorReta == 0)	
-			 LIS_InserirElementoApos(tabuleiro->tab->Reta_Final_Vermelha,casaEspecial);
-			else if ( CorReta == 1)
-			LIS_InserirElementoApos(tabuleiro->tab->Reta_Final_Amarela, casaEspecial);
-			else if ( CorReta == 2) 
-			LIS_InserirElementoApos(tabuleiro->tab->Reta_Final_Azul, casaEspecial);
-			else if ( CorReta == 3) 
-			LIS_InserirElementoApos(tabuleiro->tab->Reta_Final_Verde, casaEspecial);		
->>>>>>> Stashed changes
 		}
 	}
 	
@@ -149,26 +144,23 @@ TAB_Head* TAB_criaTabuleiro()
 
 TAB_tpCondRet TAB_destroiTabuleiro(TAB_Head * tab)
 {
-	if( tab == NULL)
+	if( !tab )
 	{
-		return TAB_CondRetTABNULL;
+		LIC_DestruirLista(tab->tab->Tab_principal);
+		LIS_DestruirLista(tab->tab->Reta_Final_Vermelha);
+		LIS_DestruirLista(tab->tab->Reta_Final_Verde);
+		LIS_DestruirLista(tab->tab->Reta_Final_Amarela);
+		LIS_DestruirLista(tab->tab->Reta_Final_Azul);
+		free(tab->tab);
+		free(tab);
+		tab = NULL;
 	}
-
-	LIC_DestruirLista(tab->tab->Tab_principal);
-	LIS_DestruirLista(tab->tab->Reta_Final_Vermelha);
-	LIS_DestruirLista(tab->tab->Reta_Final_Verde);
-	LIS_DestruirLista(tab->tab->Reta_Final_Amarela);
-	LIS_DestruirLista(tab->tab->Reta_Final_Azul);
-	free(tab->tab);
-	free(tab);
-	tab = NULL;
-	
 	return TAB_CondRetOK;
 }
 
 TAB_tpCondRet TAB_verificaVitoria(TAB_Head* tabuleiro, Cor cor)
 {
-	// Respons�vel por determinar se um jogador venceu o jogo, ou seja, se colocou suas 4 pe�as na ultima casa
+	// Responsável por determinar se um jogador venceu o jogo, ou seja, se colocou suas 4 peças na ultima casa
 	CasaEspecial* Casa ;
 	if( tabuleiro == NULL )
 	{
@@ -207,7 +199,7 @@ TAB_tpCondRet TAB_verificaVitoria(TAB_Head* tabuleiro, Cor cor)
 
 TAB_tpCondRet TAB_moverPeca(TAB_Head* tabuleiro, Cor cor, int nPeca, int casas)
 {
-	//Respons�vel por testar se a pe�a a ser movida e o movimento s�o v�lidas e chama a fun��o de mover da resp�ctiva cor
+	//Responsável por testar se a peça a ser movida e o movimento são válidas e chama a função de mover da respéctiva cor
 	if(tabuleiro == NULL){
 		return TAB_CondRetTABNULL;
 	}
@@ -236,67 +228,108 @@ TAB_tpCondRet TAB_moverPeca(TAB_Head* tabuleiro, Cor cor, int nPeca, int casas)
 }
 
 TAB_tpCondRet TAB_showTab (TAB_Head * tabuleiro){
-	int i,j,k,l;
+	int i,j,k,l, nPeca[4] = {0,0,0,0};
 	CasaNormal* casa;
 	CasaEspecial* casaEspecial;
-	if( tabuleiro == NULL)
-	{
+
+	if (tabuleiro == NULL){
 		return TAB_CondRetTABNULL;
 	}
-	printf("\n|");
+
+	printf("\n\n");
 	LIC_IrInicioLista(tabuleiro->tab->Tab_principal);
+	LIC_Avancar(tabuleiro->tab->Tab_principal, -2);
+	
+
+	for(i = 0; i < 47; i++){
+		if(i+1 == 3){
+			printf("_");
+			redB();
+			printf("V");
+			reset();
+		}
+		if(i+1 == 15){
+			printf("_");
+			yellowB();
+			printf("V");
+			reset();
+		}
+		if(i+1 == 27){
+			printf("_");
+			blueB();
+			printf("V");
+			reset();
+		}
+		if(i+1 == 39){
+			printf("_");
+			greenB();
+			printf("V");
+			reset();
+		}
+		printf("__");
+	}
+	printf("_\n|");
 	for(i = 0; i < 51; i++){
 		casa = (CasaNormal*) LIC_ObterValor(tabuleiro->tab->Tab_principal);
-		printf("%d: ", casa->num);
-		if(casa->num == 1)
-		{
-			printf("Entrada Vermelha ");
-		}
-		if(casa->num == 40)
-		{
-			printf("Entrada Verde ");
-		}
-		if(casa->num == 14)
-		{
-			printf("Entrada Amarela ");
-		}
-		if(casa->num == 27)
-		{
-			printf("Entrada Azul ");
-		}
+		zerar(nPeca);
 		if(casa->pecas[0]){
-			for(j = 0; j < casa->pecas[0]; j++){
-				printf("R ");
+			qualPeca(tabuleiro, casa, Vermelho, nPeca);
+			for(j = 0; j < 4; j++){
+				if(nPeca[j]){
+					redT();
+					printf("%i", j+1);
+				}
 			}
-			printf("|");
+			reset();
 		}
+		zerar(nPeca);
 		if(casa->pecas[1]){
-			for(j = 0; j < casa->pecas[1]; j++){
-				printf("B ");
+			qualPeca(tabuleiro, casa, Azul, nPeca);
+			for(j = 0; j < 4; j++){
+				if(nPeca[j]){
+					blueT();
+					printf("%i", j+1);
+				}
 			}
-			printf("|");
+			reset();
 		}
+		zerar(nPeca);
 		if(casa->pecas[2]){
-			for(j = 0; j < casa->pecas[2]; j++){
-				printf("Y ");
+			qualPeca(tabuleiro, casa, Amarelo, nPeca);
+			for(j = 0; j < 4; j++){
+				if(nPeca[j]){
+					yellowT();
+					printf("%i", j+1);
+				}
 			}
-			printf("|");
+			reset();
 		}
+		zerar(nPeca);
 		if(casa->pecas[3]){
-			for(j = 0; j < casa->pecas[3]; j++){
-				printf("G ");
+			qualPeca(tabuleiro, casa, Verde, nPeca);
+			for(j = 0; j < 4; j++){
+				if(nPeca[j]){
+					greenT();
+					printf("%i", j+1);
+				}
 			}
-			printf("|");
+			reset();
+			
 		}
 		if(casa->pecas[0] == 0 && casa->pecas[1] == 0 && casa->pecas[2] == 0 && casa->pecas[3] == 0){
-			printf("_ |");
+			printf(" ");
 		}
+		printf("|");
 		LIC_Avancar(tabuleiro->tab->Tab_principal, 1);
 	}
-	printf("\n\n|");
+
+	printf("\n");
+	redT();
+	printf(" L");
+	redB();
+	printf("|");
 	IrInicioLista(tabuleiro->tab->Reta_Final_Vermelha);
 	for(i = 0; i < 6; i++){
-<<<<<<< Updated upstream
 		casaEspecial = (CasaEspecial*) LIS_ObterValor(tabuleiro->tab->Reta_Final_Vermelha);
 		zerar(nPeca);
 		if(casaEspecial->pecas){
@@ -311,96 +344,113 @@ TAB_tpCondRet TAB_showTab (TAB_Head * tabuleiro){
 		else{
 			printf(" ");
 		}
-=======
-		casaEspecial = (CasaEspecial*) LIC_ObterValor(tabuleiro->tab->Reta_Final_Vermelha);
-		printf("%d", casaEspecial->pecas);
->>>>>>> Stashed changes
 		printf("|");
 		LIS_AvancarElementoCorrente(tabuleiro->tab->Reta_Final_Vermelha, 1);
 	}
-	printf("           |");
+	yellowT();
+	printf("            L");
+	yellowB();
+	printf("|");
 	IrInicioLista(tabuleiro->tab->Reta_Final_Amarela);
 	for(i = 0; i < 6; i++){
-		casaEspecial = (CasaEspecial*) LIC_ObterValor(tabuleiro->tab->Reta_Final_Amarela);
-		printf("%d", casaEspecial->pecas);
-		printf("|");
+		casaEspecial = (CasaEspecial*) LIS_ObterValor(tabuleiro->tab->Reta_Final_Amarela);
+		zerar(nPeca);
+		if(casaEspecial->pecas){
+			qualPecaEsp(tabuleiro, casaEspecial, Amarelo, nPeca);
+			for(j = 0; j < 4; j++){
+				if(nPeca[j]){
+					printf("%i", j+1);
+				}
+			}
+			printf("|");
+		}
+		else
+			printf(" |");
 		LIS_AvancarElementoCorrente(tabuleiro->tab->Reta_Final_Amarela, 1);
 	}
-	printf("           |");
+	blueT();
+	printf("            L");
+	blueB();
+	printf("|");
 	IrInicioLista(tabuleiro->tab->Reta_Final_Azul);
 	for(i = 0; i < 6; i++){
-		casaEspecial = (CasaEspecial*) LIC_ObterValor(tabuleiro->tab->Reta_Final_Azul);
-		printf("%d", casaEspecial->pecas);
-		printf("|");
+		casaEspecial = (CasaEspecial*) LIS_ObterValor(tabuleiro->tab->Reta_Final_Azul);
+		zerar(nPeca);
+		if(casaEspecial->pecas){
+			qualPecaEsp(tabuleiro, casaEspecial, Azul, nPeca);
+			for(j = 0; j < 4; j++){
+				if(nPeca[j]){
+					printf("%i", j+1);
+				}
+			}
+			printf("|");
+		}
+		else
+			printf(" |");
 		LIS_AvancarElementoCorrente(tabuleiro->tab->Reta_Final_Azul, 1);
 	}
-	printf("           |");
+	greenT();
+	printf("            L");
+	greenB();
+	printf("|");
 	IrInicioLista(tabuleiro->tab->Reta_Final_Verde);
 	for(i = 0; i < 6; i++){
-		casaEspecial = (CasaEspecial*) LIC_ObterValor(tabuleiro->tab->Reta_Final_Verde);
-		printf("%d", casaEspecial->pecas);
-		printf("|");
+		casaEspecial = (CasaEspecial*) LIS_ObterValor(tabuleiro->tab->Reta_Final_Verde);
+		zerar(nPeca);
+		if(casaEspecial->pecas){
+			qualPecaEsp(tabuleiro, casaEspecial, Verde, nPeca);
+			for(j = 0; j < 4; j++){
+				if(nPeca[j]){
+					printf("%i", j+1);
+				}
+			}
+			printf("|");
+		}
+		else
+			printf(" |");
 		LIS_AvancarElementoCorrente(tabuleiro->tab->Reta_Final_Verde, 1);
 	}
-	printf("\n\n");
-	printf("Pecas Amarelas: ");
-	for (l=0 ; l<4 ; l++)
-	{
-		casa = (CasaNormal*) P_getCasa(tabuleiro->pecasAmarelas[l]);
-		if ( casa != NULL)
-			printf("%d ", casa->num );
-		else
-			printf("0 ");
+	reset();
+	printf("\n\n\t\t\t\t\tPECAS FORA DE JOGO");
+	redT();
+	printf("\nVermelho:  ");
+	for (i = 0; i < 4; i++){
+		if(P_getCasa(tabuleiro->pecasVermelhas[i]) == NULL){
+			printf("%i  ", i+1);
+		}
 	}
-	printf("\n");
-	printf("Pecas Vermelhas: ");
-	for (l=0 ; l<4 ; l++)
-	{
-		casa = (CasaNormal*)P_getCasa(tabuleiro->pecasVermelhas[l]);
-		if ( casa != NULL)
-			printf("%d ", casa->num );
-		else
-			printf("0 ");
+	yellowT();
+	printf("\t Amarelo:  ");
+	for (i = 0; i < 4; i++){
+		if(P_getCasa(tabuleiro->pecasAmarelas[i]) == NULL){
+			printf("%i  ", i+1);
+		}
 	}
-	printf("\n");
-	printf("Pecas Azul: ");
-	for (l=0 ; l<4 ; l++)
-	{
-		casa = (CasaNormal*)P_getCasa(tabuleiro->pecasAzuis[l]);
-		if ( casa != NULL)
-			printf("%d ", casa->num );
-		else
-			printf("0 ");
+	blueT();
+	printf("\t   Azul:  ");
+	for (i = 0; i < 4; i++){
+		if(P_getCasa(tabuleiro->pecasAzuis[i]) == NULL){
+			printf("%i  ", i+1);
+		}
 	}
-		printf("\n");
-	printf("Pecas Verdes: ");
-	for (l=0 ; l<4 ; l++)
-	{
-		casa = (CasaNormal*)P_getCasa(tabuleiro->pecasVerdes[l]);
-		if ( casa != NULL)
-			printf("%d ", casa->num );
-		else
-			printf("0 ");
+	greenT();
+	printf("\t     Verde:  ");
+	for (i = 0; i < 4; i++){
+		if(P_getCasa(tabuleiro->pecasVerdes[i]) == NULL){
+			printf("%i  ", i+1);
+		}
 	}
-	printf("\n\n");
 
+
+	reset();
+	printf("\n\n");
 	return TAB_CondRetOK;
 }
 
-// FUN��ES AUXILIARES DO M�DULO
+// CÓDIGO DAS FUNÇÕES ENCAPSULADAS DO MÓDULO
 
-TAB_tpCondRet TAB_MoverVermelha (TAB_Head* tabuleiro, int nPeca, int casas)
-{
-	// Fun��o respons�vel pelo movimento das pe�as Vermelhas e por permitir que as mesmas comam uma �s outras(ou n�o)
-	if (tabuleiro == NULL)
-	{
-		return TAB_CondRetTABNULL;
-	}
-	if(nPeca < 0 || nPeca > 4)
-	{
-	    return TAB_CondRetNumDePecasInvalida;
-	}
-
+TAB_tpCondRet TAB_MoverVermelha (TAB_Head* tabuleiro, int nPeca, int casas){
+	// Função responsável pelo movimento das peças Vermelhas e por permitir que as mesmas comam uma às outras(ou não)
 	if((casas == 1 || casas ==6) && P_getCasa(tabuleiro->pecasVermelhas[nPeca]) == NULL){
 		CasaNormal* Casa;
 		LIC_IrInicioLista(tabuleiro->tab->Tab_principal);
@@ -412,7 +462,7 @@ TAB_tpCondRet TAB_MoverVermelha (TAB_Head* tabuleiro, int nPeca, int casas)
 		return TAB_CondRetNaoEstaEmJogo;
 	}
 	else if(LIC_ProcurarValor(tabuleiro->tab->Tab_principal, P_getCasa(tabuleiro->pecasVermelhas[nPeca])) == LIC_CondRetOK){ 
-		// casa corrente � onde se encontra a pe�a (CASA NORMAL - a pe�a foi achada numa casa normal)
+		// casa corrente é onde se encontra a peça (CASA NORMAL - a peça foi achada numa casa normal)
 			int i=0;
 			CasaNormal* Casa = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
 			Casa->pecas[0]--;
@@ -425,10 +475,11 @@ TAB_tpCondRet TAB_MoverVermelha (TAB_Head* tabuleiro, int nPeca, int casas)
 				int k=0;
 				P_setCasa(tabuleiro->pecasVermelhas[nPeca], (void*)Casa);
 				Casa->pecas[0]++;
-			//==========Verifica se a pe�a vai comer a outra ou n�o===========//
-				if(Casa->pecas[1] == 1 && Casa->num!=27){ // h� uma pe�a azul na casa
+			//==========Verifica se a peça vai comer a outra ou não===========//
+				if(Casa->pecas[1] == 1 && Casa->num!=27){ // há uma peça azul na casa
+					printf("Voce comeu uma peca!");
 					Casa->pecas[1]=0;
-					for(k=0;k<4;k++){//descobrir qual das 4 pe�as azuis � a que esta ali
+					for(k=0;k<4;k++){//descobrir qual das 4 peças azuis é a que esta ali
 						if(LIC_ProcurarValor(tabuleiro->tab->Tab_principal, P_getCasa(tabuleiro->pecasAzuis[k])) == LIC_CondRetOK){
 							CasaNormal* aux = (CasaNormal*) LIC_ObterValor(tabuleiro->tab->Tab_principal);
 							if(aux == Casa){
@@ -437,9 +488,10 @@ TAB_tpCondRet TAB_MoverVermelha (TAB_Head* tabuleiro, int nPeca, int casas)
 						}
 					}
 				}
-				if(Casa->pecas[2] == 1 && Casa->num!=14){// h� uma pe�a amarela na casa
+				if(Casa->pecas[2] == 1 && Casa->num!=14){// há uma peça amarela na casa
+					printf("Voce comeu uma peca!");
 					Casa->pecas[2]=0;
-					for(k=0;k<4;k++){//descobrir qual das 4 pe�as amarelas � a que esta ali
+					for(k=0;k<4;k++){//descobrir qual das 4 peças amarelas é a que esta ali
 						if(LIC_ProcurarValor(tabuleiro->tab->Tab_principal, P_getCasa(tabuleiro->pecasAmarelas[k])) == LIC_CondRetOK){
 							CasaNormal* aux = (CasaNormal*) LIC_ObterValor(tabuleiro->tab->Tab_principal);
 							if(aux == Casa){ 
@@ -448,14 +500,10 @@ TAB_tpCondRet TAB_MoverVermelha (TAB_Head* tabuleiro, int nPeca, int casas)
 						}
 					}
 				}
-<<<<<<< Updated upstream
 				if(Casa->pecas[3] == 1 && Casa->num!=40){ // há uma peça verde na casa
 					printf("Voce comeu uma peca!");
-=======
-				if(Casa->pecas[3] == 1 && Casa->num!=40){ // h� uma pe�a verde na casa
->>>>>>> Stashed changes
 					Casa->pecas[3]=0;
-					for(k=0;k<4;k++){//descobrir qual das 4 pe�as verdes � a que esta ali
+					for(k=0;k<4;k++){//descobrir qual das 4 peças verdes é a que esta ali
 						if(LIC_ProcurarValor(tabuleiro->tab->Tab_principal, P_getCasa(tabuleiro->pecasVerdes[k])) == LIC_CondRetOK){
 							CasaNormal* aux = (CasaNormal*) LIC_ObterValor(tabuleiro->tab->Tab_principal);
 							if(aux == Casa){
@@ -466,7 +514,7 @@ TAB_tpCondRet TAB_MoverVermelha (TAB_Head* tabuleiro, int nPeca, int casas)
 				}
 				//==========FIM-COMER===========//
 			}
-			else{ // andou at� uma entrada antes de completar as casas (movimento branco a vermelho)
+			else{ // andou até uma entrada antes de completar as casas (movimento branco a vermelho)
 				CasaEspecial* Casa;
 				IrInicioLista(tabuleiro->tab->Reta_Final_Vermelha);
 				LIS_AvancarElementoCorrente(tabuleiro->tab->Reta_Final_Vermelha, casas-i-1); //mover o que faltou
@@ -477,12 +525,12 @@ TAB_tpCondRet TAB_MoverVermelha (TAB_Head* tabuleiro, int nPeca, int casas)
 
 		}
 		else if(LIS_ProcurarValor(tabuleiro->tab->Reta_Final_Vermelha, P_getCasa(tabuleiro->pecasVermelhas[nPeca])) == LIS_CondRetOK){
-		// casa corrente � onde se encontra a pe�a (CASA ESPECIAL - a pe�a foi achada numa casa especial) (movimento vermelho a vermelho)
+		// casa corrente é onde se encontra a peça (CASA ESPECIAL - a peça foi achada numa casa especial) (movimento vermelho a vermelho)
 			CasaEspecial * Casa = (CasaEspecial*) LIS_ObterValor(tabuleiro->tab->Reta_Final_Vermelha);
 			if(Casa->num==5){
 				return TAB_CondRetJaTaNoFim;
 			}
-			else if(casas > (6-Casa->num)){
+			else if(casas > (5-Casa->num)){
 				return TAB_CondRetNotYet;
 			}
 			else{
@@ -490,6 +538,7 @@ TAB_tpCondRet TAB_MoverVermelha (TAB_Head* tabuleiro, int nPeca, int casas)
 				LIS_AvancarElementoCorrente(tabuleiro->tab->Reta_Final_Vermelha, casas);
 				Casa = (CasaEspecial*) LIS_ObterValor(tabuleiro->tab->Reta_Final_Vermelha);
 				Casa->pecas++;
+				P_setCasa(tabuleiro->pecasVermelhas[nPeca], Casa);
 			}
 
 		}
@@ -500,17 +549,7 @@ TAB_tpCondRet TAB_MoverVermelha (TAB_Head* tabuleiro, int nPeca, int casas)
 }
 
 TAB_tpCondRet TAB_MoverAzul (TAB_Head* tabuleiro, int nPeca, int casas){
-	// Fun��o respons�vel pelo movimento das pe�as Azuis e por permitir que as mesmas comam uma �s outras(ou n�o)
-	if (tabuleiro == NULL)
-	{
-		return TAB_CondRetTABNULL;
-	}
-	if(nPeca < 0 || nPeca > 4)
-	{
-	    return TAB_CondRetNumDePecasInvalida;
-	}
-	
-
+	// Função responsável pelo movimento das peças Azuis e por permitir que as mesmas comam uma às outras(ou não)
 	if((casas == 1 || casas ==6) && P_getCasa(tabuleiro->pecasAzuis[nPeca]) == NULL){
 		CasaNormal* Casa;
 		LIC_IrInicioLista(tabuleiro->tab->Tab_principal);
@@ -523,7 +562,7 @@ TAB_tpCondRet TAB_MoverAzul (TAB_Head* tabuleiro, int nPeca, int casas){
 		return TAB_CondRetNaoEstaEmJogo;
 	}
 	else if(LIC_ProcurarValor(tabuleiro->tab->Tab_principal, P_getCasa(tabuleiro->pecasAzuis[nPeca])) == LIC_CondRetOK){ 
-		// casa corrente � onde se encontra a pe�a (CASA NORMAL - a pe�a foi achada numa casa normal)
+		// casa corrente é onde se encontra a peça (CASA NORMAL - a peça foi achada numa casa normal)
 			int i=0;
 			CasaNormal* Casa = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
 			Casa->pecas[1]--;
@@ -537,10 +576,11 @@ TAB_tpCondRet TAB_MoverAzul (TAB_Head* tabuleiro, int nPeca, int casas){
 
 				P_setCasa(tabuleiro->pecasAzuis[nPeca], (void*)Casa);
 				Casa->pecas[1]++;
-			//==========Verifica se a pe�a vai comer a outra ou n�o===========//
-				if(Casa->pecas[0] == 1 && Casa->num!=1){ // h� uma pe�a vermelha na casa
+			//==========Verifica se a peça vai comer a outra ou não===========//
+				if(Casa->pecas[0] == 1 && Casa->num!=1){ // há uma peça vermelha na casa
+					printf("Voce comeu uma peca!");
 					Casa->pecas[0]=0;
-					for(k=0;k<4;k++){//descobrir qual das 4 pe�as azuis � a que esta ali
+					for(k=0;k<4;k++){//descobrir qual das 4 peças azuis é a que esta ali
 						if(LIC_ProcurarValor(tabuleiro->tab->Tab_principal, P_getCasa(tabuleiro->pecasVermelhas[k])) == LIC_CondRetOK){
 							CasaNormal* aux = (CasaNormal*) LIC_ObterValor(tabuleiro->tab->Tab_principal);
 							if(aux == Casa){
@@ -549,9 +589,10 @@ TAB_tpCondRet TAB_MoverAzul (TAB_Head* tabuleiro, int nPeca, int casas){
 						}
 					}
 				}
-				if(Casa->pecas[2] == 1 && Casa->num!=14){// h� uma pe�a amarela na casa
+				if(Casa->pecas[2] == 1 && Casa->num!=14){// há uma peça amarela na casa
+					printf("Voce comeu uma peca!");
 					Casa->pecas[2]=0;
-					for(k=0;k<4;k++){//descobrir qual das 4 pe�as amarelas � a que esta ali
+					for(k=0;k<4;k++){//descobrir qual das 4 peças amarelas é a que esta ali
 						if(LIC_ProcurarValor(tabuleiro->tab->Tab_principal, P_getCasa(tabuleiro->pecasAmarelas[k])) == LIC_CondRetOK){
 							CasaNormal* aux = (CasaNormal*) LIC_ObterValor(tabuleiro->tab->Tab_principal);
 							if(aux == Casa){ 
@@ -560,9 +601,10 @@ TAB_tpCondRet TAB_MoverAzul (TAB_Head* tabuleiro, int nPeca, int casas){
 						}
 					}
 				}
-				if(Casa->pecas[3] == 1 && Casa->num != 40){ // h� uma pe�a verde na casa
+				if(Casa->pecas[3] == 1 && Casa->num != 40){ // há uma peça verde na casa
+					printf("Voce comeu uma peca!");
 					Casa->pecas[3]=0;
-					for(k=0;k<4;k++){//descobrir qual das 4 pe�as verdes � a que esta ali
+					for(k=0;k<4;k++){//descobrir qual das 4 peças verdes é a que esta ali
 						if(LIC_ProcurarValor(tabuleiro->tab->Tab_principal, P_getCasa(tabuleiro->pecasVerdes[k])) == LIC_CondRetOK){
 							CasaNormal* aux = (CasaNormal*) LIC_ObterValor(tabuleiro->tab->Tab_principal);
 							if(aux == Casa){
@@ -573,7 +615,7 @@ TAB_tpCondRet TAB_MoverAzul (TAB_Head* tabuleiro, int nPeca, int casas){
 				}
 				//==========FIM-COMER===========//
 			}
-			else{ // andou at� uma entrada antes de completar as casas (movimento branco a azul)
+			else{ // andou até uma entrada antes de completar as casas (movimento branco a azul)
 				CasaEspecial* Casa;
 				IrInicioLista(tabuleiro->tab->Reta_Final_Azul);
 				LIS_AvancarElementoCorrente(tabuleiro->tab->Reta_Final_Azul, casas-i-1); //mover o que faltou
@@ -584,12 +626,12 @@ TAB_tpCondRet TAB_MoverAzul (TAB_Head* tabuleiro, int nPeca, int casas){
 
 		}
 		else if(LIS_ProcurarValor(tabuleiro->tab->Reta_Final_Azul, P_getCasa(tabuleiro->pecasAzuis[nPeca])) == LIS_CondRetOK){
-		// casa corrente � onde se encontra a pe�a (CASA ESPECIAL - a pe�a foi achada numa casa especial) (movimento azul a azul)
+		// casa corrente é onde se encontra a peça (CASA ESPECIAL - a peça foi achada numa casa especial) (movimento azul a azul)
 			CasaEspecial * Casa = (CasaEspecial*) LIS_ObterValor(tabuleiro->tab->Reta_Final_Azul);
 			if(Casa->num==5){
-				return TAB_CondRetMovimentoInvalido;
+				return TAB_CondRetJaTaNoFim;
 			}
-			else if(casas > (6-Casa->num)){
+			else if(casas > (5-Casa->num)){
 				return TAB_CondRetNotYet;
 			}
 			else{
@@ -597,6 +639,7 @@ TAB_tpCondRet TAB_MoverAzul (TAB_Head* tabuleiro, int nPeca, int casas){
 				LIS_AvancarElementoCorrente(tabuleiro->tab->Reta_Final_Azul, casas);
 				Casa = (CasaEspecial*) LIS_ObterValor(tabuleiro->tab->Reta_Final_Azul);
 				Casa->pecas++;
+				P_setCasa(tabuleiro->pecasAzuis[nPeca], Casa);
 			}
 		}
 		else
@@ -606,18 +649,7 @@ TAB_tpCondRet TAB_MoverAzul (TAB_Head* tabuleiro, int nPeca, int casas){
 }
 
 TAB_tpCondRet TAB_MoverAmarela (TAB_Head* tabuleiro, int nPeca, int casas){
-	// Fun��o respons�vel pelo movimento das pe�as Amarelas e por permitir que as mesmas comam uma �s outras(ou n�o)
-	if (tabuleiro == NULL)
-	{
-		return TAB_CondRetTABNULL;
-	}
-	if(nPeca < 0 || nPeca > 4)
-	{
-	    return TAB_CondRetNumDePecasInvalida;
-	}
-	
-	
-	
+	// Função responsável pelo movimento das peças Amarelas e por permitir que as mesmas comam uma às outras(ou não)
 	if((casas == 1 || casas ==6) && P_getCasa(tabuleiro->pecasAmarelas[nPeca]) == NULL){
 		CasaNormal* Casa;
 		LIC_IrInicioLista(tabuleiro->tab->Tab_principal);
@@ -630,7 +662,7 @@ TAB_tpCondRet TAB_MoverAmarela (TAB_Head* tabuleiro, int nPeca, int casas){
 		return TAB_CondRetNaoEstaEmJogo;
 	}
 	else if(LIC_ProcurarValor(tabuleiro->tab->Tab_principal, P_getCasa(tabuleiro->pecasAmarelas[nPeca])) == LIC_CondRetOK){ 
-		// casa corrente � onde se encontra a pe�a (CASA NORMAL - a pe�a foi achada numa casa normal)
+		// casa corrente é onde se encontra a peça (CASA NORMAL - a peça foi achada numa casa normal)
 			int i=0;
 			CasaNormal* Casa = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
 			Casa->pecas[2]--;
@@ -644,10 +676,11 @@ TAB_tpCondRet TAB_MoverAmarela (TAB_Head* tabuleiro, int nPeca, int casas){
 
 				P_setCasa(tabuleiro->pecasAmarelas[nPeca], (void*)Casa);
 				Casa->pecas[2]++;
-			//==========Verifica se a pe�a vai comer a outra ou n�o===========//
-				if(Casa->pecas[1] == 1 && Casa->num!=27){ // h� uma pe�a azul na casa
+			//==========Verifica se a peça vai comer a outra ou não===========//
+				if(Casa->pecas[1] == 1 && Casa->num!=27){ // há uma peça azul na casa
+					printf("Voce comeu uma peca!");
 					Casa->pecas[1]=0;
-					for(k=0;k<4;k++){//descobrir qual das 4 pe�as azuis � a que esta ali
+					for(k=0;k<4;k++){//descobrir qual das 4 peças azuis é a que esta ali
 						if(LIC_ProcurarValor(tabuleiro->tab->Tab_principal, P_getCasa(tabuleiro->pecasAzuis[k])) == LIC_CondRetOK){
 							CasaNormal* aux = (CasaNormal*) LIC_ObterValor(tabuleiro->tab->Tab_principal);
 							if(aux == Casa){
@@ -656,9 +689,10 @@ TAB_tpCondRet TAB_MoverAmarela (TAB_Head* tabuleiro, int nPeca, int casas){
 						}
 					}
 				}
-				if(Casa->pecas[0] == 1 && Casa->num!=1){// h� uma pe�a vermelha na casa
+				if(Casa->pecas[0] == 1 && Casa->num!=1){// há uma peça vermelha na casa
+					printf("Voce comeu uma peca!");
 					Casa->pecas[0]=0;
-					for(k=0;k<4;k++){//descobrir qual das 4 pe�as amarelas � a que esta ali
+					for(k=0;k<4;k++){//descobrir qual das 4 peças amarelas é a que esta ali
 						if(LIC_ProcurarValor(tabuleiro->tab->Tab_principal, P_getCasa(tabuleiro->pecasVermelhas[k])) == LIC_CondRetOK){
 							CasaNormal* aux = (CasaNormal*) LIC_ObterValor(tabuleiro->tab->Tab_principal);
 							if(aux == Casa){ 
@@ -667,14 +701,10 @@ TAB_tpCondRet TAB_MoverAmarela (TAB_Head* tabuleiro, int nPeca, int casas){
 						}
 					}
 				}
-<<<<<<< Updated upstream
 				if(Casa->pecas[3] == 1 && Casa->num!=40){ // há uma peça verde na casa
 					printf("Voce comeu uma peca!");
-=======
-				if(Casa->pecas[3] == 1 && Casa->num!=40){ // h� uma pe�a verde na casa
->>>>>>> Stashed changes
 					Casa->pecas[3]=0;
-					for(k=0;k<4;k++){//descobrir qual das 4 pe�as verdes � a que esta ali
+					for(k=0;k<4;k++){//descobrir qual das 4 peças verdes é a que esta ali
 						if(LIC_ProcurarValor(tabuleiro->tab->Tab_principal, P_getCasa(tabuleiro->pecasVerdes[k])) == LIC_CondRetOK){
 							CasaNormal* aux = (CasaNormal*) LIC_ObterValor(tabuleiro->tab->Tab_principal);
 							if(aux == Casa){
@@ -685,7 +715,7 @@ TAB_tpCondRet TAB_MoverAmarela (TAB_Head* tabuleiro, int nPeca, int casas){
 				}
 				//==========FIM-COMER===========//
 			}
-			else{ // andou at� uma entrada antes de completar as casas (movimento branco a amarelo)
+			else{ // andou até uma entrada antes de completar as casas (movimento branco a amarelo)
 				CasaEspecial* Casa;
 				IrInicioLista(tabuleiro->tab->Reta_Final_Amarela);
 				LIS_AvancarElementoCorrente(tabuleiro->tab->Reta_Final_Amarela, casas-i-1); //mover o que faltou
@@ -696,12 +726,12 @@ TAB_tpCondRet TAB_MoverAmarela (TAB_Head* tabuleiro, int nPeca, int casas){
 
 		}
 		else if(LIS_ProcurarValor(tabuleiro->tab->Reta_Final_Amarela, P_getCasa(tabuleiro->pecasAmarelas[nPeca])) == LIS_CondRetOK){
-		// casa corrente � onde se encontra a pe�a (CASA ESPECIAL - a pe�a foi achada numa casa especial) (movimento amarelo a amarelo)
+		// casa corrente é onde se encontra a peça (CASA ESPECIAL - a peça foi achada numa casa especial) (movimento amarelo a amarelo)
 			CasaEspecial * Casa = (CasaEspecial*) LIS_ObterValor(tabuleiro->tab->Reta_Final_Amarela);
 			if(Casa->num==5){
-				return TAB_CondRetMovimentoInvalido;
+				return TAB_CondRetJaTaNoFim;
 			}
-			else if(casas > (6-Casa->num)){
+			else if(casas > (5-Casa->num)){
 				return TAB_CondRetNotYet;
 			}
 			else{
@@ -709,6 +739,7 @@ TAB_tpCondRet TAB_MoverAmarela (TAB_Head* tabuleiro, int nPeca, int casas){
 				LIS_AvancarElementoCorrente(tabuleiro->tab->Reta_Final_Amarela, casas);
 				Casa = (CasaEspecial*) LIS_ObterValor(tabuleiro->tab->Reta_Final_Amarela);
 				Casa->pecas++;
+				P_setCasa(tabuleiro->pecasAmarelas[nPeca], Casa);
 			}
 
 		}
@@ -720,17 +751,7 @@ TAB_tpCondRet TAB_MoverAmarela (TAB_Head* tabuleiro, int nPeca, int casas){
 }
 
 TAB_tpCondRet TAB_MoverVerde (TAB_Head* tabuleiro, int nPeca, int casas){
-	// Fun��o respons�vel pelo movimento das pe�as Verdes e por permitir que as mesmas comam uma �s outras(ou n�o)
-	if (tabuleiro == NULL)
-	{
-		return TAB_CondRetTABNULL;
-	}
-	if(nPeca < 0 || nPeca > 4)
-	{
-	    return TAB_CondRetNumDePecasInvalida;
-	}
-	
-	
+	// Função responsável pelo movimento das peças Verdes e por permitir que as mesmas comam uma às outras(ou não)
 	if((casas == 1 || casas ==6) && P_getCasa(tabuleiro->pecasVerdes[nPeca]) == NULL){
 		CasaNormal* Casa;
 		LIC_IrInicioLista(tabuleiro->tab->Tab_principal);
@@ -743,7 +764,7 @@ TAB_tpCondRet TAB_MoverVerde (TAB_Head* tabuleiro, int nPeca, int casas){
 		return TAB_CondRetNaoEstaEmJogo;
 	}
 	else if(LIC_ProcurarValor(tabuleiro->tab->Tab_principal, P_getCasa(tabuleiro->pecasVerdes[nPeca])) == LIC_CondRetOK){ 
-		// casa corrente � onde se encontra a pe�a (CASA NORMAL - a pe�a foi achada numa casa normal)
+		// casa corrente é onde se encontra a peça (CASA NORMAL - a peça foi achada numa casa normal)
 			int i=0;
 			CasaNormal* Casa = (CasaNormal*)LIC_ObterValor(tabuleiro->tab->Tab_principal);
 			Casa->pecas[3]--;
@@ -757,10 +778,11 @@ TAB_tpCondRet TAB_MoverVerde (TAB_Head* tabuleiro, int nPeca, int casas){
 
 				P_setCasa(tabuleiro->pecasVerdes[nPeca], (void*)Casa);
 				Casa->pecas[3]++;
-			//==========Verifica se a pe�a vai comer a outra ou n�o===========//
-				if(Casa->pecas[1] == 1 && Casa->num!=27){ // h� uma pe�a azul na casa
+			//==========Verifica se a peça vai comer a outra ou não===========//
+				if(Casa->pecas[1] == 1 && Casa->num!=27){ // há uma peça azul na casa
+					printf("Voce comeu uma peca!");
 					Casa->pecas[1]=0;
-					for(k=0;k<4;k++){//descobrir qual das 4 pe�as azuis � a que esta ali
+					for(k=0;k<4;k++){//descobrir qual das 4 peças azuis é a que esta ali
 						if(LIC_ProcurarValor(tabuleiro->tab->Tab_principal, P_getCasa(tabuleiro->pecasAzuis[k])) == LIC_CondRetOK){
 							CasaNormal* aux = (CasaNormal*) LIC_ObterValor(tabuleiro->tab->Tab_principal);
 							if(aux == Casa){
@@ -769,9 +791,10 @@ TAB_tpCondRet TAB_MoverVerde (TAB_Head* tabuleiro, int nPeca, int casas){
 						}
 					}
 				}
-				if(Casa->pecas[2] == 1 && Casa->num!=14){// h� uma pe�a amarela na casa
+				if(Casa->pecas[2] == 1 && Casa->num!=14){// há uma peça amarela na casa
+					printf("Voce comeu uma peca!");
 					Casa->pecas[2]=0;
-					for(k=0;k<4;k++){//descobrir qual das 4 pe�as amarelas � a que esta ali
+					for(k=0;k<4;k++){//descobrir qual das 4 peças amarelas é a que esta ali
 						if(LIC_ProcurarValor(tabuleiro->tab->Tab_principal, P_getCasa(tabuleiro->pecasAmarelas[k])) == LIC_CondRetOK){
 							CasaNormal* aux = (CasaNormal*) LIC_ObterValor(tabuleiro->tab->Tab_principal);
 							if(aux == Casa){ 
@@ -780,9 +803,10 @@ TAB_tpCondRet TAB_MoverVerde (TAB_Head* tabuleiro, int nPeca, int casas){
 						}
 					}
 				}
-				if(Casa->pecas[0] == 1 && Casa->num!= 1){ // h� uma pe�a vermelha na casa
+				if(Casa->pecas[0] == 1 && Casa->num!= 1){ // há uma peça vermelha na casa
+					printf("Voce comeu uma peca!");
 					Casa->pecas[0]=0;
-					for(k=0;k<4;k++){//descobrir qual das 4 pe�as verdes � a que esta ali
+					for(k=0;k<4;k++){//descobrir qual das 4 peças verdes é a que esta ali
 						if(LIC_ProcurarValor(tabuleiro->tab->Tab_principal, P_getCasa(tabuleiro->pecasVermelhas[k])) == LIC_CondRetOK){
 							CasaNormal* aux = (CasaNormal*) LIC_ObterValor(tabuleiro->tab->Tab_principal);
 							if(aux == Casa){
@@ -793,7 +817,7 @@ TAB_tpCondRet TAB_MoverVerde (TAB_Head* tabuleiro, int nPeca, int casas){
 				}
 				//==========FIM-COMER===========//
 			}
-			else{ // andou at� uma entrada antes de completar as casas (movimento branco a verde)
+			else{ // andou até uma entrada antes de completar as casas (movimento branco a verde)
 				CasaEspecial* Casa;
 				IrInicioLista(tabuleiro->tab->Reta_Final_Verde);
 				LIS_AvancarElementoCorrente(tabuleiro->tab->Reta_Final_Verde, casas-i-1); //mover o que faltou
@@ -804,12 +828,12 @@ TAB_tpCondRet TAB_MoverVerde (TAB_Head* tabuleiro, int nPeca, int casas){
 
 		}
 		else if(LIS_ProcurarValor(tabuleiro->tab->Reta_Final_Verde, P_getCasa(tabuleiro->pecasVerdes[nPeca])) == LIS_CondRetOK){
-		// casa corrente � onde se encontra a pe�a (CASA ESPECIAL - a pe�a foi achada numa casa especial) (movimento verde a verde)
+		// casa corrente é onde se encontra a peça (CASA ESPECIAL - a peça foi achada numa casa especial) (movimento verde a verde)
 			CasaEspecial * Casa = (CasaEspecial*) LIS_ObterValor(tabuleiro->tab->Reta_Final_Verde);
 			if(Casa->num==5){
-				return TAB_CondRetMovimentoInvalido;
+				return TAB_CondRetJaTaNoFim;
 			}
-			else if(casas > (6-Casa->num)){
+			else if(casas > (5-Casa->num)){
 				return TAB_CondRetNotYet;
 			}
 			else{
@@ -817,6 +841,7 @@ TAB_tpCondRet TAB_MoverVerde (TAB_Head* tabuleiro, int nPeca, int casas){
 				LIS_AvancarElementoCorrente(tabuleiro->tab->Reta_Final_Verde, casas);
 				Casa = (CasaEspecial*) LIS_ObterValor(tabuleiro->tab->Reta_Final_Verde);
 				Casa->pecas++;
+				P_setCasa(tabuleiro->pecasVerdes[nPeca], Casa);
 			}
 
 		}
@@ -828,7 +853,7 @@ TAB_tpCondRet TAB_MoverVerde (TAB_Head* tabuleiro, int nPeca, int casas){
 
 void DestruirCasa(void * pValor)
 {
-	// Libera o espa�o de mom�ria da casa
+	// Libera o espaço de momória da casa
 	if(pValor != NULL)
 	{
 		free(pValor);
@@ -836,7 +861,6 @@ void DestruirCasa(void * pValor)
 	return;
 } 
 
-<<<<<<< Updated upstream
 
 //essas funções servem apenas para facilitar a coloração e organização dos prints do tabuleiro
 void redT () {
@@ -928,5 +952,3 @@ void zerar (int x[4]){
 	}
 	return;
 }
-=======
->>>>>>> Stashed changes
