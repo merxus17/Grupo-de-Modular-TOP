@@ -5,11 +5,11 @@ typedef struct Head TAB_Head;
 
 /***********************************************************************
 *
-*  $TC Tipo de dados: TAB Condiï¿½ï¿½es de retorno
+*  $TC Tipo de dados: TAB Condições de retorno
 *
 *
-*  $ED Descriï¿½ï¿½o do tipo
-*     Condiï¿½ï¿½es de retorno das funï¿½ï¿½es do tabuleiro
+*  $ED Descrição do tipo
+*     Condições de retorno das funções do tabuleiro
 *
 ***********************************************************************/
 
@@ -25,10 +25,10 @@ typedef struct Head TAB_Head;
 			/* O jogo tem um vencedor */
 
 		 TAB_CondRetNotThisTime,
-			/* Ainda nï¿½o acabou o jogo */
+			/* Ainda não acabou o jogo */
 
 		 TAB_CondRetPecaBranca,
-			/* Peca branca nao ï¿½ peca */
+			/* Peca branca nao é peca */
 
 	     TAB_CondRetNumDePecasInvalida,
 			/* Numero de pecas invalidas */
@@ -37,22 +37,22 @@ typedef struct Head TAB_Head;
             /* Ponteiro para tabuleiro NULL */
 			
 		 TAB_CondRetNaoEstaEmJogo,
-		 /* A peca ainda nï¿½o entrou em jogo*/
+		 /* A peca ainda não entrou em jogo*/
 
 		 TAB_CondRetMovimentoInvalido,
             /* Tentativa de movimento invalido */
 
 		 TAB_CondRetNotYet,
-			/* Nï¿½o tirou numero exato para por a peï¿½a no centro */
+			/* Não tirou numero exato para por a peça no centro */
 
 		 TAB_CondRetNaoMoveu,
-			/* A peï¿½a nao foi movida */ 
+			/* A peça nao foi movida */ 
 		 TAB_CondRetJaTaNoFim
-			/* Tentou mover uma peï¿½a que ja chegou no centro*/
+			/* Tentou mover uma peça que ja chegou no centro*/
 
    } TAB_tpCondRet ;
 
-// enum da classe  peï¿½as 
+// enum da classe  peças 
 typedef enum Cor {
 	Vermelho,
 	Azul,
@@ -63,13 +63,13 @@ typedef enum Cor {
 
 /***********************************************************************
 *
-*  $FC Funï¿½ï¿½o: TAB  &Criar tabuleiro
+*  $FC Função: TAB  &Criar tabuleiro
 *
-*  $ED Descriï¿½ï¿½o da funï¿½ï¿½o
+*  $ED Descrição da função
 *     Inicia o tabuleiro e aloca todas as estruturas de dados.
 *
 *  $FV Valor retornado
-*     NULL - Ocorreu problema durante a criaï¿½ï¿½o do tabuleiro. Nï¿½o serï¿½ dada mais informaï¿½ï¿½o quanto ao problema ocorrido.
+*     NULL - Ocorreu problema durante a criação do tabuleiro. Não será dada mais informação quanto ao problema ocorrido.
 *	  Ponteiro nao NULL - criou com sucesso.
 *
 ***********************************************************************/
@@ -78,18 +78,18 @@ TAB_Head*  TAB_criaTabuleiro();
 
 /***********************************************************************
 *
-*  $FC Funï¿½ï¿½o: TAB  &Destroi tabuleiro
+*  $FC Função: TAB  &Destroi tabuleiro
 *
-*  $ED Descriï¿½ï¿½o da funï¿½ï¿½o
+*  $ED Descrição da função
 *     Desaloca todas as estruturas.
 *
-*  $EP Parï¿½metros
-*     Parï¿½metros
+*  $EP Parâmetros
+*     Parâmetros
 *        tab - um ponteiro para um TAB_Head.
 *        
 *  $FV Valor retornado
 *     TAB_CondRetOK - Deletou o tabuleiro sem problemas ou o tabuleiro enviado ja era NULL.
-*	  OBS. nï¿½o existe previsï¿½o para possï¿½veis falhas de execuï¿½ï¿½o.
+*	  OBS. não existe previsão para possíveis falhas de execução.
 *
 ***********************************************************************/
 TAB_tpCondRet TAB_destroiTabuleiro(TAB_Head* tab);
@@ -97,12 +97,12 @@ TAB_tpCondRet TAB_destroiTabuleiro(TAB_Head* tab);
 
 /***********************************************************************
 *
-*  $FC Funï¿½ï¿½o: TAB  &Verifica vitoria
+*  $FC Função: TAB  &Verifica vitoria
 *
-*  $ED Descriï¿½ï¿½o da funï¿½ï¿½o
-*     Verifica se a cor passada como parametro atingiu a condiï¿½ï¿½o de vitoria.
+*  $ED Descrição da função
+*     Verifica se a cor passada como parametro atingiu a condição de vitoria.
 *
-*  $EP Parï¿½metros
+*  $EP Parâmetros
 *        tabuleiro - um ponteiro para um TAB_Head.
 *        cor - cor (ou jogador) em questao a ser testado condicao de vitoria.
 *        
@@ -116,16 +116,16 @@ TAB_tpCondRet TAB_verificaVitoria(TAB_Head* tabuleiro, Cor cor);
 
 /***********************************************************************
 *
-*  $FC Funï¿½ï¿½o: TAB  &Mover peca
+*  $FC Função: TAB  &Mover peca
 *
-*  $ED Descriï¿½ï¿½o da funï¿½ï¿½o
-*     Move a peï¿½a da cor e numero correpondente para a casa.
+*  $ED Descrição da função
+*     Move a peça da cor e numero correpondente para a casa.
 *
-*  $EP Parï¿½metros
-*     Parï¿½metros
+*  $EP Parâmetros
+*     Parâmetros
 *        cor - cor (ou jogador) em questao a ser movido.
-*        nPeï¿½a - peca (do jogador) em questao a ser movido.
-*		 casas - nï¿½mero e casas a mover (numero tirado no dado)
+*        nPeça - peca (do jogador) em questao a ser movido.
+*		 casas - número e casas a mover (numero tirado no dado)
 *        
 *  $FV Valor retornado
 *	  TAB_CondRetOK - Cor e peca enviada moveu e nao ganhou o jogo.
@@ -133,21 +133,21 @@ TAB_tpCondRet TAB_verificaVitoria(TAB_Head* tabuleiro, Cor cor);
 *	  TAB_CondRetNumDePecasInvalida - Peca enviada nao existe.
 *	  TAB_CondRetTABNULL - Ponteiro para tabuleiro NULL.
 *	  TAB_CondRetMovimentoInvalido - Tentativa de movimento invalido.
-*	  TAB_CondRetNotYet - Nao tirou o numero exato para por a peï¿½a no centro
-*	  TAB_CondRetNaoMoveu - A peï¿½a nao foi movida (nao diz porque) 
+*	  TAB_CondRetNotYet - Nao tirou o numero exato para por a peça no centro
+*	  TAB_CondRetNaoMoveu - A peça nao foi movida (nao diz porque) 
 *
 ***********************************************************************/
-TAB_tpCondRet TAB_moverPeca(TAB_Head* tabuleiro, Cor cor, int nPeï¿½a ,int casas);
+TAB_tpCondRet TAB_moverPeca(TAB_Head* tabuleiro, Cor cor, int nPeça ,int casas);
 
 
 /***************************************************************
 
-$FC Funï¿½ï¿½o: TAB &showTab
+$FC Função: TAB &showTab
 
-$ED Descriï¿½ï¿½o da funï¿½ï¿½o
+$ED Descrição da função
 	Mostra o estado atual do tabuleiro.
 
-$EP Parï¿½metros
+$EP Parâmetros
 	tabuleiro - ponteiro para o tabuleiro
 
 $FV Valor retornado
