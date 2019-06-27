@@ -1,0 +1,199 @@
+GERADOR DE SCRIPT DE DIRETIVAS PARA MAKE
+   LES / Informática / PUC-Rio    Versão 6.00 (c) 2005
+
+Composição do construto: TesteTabuleiro.comp
+
+   Nome do Construto:           TesteTabuleiro
+   Diretório base:              C:\Users\Rodrigo\Documents\GitHub\Grupo-de-Modular-TOP\Modulo Tabuleiro
+
+   Arquivo composição:          TesteTabuleiro.comp
+   Arquivo plataforma:          gmake.parm
+
+   Arquivo diretivas MAKE:      TesteTabuleiro.make
+   Arquivo diretivas LINK:      TesteTabuleiro.build
+   Arquivo listagem:            TesteTabuleiro.list
+
+Módulos do construto: TesteTabuleiro.comp
+
+   TesteTabuleiro.c
+   Tabuleiro.c
+   LISTA.c
+   lista_circular.c
+   Pecas.c
+
+Estatísticas do construto
+
+   Estatísticas do arquivo: Generico.h
+      Total linhas:             713
+      Linhas de código:          59
+      Linhas de comentário:     572
+      Linhas em branco:          82
+   Arquivos de inclusão de que necessita
+      TST_Espc.h
+   Arquivos em que é incluído
+      TesteTabuleiro.c
+
+   Estatísticas do arquivo: LERPARM.h
+      Total linhas:             291
+      Linhas de código:          36
+      Linhas de comentário:     188
+      Linhas em branco:          67
+   Arquivos em que é incluído
+      TesteTabuleiro.c
+
+   Estatísticas do arquivo: LISTA.c
+      Total linhas:             575
+      Linhas de código:         299
+      Linhas de comentário:     136
+      Linhas em branco:         158
+   Arquivos de inclusão de que necessita
+      LISTA.h
+
+   Estatísticas do arquivo: LISTA.h
+      Total linhas:             346
+      Linhas de código:          35
+      Linhas de comentário:     262
+      Linhas em branco:          49
+   Arquivos em que é incluído
+      LISTA.c
+
+   Estatísticas do arquivo: Pecas.c
+      Total linhas:              57
+      Linhas de código:          47
+      Linhas de comentário:       0
+      Linhas em branco:          10
+   Arquivos de inclusão de que necessita
+      Pecas.h
+
+   Estatísticas do arquivo: Pecas.h
+      Total linhas:             101
+      Linhas de código:          12
+      Linhas de comentário:      75
+      Linhas em branco:          14
+   Arquivos em que é incluído
+      Pecas.c
+
+   Estatísticas do arquivo: TST_ESPC.h
+      Total linhas:             228
+      Linhas de código:          23
+      Linhas de comentário:     185
+      Linhas em branco:          20
+   Arquivos em que é incluído
+      TesteTabuleiro.c
+
+   Estatísticas do arquivo: TST_Espc.h
+      Total linhas:             228
+      Linhas de código:          23
+      Linhas de comentário:     185
+      Linhas em branco:          20
+   Arquivos em que é incluído
+      Generico.h
+      TesteTabuleiro.c
+
+   Estatísticas do arquivo: Tabuleiro.c
+      Total linhas:            1012
+      Linhas de código:         899
+      Linhas de comentário:      70
+      Linhas em branco:          81
+   Arquivos de inclusão de que necessita
+      lista.h
+      lista_circular.h
+      pecas.h
+      tabuleiro.h
+
+   Estatísticas do arquivo: Tabuleiro.h
+      Total linhas:             158
+      Linhas de código:          28
+      Linhas de comentário:     105
+      Linhas em branco:          25
+   Arquivos em que é incluído
+      TesteTabuleiro.c
+
+   Estatísticas do arquivo: TesteTabuleiro.c
+      Total linhas:             226
+      Linhas de código:         128
+      Linhas de comentário:      35
+      Linhas em branco:          70
+   Arquivos de inclusão de que necessita
+      Generico.h
+      LERPARM.h
+      TST_ESPC.h
+      TST_Espc.h
+      Tabuleiro.h
+
+   Estatísticas do arquivo: lista.h
+      Total linhas:             346
+      Linhas de código:          35
+      Linhas de comentário:     262
+      Linhas em branco:          49
+   Arquivos em que é incluído
+      Tabuleiro.c
+
+   Estatísticas do arquivo: lista_circular.c
+      Total linhas:             536
+      Linhas de código:         283
+      Linhas de comentário:     105
+      Linhas em branco:         166
+
+   Estatísticas do arquivo: lista_circular.h
+      Total linhas:             320
+      Linhas de código:          28
+      Linhas de comentário:     244
+      Linhas em branco:          48
+   Arquivos em que é incluído
+      Tabuleiro.c
+
+   Estatísticas do arquivo: pecas.h
+      Total linhas:             101
+      Linhas de código:          12
+      Linhas de comentário:      75
+      Linhas em branco:          14
+   Arquivos em que é incluído
+      Tabuleiro.c
+
+   Estatísticas do arquivo: tabuleiro.h
+      Total linhas:             158
+      Linhas de código:          28
+      Linhas de comentário:     105
+      Linhas em branco:          25
+   Arquivos em que é incluído
+      Tabuleiro.c
+
+Totais por tipo de arquivo
+
+  Tipo: obj      Path: .
+         Total linhas do tipo:         0
+         Linhas de código:             0
+         Linhas de comentário:         0
+         Linhas em branco:             0
+         Arquivos deste tipo:          0
+
+  Tipo: err      Path: .
+         Total linhas do tipo:         0
+         Linhas de código:             0
+         Linhas de comentário:         0
+         Linhas em branco:             0
+         Arquivos deste tipo:          0
+
+  Tipo: DEFAULT  Path: .
+         Total linhas do tipo:      2990
+         Linhas de código:           319
+         Linhas de comentário:      2258
+         Linhas em branco:           413
+         Arquivos deste tipo:         11
+
+  Tipo: c        Path: .
+         Total linhas do tipo:      2406
+         Linhas de código:          1656
+         Linhas de comentário:       346
+         Linhas em branco:           485
+         Arquivos deste tipo:          5
+
+Totais para todo o construto TesteTabuleiro
+
+   Total linhas:              5396
+   Linhas de código:          1975
+   Linhas de comentário:      2604
+   Linhas em branco:           898
+   Arquivos processados:        16
+

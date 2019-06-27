@@ -1000,7 +1000,7 @@ TAB_tpCondRet qualPecaEsp (TAB_Head * tabuleiro, CasaEspecial * casa, Cor cor, i
 		if(cor == Verde && P_getCasa(tabuleiro->pecasVerdes[i]) == casa)
 			nPeca[i] = 1;
 	}
-	return TAB_tpCondRet
+	return TAB_CondRetOK;
 }
 
 void zerar (int x[4]){
