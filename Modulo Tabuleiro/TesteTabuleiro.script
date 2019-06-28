@@ -32,7 +32,7 @@
 =declararparm   MovimentoEntrada6 int 6
 =declararparm   MovimentoEntrada1 int 1
 =declararparm   MovimentoEntradaInvalido int 3
-=declararparm   MovimentoComer int 14
+=declararparm   MovimentoComer int 15
 =declararparm   MovimentoPreVitoria int 55
 
 =declararparm   OK             int  0
