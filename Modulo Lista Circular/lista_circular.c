@@ -149,7 +149,7 @@
 
       if (Lista->numElem == 0){
 		 LimparCabeca(Lista);
-		 return;
+		 return LIC_CondRetListaVazia;
 	  }
 
       Elem = Lista->Origem ;
@@ -159,7 +159,7 @@
          LiberarElemento( Lista , Elem );
 		 if (Lista->numElem == 0){
 			 LimparCabeca(Lista);
-			 return;
+			 return LIC_CondRetOK;
 		 }
          Elem = Prox ;
       }while ( Elem->Prox != Lista->Origem );
