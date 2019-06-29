@@ -130,7 +130,7 @@
 		  return LIC_CondRetListaVazia;
 	   }
       #ifdef _DEBUG
-         CNT_CONTAR( "LIC_DestruirLista - Antes EsvaziarLista " ) ;
+         CNT_CONTAR( "LIC_DestruirLista - Antes EsvaziarLista" ) ;
       #endif
       free( Lista ) ;
       #ifdef _DEBUG
@@ -172,49 +172,49 @@
          #endif
 		    LimparCabeca(Lista);
          #ifdef _DEBUG
-         CNT_CONTAR( "LIC_EsvaziarLista - depois limpar cabeça " ) ;
+         CNT_CONTAR( "LIC_EsvaziarLista - depois limpar cabeça" ) ;
          #endif
 		   return LIC_CondRetListaVazia;
 	  }
       #ifdef _DEBUG
-         CNT_CONTAR( "LIC_EsvaziarLista - elem = lista origem " ) ;
+         CNT_CONTAR( "LIC_EsvaziarLista - elem = lista origem" ) ;
       #endif
       Elem = Lista->Origem ;
 	  do
       {
          #ifdef _DEBUG
-         CNT_CONTAR( "LIC_EsvaziarLista dentro do do  " ) ;
+         CNT_CONTAR( "LIC_EsvaziarLista dentro do do" ) ;
          #endif
          Prox = Elem->Prox ;
          LiberarElemento( Lista , Elem );
          #ifdef _DEBUG
-         CNT_CONTAR( "LIC_EsvaziarLista - LiberarElemento " ) ;
+         CNT_CONTAR( "LIC_EsvaziarLista - LiberarElemento" ) ;
          #endif
 		 if (Lista->numElem == 0)
        {
          #ifdef _DEBUG
-         CNT_CONTAR( "LIC_EsvaziarLista - antes de limpar cabeça 1 " ) ;
+         CNT_CONTAR( "LIC_EsvaziarLista - antes de limpar cabeça 1" ) ;
          #endif
 			 LimparCabeca(Lista);
          #ifdef _DEBUG
-         CNT_CONTAR( "LIC_EsvaziarLista - depois do limpa cabeça 1 " ) ;
+         CNT_CONTAR( "LIC_EsvaziarLista - depois do limpa cabeça 1" ) ;
          #endif
 			 return LIC_CondRetOK;
 		 }
       #ifdef _DEBUG
-         CNT_CONTAR( "LIC_EsvaziarLista - elem = prox " ) ;
+         CNT_CONTAR( "LIC_EsvaziarLista - elem = prox" ) ;
       #endif
          Elem = Prox ;
       #ifdef _DEBUG
-         CNT_CONTAR( "LIC_EsvaziarLista - while " ) ;
+         CNT_CONTAR( "LIC_EsvaziarLista - while" ) ;
       #endif
       }while ( Elem->Prox != Lista->Origem );
       #ifdef _DEBUG
-         CNT_CONTAR( "LIC_EsvaziarLista - antes limpar cabeça 2 " ) ;
+         CNT_CONTAR( "LIC_EsvaziarLista - antes limpar cabeça 2" ) ;
       #endif
       LimparCabeca( Lista ) ;
       #ifdef _DEBUG
-         CNT_CONTAR( "LIC_EsvaziarLista  - depois limpar cabeça 2 " ) ;
+         CNT_CONTAR( "LIC_EsvaziarLista  - depois limpar cabeça 2" ) ;
       #endif
 	  return LIC_CondRetOK;;
 
@@ -234,7 +234,7 @@
 
       if (Lista==NULL){
          #ifdef _DEBUG
-         CNT_CONTAR( "LIC_InserirAntes - lista == null " ) ;
+         CNT_CONTAR( "LIC_InserirAntes - lista == null" ) ;
          #endif
 		  printf("\nLista vazia\n");
 		  return LIC_CondRetListaVazia;
@@ -242,7 +242,7 @@
 
       /* Criar elemento a inerir antes */
       #ifdef _DEBUG
-         CNT_CONTAR( "LIC_InserirAntes - antes cria elemento  " ) ;
+         CNT_CONTAR( "LIC_InserirAntes - antes cria elemento" ) ;
       #endif
          Elem = CriarElemento( Lista , Valor ) ;
       #ifdef _DEBUG
@@ -426,7 +426,7 @@
 		  Lista->Origem = Elem->Prox;
 	  }
       #ifdef _DEBUG
-      CNT_CONTAR( "LIC_ExcluirElemento - depois Elem->Prox == Lista->Origem" ) ;
+      CNT_CONTAR( "LIC_ExcluirElemento - antes Elem->Prox == Lista->Origem" ) ;
       #endif
 	  if ( Elem->Prox == Lista->Origem)
      {
@@ -452,7 +452,7 @@
 	  if(Lista->numElem == 0)
      {
       #ifdef _DEBUG
-      CNT_CONTAR( "LIC_ExcluirElemento - dentro Lista->numElem == 0" ) ;
+         CNT_CONTAR( "LIC_ExcluirElemento - dentro Lista->numElem == 0" ) ;
       #endif
 		  Lista->ElemCorr = NULL;
 		  Lista->Origem = NULL;
@@ -480,17 +480,17 @@
 		  return LIC_CondRetListaVazia;
 	   }
       #ifdef _DEBUG
-         CNT_CONTAR( "LIC_ObterValor - antes Lista->ElemCorr == NULL " ) ;
+         CNT_CONTAR( "LIC_ObterValor - antes Lista->ElemCorr == NULL" ) ;
       #endif
       if ( Lista->ElemCorr == NULL )
       {
                #ifdef _DEBUG
-         CNT_CONTAR( "LIC_ObterValor - dentro Lista->ElemCorr == NULL " ) ;
+         CNT_CONTAR( "LIC_ObterValor - dentro Lista->ElemCorr == NULL" ) ;
       #endif
         return NULL ;
       } /* if */
             #ifdef _DEBUG
-         CNT_CONTAR( "LIC_ObterValor - return " ) ;
+         CNT_CONTAR( "LIC_ObterValor - return" ) ;
       #endif
       return Lista->ElemCorr->Valor ;
 
@@ -540,11 +540,11 @@
 		  return LIC_CondRetListaVazia;
 	   }
 	   #ifdef _DEBUG
-         CNT_CONTAR( "LIC_IrFinalLista - antes Lista->ElemCorr = Lista->Fim " ) ;
+         CNT_CONTAR( "LIC_IrFinalLista - antes Lista->ElemCorr = Lista->Fim" ) ;
       #endif
       Lista->ElemCorr = Lista->Fim ;
       	   #ifdef _DEBUG
-         CNT_CONTAR( "LIC_IrFinalLista - return " ) ;
+         CNT_CONTAR( "LIC_IrFinalLista - return" ) ;
       #endif
       return LIC_CondRetOK;
    } /* Fim fun��o: LIC  &Ir para o elemento final */
@@ -574,12 +574,12 @@
 
       /* Tratar lista vazia */
          #ifdef _DEBUG
-         CNT_CONTAR( "LIC_Avancar - antes Lista->ElemCorr == NULL " ) ;
+         CNT_CONTAR( "LIC_Avancar - antes Lista->ElemCorr == NULL" ) ;
          #endif
          if ( Lista->ElemCorr == NULL )
          {
             #ifdef _DEBUG
-            CNT_CONTAR( "LIC_Avancar - dentro Lista->ElemCorr == NULL " ) ;
+            CNT_CONTAR( "LIC_Avancar - dentro Lista->ElemCorr == NULL" ) ;
             #endif
             return LIC_CondRetListaVazia ;
 
@@ -587,12 +587,12 @@
 
 	  /* Tratar elemento �nico */
       #ifdef _DEBUG
-      CNT_CONTAR( "LIC_Avancar - antes Lista->Fim == Lista->Origem " ) ;
+      CNT_CONTAR( "LIC_Avancar - antes Lista->Fim == Lista->Origem" ) ;
       #endif
 		 if(Lista->Fim == Lista->Origem)
        {
          #ifdef _DEBUG
-         CNT_CONTAR( "LIC_Avancar - dentro Lista->Fim == Lista->Origem " ) ;
+         CNT_CONTAR( "LIC_Avancar - dentro Lista->Fim == Lista->Origem" ) ;
          #endif
 			return LIC_CondRetOK;
 
@@ -600,12 +600,12 @@
 
       /* Tratar avan�ar para frente */
          #ifdef _DEBUG
-         CNT_CONTAR( "LIC_Avancar - antes x > 0 " ) ;
+         CNT_CONTAR( "LIC_Avancar - antes x > 0" ) ;
          #endif
          if ( x > 0 )
          {
             #ifdef _DEBUG
-            CNT_CONTAR( "LIC_Avancar - dentro x > 0 " ) ;
+            CNT_CONTAR( "LIC_Avancar - dentro x > 0" ) ;
             #endif
             Elem = Lista->ElemCorr ;
             for( i = x ; i > 0 ; i-- )
@@ -628,9 +628,6 @@
          } /* fim ativa: Tratar avan�ar para frente */
 
       /* Tratar avan�ar para tr�s */
-         #ifdef _DEBUG
-         CNT_CONTAR( "LIC_Avancar - antes else if (x<0)" ) ;
-         #endif
          else if ( x < 0 )
          {
             #ifdef _DEBUG
@@ -785,12 +782,12 @@
       if ( Elem == NULL )
       {
          #ifdef _DEBUG
-         CNT_CONTAR( "CriarElemento - dentro Elem == NULL " ) ;
+         CNT_CONTAR( "CriarElemento - dentro Elem == NULL" ) ;
          #endif
          return NULL ;
       } /* if */
       #ifdef _DEBUG
-      CNT_CONTAR( "CriarElemento - fora Elem == NULL " ) ;
+      CNT_CONTAR( "CriarElemento - fora Elem == NULL" ) ;
       #endif
       Elem->Valor = Valor ;
       Elem->Ant   = NULL  ;
@@ -798,7 +795,7 @@
 
       Lista->numElem ++ ;
       #ifdef _DEBUG
-      CNT_CONTAR( "CriarElemento - return " ) ;
+      CNT_CONTAR( "CriarElemento - return" ) ;
       #endif
       return Elem ;
 
@@ -816,19 +813,19 @@
        if ( Lista == NULL )
       {
          #ifdef _DEBUG
-         CNT_CONTAR( "LimparCabeca - Inicio " ) ;
+         CNT_CONTAR( "LimparCabeca - Inicio" ) ;
          #endif
          return LIC_CondRetListaVazia ;
       } 
       #ifdef _DEBUG
-      CNT_CONTAR( "LimparCabeca - bloco " ) ;
+      CNT_CONTAR( "LimparCabeca - bloco" ) ;
       #endif
       Lista->Origem = NULL ;
       Lista->Fim = NULL ;
       Lista->ElemCorr = NULL ;
       Lista->numElem   = 0 ;
       #ifdef _DEBUG
-      CNT_CONTAR( "LimparCabeca - return " ) ;
+      CNT_CONTAR( "LimparCabeca - return" ) ;
       #endif
       return LIC_CondRetOK;
    } /* Fim fun��o: LIC  -Limpar a cabe�a da lista */

@@ -5,15 +5,110 @@
 //
 ///////////////////////////////////////////////
     
-    LIC_CriarLista
-    LIC_InserirAntes
+    LIC_CriarLista-Inicio
+    LIC_CriarLista- MEMORIA  , settar -2 \=-2
+    LIC_CriarLista-Antes-Limpa-Cabeça
+    LIC_CriarLista-Depois-Limpa-Cabeça
+    LIC_CriarLista-Return
+    LIC_DestruirLista - Inicio
+    LIC_DestruirLista - Antes EsvaziarLista
+    LIC_DestruirLista - Depois EsvaziarLista
     LIC_EsvaziarLista
-    LIC_DestruirLista
-    LIC_InserirApos
-    LIC_ExcluirElemento
-    LIC_ObterValor
-    LIC_IrInicioLista
-    LIC_IrFinalLista
-    LIC_Avancar
-    LIC_ProcurarValor
+    LIC_EsvaziarLista- if null
+    LIC_EsvaziarLista - antes do if numElem
+    LIC_EsvaziarLista - antes limpar cabeça
+    LIC_EsvaziarLista - depois limpar cabeça
+    LIC_EsvaziarLista - elem = lista origem
+    LIC_EsvaziarLista dentro do do
+    LIC_EsvaziarLista - LiberarElemento
+    LIC_EsvaziarLista - antes de limpar cabeça 1
+    LIC_EsvaziarLista - depois do limpa cabeça 1
+    LIC_EsvaziarLista - elem = prox
+    LIC_EsvaziarLista - while
+    LIC_EsvaziarLista - antes limpar cabeça 2
+    LIC_EsvaziarLista  - depois limpar cabeça 2
+    LIC_InserirAntes - inicio
+    LIC_InserirAntes - lista == null
+    LIC_InserirAntes - antes cria elemento
+    LIC_InserirAntes -  depois cria elemento
+    LIC_InserirAntes - MEMORIA \=-2
+    LIC_InserirAntes - lista-> elemcorr == null
+    LIC_InserirAntes - dentro lista-> elemcorr == null
+    LIC_InserirAntes - dentro else
+    LIC_InserirAntes - antes elem->ant == Lista->fim
+    LIC_InserirAntes - dentro elem->ant == Lista->fim
+    LIC_InserirAntes - antes lista->elemeCorr = elem
+    LIC_InserirAntes - depois lista->elemeCorr = elem
+    LIC_InserirApos - inicio
+    LIC_InserirApos - LISTA == NULL
+    LIC_InserirApos - antes cria elemento
+    LIC_InserirApos - depois cria elemento
+    LIC_InserirApos - MEMORIA \=-2
+    LIC_InserirApos - lista -> elemcorr == null
+    LIC_InserirApos - depois lista -> elemcorr == null
+    LIC_InserirApos - dentro do else
+    LIC_InserirApos - antes Elem->Prox == Lista->Origem
+    LIC_InserirApos - dentro Elem->Prox == Lista->Origem
+    LIC_InserirApos - antes Lista->ElemCorr = Elem
+    LIC_InserirApos - depois Lista->ElemCorr = Elem
+    LIC_ExcluirElemento - Inicio
+    LIC_ExcluirElemento - Lista == NULL
+    LIC_ExcluirElemento - antes Lista->ElemCorr == NULL
+    LIC_ExcluirElemento - dentro Lista->ElemCorr == NULL
+    LIC_ExcluirElemento - antes Elem = Lista->ElemCorr
+    LIC_ExcluirElemento - depois Elem = Lista->ElemCorr
+    LIC_ExcluirElemento - dentro Elem->Ant == Lista->Fim
+    LIC_ExcluirElemento - antes Elem->Prox == Lista->Origem
+    LIC_ExcluirElemento - dentro Elem->Prox == Lista->Origem
+    LIC_ExcluirElemento - antes Elem->Ant->Prox = Elem->Prox
+    LIC_ExcluirElemento - antes LiberarElemento
+    LIC_ExcluirElemento - depois LiberarElemento
+    LIC_ExcluirElemento - dentro Lista->numElem == 0
+    LIC_ExcluirElemento - return
+    LIC_ObterValor - Inicio
+    LIC_ObterValor - antes Lista->ElemCorr == NULL
+    LIC_ObterValor - dentro Lista->ElemCorr == NULL
+    LIC_ObterValor - return
+    LIC_IrInicioLista - inicio
+    LIC_IrInicioLista - antes Lista->ElemCorr = Lista->Origem
+    LIC_IrInicioLista - return
+    LIC_IrFinalLista- Inicio
+    LIC_IrFinalLista - antes Lista->ElemCorr = Lista->Fim
+    LIC_IrFinalLista - return
+    LIC_Avancar - Inicio
+    LIC_Avancar - Lista==NULL
+    LIC_Avancar - antes Lista->ElemCorr == NULL
+    LIC_Avancar - dentro Lista->ElemCorr == NULL
+    LIC_Avancar - antes Lista->Fim == Lista->Origem
+    LIC_Avancar - dentro Lista->Fim == Lista->Origem
+    LIC_Avancar - antes x > 0
+    LIC_Avancar - dentro x > 0
+    LIC_Avancar - dentro for( i = x ; i > 0 ; i-- )
+    LIC_Avancar - depois for( i = x ; i > 0 ; i-- )
+    LIC_Avancar - return if ( x > 0 )
+    LIC_Avancar - dentro else if (x<0)
+    LIC_Avancar - dentro for( i = x ; i < 0 ; i++ )
+    LIC_Avancar - depois for( i = x ; i < 0 ; i++ )
+    LIC_Avancar - return dentro if ( x < 0)
+    LIC_Avancar - return final
+    LIC_ProcurarValor - Inicio
+    LIC_ProcurarValor - dentro LISTA == NULL
+    LIC_ProcurarValor - antes Lista->ElemCorr == NULL
+    LIC_ProcurarValor - dentro Lista->ElemCorr == NULL
+    LIC_ProcurarValor - antes Elem = Lista->ElemCorr
+    LIC_ProcurarValor - depois Elem = Lista->ElemCorr
+    LIC_ProcurarValor - antes Elem->Valor == Valor
+    LIC_ProcurarValor - dentro Elem->Valor == Valor
+    LIC_ProcurarValor - depois Elem->Valor == Valor
+    LIC_ProcurarValor - return
+    LiberarElemento - Inicio
+    LiberarElemento - bloco
+    LiberarElemento - return
+    CriarElemento - Inicio
+    CriarElemento - dentro Elem == NULL\=-2
+    CriarElemento - fora Elem == NULL
+    CriarElemento - return
+    LimparCabeca - Inicio\=-2
+    LimparCabeca - bloco
+    LimparCabeca - return
 	 XPTO nome adicionado para fins de teste\=-2
