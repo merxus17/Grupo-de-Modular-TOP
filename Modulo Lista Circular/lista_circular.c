@@ -471,7 +471,7 @@
       #ifdef _DEBUG
          CNT_CONTAR( "LIC_ObterValor - Inicio" ) ;
       #endif
-		  return LIC_CondRetListaVazia;
+		  return NULL;
 	   }
       #ifdef _DEBUG
          CNT_CONTAR( "LIC_ObterValor - antes Lista->ElemCorr == NULL" ) ;

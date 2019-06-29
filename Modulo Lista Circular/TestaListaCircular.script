@@ -17,11 +17,29 @@
 =declararparm	lista7	int 7
 =declararparm	lista10	int 10
 
+=declararparm	lista11	int 11
+=declararparm	lista12	int 12
+=declararparm	lista13	int 13
+=declararparm	lista14	int 14
+=declararparm	lista15	int 15
+=declararparm	lista16	int 16
+=declararparm	lista17	int 17
+=declararparm	lista18	int 18
+=declararparm	lista19	int 19
+=declararparm	lista20	int 20
+=declararparm	lista21	int 21
+=declararparm   lista50 int 50
+=declararparm	lista99	int 99
+=declararparm	lista2000	int 2000
+
+
+
 =declararparm   str0    string  "abcdefg"
 =declararparm   str1    string  "qwerty"
 =declararparm   str2    string  "xxx"
 =declararparm   str3    string  "xpto"
 =declararparm 	str4	string	"touche"
+=declararparm   str5    string  "pairera"
 
 =declararparm   OK             int  0
 =declararparm   ListaVazia     int  1
@@ -73,21 +91,21 @@
 =obtervalorelem  lista0   "???"     pNULL
 
 == Destruir a lista
-=destruirlista   lista0
+=destruirlista   lista0   OK
 
 == Criar uma lista com dois elementos
-=criarlista      lista1 
+=criarlista      lista1
 =inselemapos     lista1   str0   OK
 =inselemapos     lista1   str1   OK
 
 == Esvaziar a lista e ver se ficou vazia
-=esvaziarlista   lista1
+=esvaziarlista   lista1   OK
 =obtervalorelem  lista1   "???"     pNULL
 
 
 
 == Criar uma lista com quatro elementos
-=criarlista      lista2 
+=criarlista      lista2
 =inselemapos     lista2   str0   OK
 =inselemapos     lista2   str1   OK
 =inselemapos     lista2   str2   OK
@@ -116,24 +134,243 @@
 =obtervalorelem  lista2   str3   pNaoNULL
 
 == Destruir a lista
-=destruirlista   lista2
+=destruirlista   lista2   OK
 
 == Destruir todas as listas
 =resetteste
 
 == Cria uma lista com ind�ce maior que o limite de listas definido
-=criarlista 	 lista10
+=criarlista 	 lista2000
 =recuperar
 
 == Inserir valor em uma lista que n�o foi criada com anteced�ncia (teste insereelemapos)
 =inselemapos	 lista0   str4	 OK
 =recuperar
 
-== Procurar str3 em lista (existe)
-=procurarelem	 lista9	  str2   str3   str4   str3   OK
 
-== Procurar str1 em lista (n�o existe)
-=procurarelem	 lista7	  str2   str3   str4   str1   NaoAchou
+//***************TESTES POR ARESTAS***************
+
+//Preparações:
+
+== Criar a lista 14 (Para testar vazia)
+=criarlista      lista14
+
+== Criar a lista 13 (Lista Com 3 elementos não NULL)
+=criarlista      lista13
+
+== Inserir elemento não NULL na lista 13
+=inselemantes    lista13   str0   OK
+
+== Inserir elemento não NULL na lista 13
+=inselemantes    lista13   str1   OK
+
+== Inserir elemento não NULL na lista 13
+=inselemantes    lista13   str2   OK
 
 
- 
+// CriarLista ********** 
+
+
+== Criar a lista 11
+=criarlista      lista11
+
+
+//DestruirLista **********
+
+
+== Destruir a lista 11 que é vazia
+=destruirlista   lista11   OK
+
+== Criar a lista 12
+=criarlista      lista12
+
+== Inserir elemento na lista 12
+=inselemantes    lista12   str0   OK
+=obtervalorelem  lista12   str0   pNaoNULL
+
+== Destruir a lista 12 que não é vazia
+=destruirlista   lista12   OK
+
+
+//EsvaziarLista ********** 
+
+
+== Esvaziar lista inexistente
+=esvaziarlista   lista99   ListaVazia
+
+==Criar e esvaziar uma lista vazia
+=criarlista      lista19
+=esvaziarlista   lista19   ListaVazia
+
+==Criar e esvaziar uma lista com 1 elemento
+=criarlista      lista20
+=inselemapos     lista20   str3   OK
+=esvaziarlista   lista20   OK
+
+==Criar e esvaziar uma lista com 2 elementos 
+=criarlista      lista21
+=inselemapos     lista21   str3   OK
+=inselemapos     lista21   str0   OK
+=esvaziarlista   lista21   OK
+
+
+
+//InserirAntes **********
+
+
+== Tentar inserir elemento antes numa lista inexistente
+=inselemantes    lista99   str0   ListaVazia
+
+==Criar lista vazia
+=criarlista      lista15
+
+== Inserir elemento antes em uma lista existente vazia
+=inselemantes    lista15   str0  OK
+
+== Inserir elemento antes em uma lista existente não vazia
+=inselemantes    lista15   str0  OK
+
+
+
+//InserirApos **********
+
+
+== Tentar inserir elemento apos numa lista inexistente
+=inselemapos    lista99   str0   ListaVazia
+
+==Criar lista vazia
+=criarlista      lista16
+
+== Inserir elemento após em uma lista existente vazia
+=inselemapos    lista16   str0  OK
+
+== Inserir elemento após em uma lista existente não vazia
+=inselemapos    lista16   str0  OK
+
+
+
+//ExcluirElemento **********
+
+== Criar a lista 17
+=criarlista      lista17 
+
+== Tentar excluir elemento de uma lista vazia
+=excluirelem     lista17             ListaVazia
+
+== Tentar excluir elemento de uma lista inexistente
+=excluirelem     lista99             ListaVazia
+
+== Inserir elemento em lista vazia
+=inselemantes    lista17   str0   OK
+=obtervalorelem  lista17   str0   pNaoNULL
+
+== Inserir elemento após primeiro
+=inselemapos     lista17   str1   OK
+=obtervalorelem  lista17   str1   pNaoNULL
+
+== Inserir elemento após segundo
+=inselemapos     lista17   str3   OK
+=obtervalorelem  lista17   str3   pNaoNULL
+
+== Inserir elemento antes do último 
+=inselemantes    lista17   str2   OK
+=obtervalorelem  lista17   str2   pNaoNULL
+
+== Excluir elemento do meio
+=obtervalorelem  lista17   str2   pNaoNULL
+=excluirelem     lista17             OK
+
+== Excluir elemento do final
+=obtervalorelem  lista17   str3   pNaoNULL
+=excluirelem     lista17             OK
+
+== Excluir elemento inicio
+=obtervalorelem  lista17   str0   pNaoNULL
+=excluirelem     lista17             OK
+
+
+//ObterValor ********** 
+
+
+== ObterValor em uma lista inexistente
+=obtervalorelem  lista99   "???"  pNULL   
+
+== ObterValor em uma lista vazia
+=obtervalorelem  lista14   "???"     pNULL
+
+==ObterValor quando existe um elemento não NULL 
+=obtervalorelem  lista13   str2   pNaoNULL
+
+
+//IrFinalLista **********
+
+
+== Ir para final de uma lista que não está vazia
+=irfinal    lista13   OK
+
+== Ir para final de uma lista que não existe
+=irfinal    lista99   ListaVazia
+
+
+//IrInicioLista **********
+
+== Ir para inicio de uma lista que não está vazia
+=irinicio    lista13   OK
+
+== Ir para inicio de uma lista que não existe
+=irfinal    lista99   ListaVazia
+
+
+//Avancar **********
+
+==Tentar avançar em uma lista inexistente
+=avancarelem     lista99   1      ListaVazia
+
+==Tentar avançar em uma lista vazia
+=avancarelem     lista14   1      ListaVazia
+
+== Criar a lista 18 com um único elemento
+=criarlista      lista18
+=inselemapos     lista18   str0   OK
+
+==Tentar avançar em uma lista com um elemento
+=avancarelem     lista18   1      OK	
+
+==inserir mais elementos na lista18
+=inselemapos     lista18   str1   OK
+=inselemapos     lista18   str2   OK
+=inselemapos     lista18   str3   OK
+
+== Avançar para frente em uma lista com mais de um elemento
+=avancarelem     lista18   1      OK
+
+==Avançar para trás em uma lista com mais de um elemento
+=avancarelem     lista18   -1     OK
+
+==Avançar para 0 casas em uma lista com mais de um elemento
+=avancarelem     lista18   0     OK
+
+
+//ProcurarValor **********()
+
+
+== Procurar str1 em lista que não existe
+=procurarelem	 lista99	  str1   ListaVazia
+
+== Procurar str3 em lista que existe porém está vazia
+=procurarelem	 lista14	  str3   ListaVazia
+
+== Procurar str2 em lista que existe e possui o str2
+=procurarelem	 lista13	  str2   OK
+
+== Procurar str3 em lista que existe e não possui o str3
+=procurarelem	 lista13	  str3   NaoAchou
+
+== Criar a lista 50 com str5 e procurar o str5
+=criarlista      lista50
+=inselemapos    lista50   str5   OK
+=procurarelem	 lista50   str5   OK
+
+
+
+
