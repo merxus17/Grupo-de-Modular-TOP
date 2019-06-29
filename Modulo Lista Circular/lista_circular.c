@@ -126,7 +126,6 @@
       #ifdef _DEBUG
          CNT_CONTAR( "LIC_DestruirLista - Inicio" ) ;
       #endif
-		  printf("\nLista vazia\n");
 		  return LIC_CondRetListaVazia;
 	   }
       #ifdef _DEBUG
@@ -159,7 +158,6 @@
          #ifdef _DEBUG
             CNT_CONTAR( "LIC_EsvaziarLista- if null" ) ;
          #endif
-         printf("\nLista vazia\n");
          return LIC_CondRetListaVazia;
 	   }
         #ifdef _DEBUG
@@ -236,7 +234,6 @@
          #ifdef _DEBUG
          CNT_CONTAR( "LIC_InserirAntes - lista == null" ) ;
          #endif
-		  printf("\nLista vazia\n");
 		  return LIC_CondRetListaVazia;
 	  }
 
@@ -317,7 +314,6 @@
          #ifdef _DEBUG
          CNT_CONTAR( "LIC_InserirApos - LISTA == NULL" ) ;
          #endif
-		  printf("\nLista vazia\n");
 		  return LIC_CondRetListaVazia;
 	   }
 
@@ -398,7 +394,6 @@
          #ifdef _DEBUG
          CNT_CONTAR( "LIC_ExcluirElemento - Lista == NULL" ) ;
          #endif
-		   printf("\nLista vazia\n");
 		   return LIC_CondRetListaVazia;
 	   }
       #ifdef _DEBUG
@@ -476,8 +471,7 @@
       #ifdef _DEBUG
          CNT_CONTAR( "LIC_ObterValor - Inicio" ) ;
       #endif
-		  printf("\nLista vazia\n");
-		  return LIC_CondRetListaVazia;
+		  return NULL;
 	   }
       #ifdef _DEBUG
          CNT_CONTAR( "LIC_ObterValor - antes Lista->ElemCorr == NULL" ) ;
@@ -509,7 +503,6 @@
          	   #ifdef _DEBUG
          CNT_CONTAR( "LIC_IrInicioLista - inicio" ) ;
       #endif
-		  printf("\nLista vazia\n");
 		  return LIC_CondRetListaVazia;
 	   }
 	   #ifdef _DEBUG
@@ -536,7 +529,6 @@
  	   #ifdef _DEBUG
          CNT_CONTAR( "LIC_IrFinalLista- Inicio" ) ;
       #endif        
-		  printf("\nLista vazia\n");
 		  return LIC_CondRetListaVazia;
 	   }
 	   #ifdef _DEBUG
@@ -568,7 +560,6 @@
          #ifdef _DEBUG
          CNT_CONTAR( "LIC_Avancar - Lista==NULL" ) ;
          #endif
-		   printf("\nLista vazia\n");
 		   return LIC_CondRetListaVazia;
 	   }
 
@@ -677,7 +668,6 @@
       #ifdef _DEBUG
          CNT_CONTAR( "LIC_ProcurarValor - dentro LISTA == NULL" ) ;
       #endif
-		  printf("\nLista vazia\n");
 		  return LIC_CondRetListaVazia;
 	  }
       #ifdef _DEBUG
@@ -831,4 +821,3 @@
    } /* Fim fun��o: LIC  -Limpar a cabe�a da lista */
 
 /********** Fim do m�dulo de implementa��o: LIC  Lista circular duplamente encadeada **********/
-

@@ -50,8 +50,8 @@ static const char PROCURAR_VALOR_CMD      [ ] = "=procurarelem"   ;
 #define VAZIO     0
 #define NAO_VAZIO 1
 
-#define DIM_VT_LISTA   10
-#define DIM_VALOR     100
+#define DIM_VT_LISTA   200
+#define DIM_VALOR     1000
 
 LIC_Lista   vtListas[ DIM_VT_LISTA ] ;
 
@@ -151,18 +151,18 @@ LIC_Lista   vtListas[ DIM_VT_LISTA ] ;
          else if ( strcmp( ComandoTeste , ESVAZIAR_LISTA_CMD ) == 0 )
          {
 			 
-            numLidos = LER_LerParametros( "i" ,
-                               &inxLista ) ;
+            numLidos = LER_LerParametros( "ii" ,
+                               &inxLista , &CondRetEsp) ;
 
-            if ( ( numLidos != 1 )
-              || ( ! ValidarInxLista( inxLista , NAO_VAZIO )))
+            if ( ( numLidos != 2 ))
             {
                return TST_CondRetParm ;
             } /* if */
 
-            LIC_EsvaziarLista( vtListas[ inxLista ] ) ;
+            CondRet = LIC_EsvaziarLista( vtListas[ inxLista ] ) ;
 
-            return TST_CondRetOK ;
+            return TST_CompararInt( CondRetEsp , CondRet ,
+               "Condicao de retorno errada ao ao esvaziar."  ) ;
 
          } /* fim ativa: Testar Esvaziar lista lista */
 
@@ -171,20 +171,21 @@ LIC_Lista   vtListas[ DIM_VT_LISTA ] ;
          else if ( strcmp( ComandoTeste , DESTRUIR_LISTA_CMD ) == 0 )
          {
 			 
-            numLidos = LER_LerParametros( "i" ,
-                               &inxLista ) ;
+            numLidos = LER_LerParametros( "ii" ,
+                               &inxLista , &CondRetEsp ) ;
 
-            if ( ( numLidos != 1 )
+            if ( ( numLidos != 2 )
               || ( ! ValidarInxLista( inxLista , NAO_VAZIO )))
             {
                return TST_CondRetParm ;
             } /* if */
 
-            LIC_DestruirLista( vtListas[ inxLista ] ) ;
+            CondRet = LIC_DestruirLista( vtListas[ inxLista ] ) ;
             vtListas[ inxLista ] = NULL ;
 
-            return TST_CondRetOK ;
-
+            return TST_CompararInt( CondRetEsp , CondRet ,
+               "Condicao de retorno errada ao destruir."  ) ;
+            
          } /* fim ativa: Testar Destruir lista */
 
       /* Testar inserir elemento antes */
@@ -195,8 +196,7 @@ LIC_Lista   vtListas[ DIM_VT_LISTA ] ;
             numLidos = LER_LerParametros( "isi" ,
                        &inxLista , StringDado , &CondRetEsp ) ;
 
-            if ( ( numLidos != 3 )
-              || ( ! ValidarInxLista( inxLista , NAO_VAZIO )) )
+            if (( numLidos != 3 ))
             {
                return TST_CondRetParm ;
             } /* if */
@@ -230,8 +230,7 @@ LIC_Lista   vtListas[ DIM_VT_LISTA ] ;
             numLidos = LER_LerParametros( "isi" ,
                        &inxLista , StringDado , &CondRetEsp ) ;
 
-            if ( ( numLidos != 3 )
-              || ( ! ValidarInxLista( inxLista , NAO_VAZIO )) )
+            if ( ( numLidos != 3 ))
             {
                return TST_CondRetParm ;
             } /* if */
@@ -265,8 +264,7 @@ LIC_Lista   vtListas[ DIM_VT_LISTA ] ;
             numLidos = LER_LerParametros( "ii" ,
                   &inxLista , &CondRetEsp ) ;
 
-            if ( ( numLidos != 2 )
-              || ( ! ValidarInxLista( inxLista , NAO_VAZIO )) )
+            if ( ( numLidos != 2 ))
             {
                return TST_CondRetParm ;
             } /* if */
@@ -285,29 +283,27 @@ LIC_Lista   vtListas[ DIM_VT_LISTA ] ;
             numLidos = LER_LerParametros( "isi" ,
                        &inxLista , StringDado , &ValEsp ) ;
 
-            if ( ( numLidos != 3 )
-              || ( ! ValidarInxLista( inxLista , NAO_VAZIO )) )
+            if ( ( numLidos != 3 ))
             {
                return TST_CondRetParm ;
             } /* if */
 
-            pDado = ( char * ) LIC_ObterValor( vtListas[ inxLista ] ) ;
-
-            if ( ValEsp == 0 )
+            pDado =  ( char * ) LIC_ObterValor( vtListas[ inxLista ] ) ;
+             if ( ValEsp == 0 )
             {
                return TST_CompararPonteiroNulo( 0 , pDado ,
                          "Valor n�o deveria existir." ) ;
             } /* if */
-
+               
             if ( pDado == NULL )
             {
                return TST_CompararPonteiroNulo( 1 , pDado ,
                          "Dado tipo um deveria existir." ) ;
             } /* if */
-
+         
             return TST_CompararString( StringDado , pDado ,
-                         "Valor do elemento errado." ) ;
-
+                         "Valor do elemento errado." ) ; 
+            
          } /* fim ativa: Testar obter valor do elemento corrente */
 
       /* Testar ir para o elemento inicial */
@@ -315,10 +311,9 @@ LIC_Lista   vtListas[ DIM_VT_LISTA ] ;
          else if ( strcmp( ComandoTeste , IR_INICIO_CMD ) == 0 )
          {
 			  
-            numLidos = LER_LerParametros( "i" , &inxLista ) ;
+            numLidos = LER_LerParametros( "ii" , &inxLista, &CondRet ) ;
 
-            if ( ( numLidos != 1 )
-              || ( ! ValidarInxLista( inxLista , NAO_VAZIO )) )
+            if ( ( numLidos != 2 ))
             {
                return TST_CondRetParm ;
             } /* if */
@@ -334,10 +329,9 @@ LIC_Lista   vtListas[ DIM_VT_LISTA ] ;
          else if ( strcmp( ComandoTeste , IR_FIM_CMD ) == 0 )
          {
 			
-            numLidos = LER_LerParametros( "i" , &inxLista ) ;
+            numLidos = LER_LerParametros( "ii" , &inxLista, &CondRet ) ;
 
-            if ( ( numLidos != 1 )
-              || ( ! ValidarInxLista( inxLista , NAO_VAZIO )) )
+            if ( ( numLidos != 2 ))
             {
                return TST_CondRetParm ;
             } /* if */
@@ -356,8 +350,7 @@ LIC_Lista   vtListas[ DIM_VT_LISTA ] ;
             numLidos = LER_LerParametros( "iii" , &inxLista , &numElem ,
                                 &CondRetEsp ) ;
 
-            if ( ( numLidos != 3 )
-              || ( ! ValidarInxLista( inxLista , NAO_VAZIO )) )
+            if ( ( numLidos != 3 ))
             {
                return TST_CondRetParm ;
             } /* if */
@@ -370,65 +363,45 @@ LIC_Lista   vtListas[ DIM_VT_LISTA ] ;
 
           else if ( strcmp( ComandoTeste , PROCURAR_VALOR_CMD ) == 0 )
          {
-			 
-			
-			char   String1[  DIM_VALOR ] ;
-			char   String2[  DIM_VALOR ] ;
-			char   String3[  DIM_VALOR ] ;
-			
-			char * S1;
-			char * S2;
-			char * S3;
-			String1[ 0 ] = 0 ;
-			String2[ 0 ] = 0 ;
-			String3[ 0 ] = 0 ;
+            int i;
+ 			   numLidos = LER_LerParametros( "isi" , &inxLista , StringDado , &CondRetEsp ) ;
 
-            numLidos = LER_LerParametros( "issssi" , &inxLista , String1 , String2 , String3 , StringDado , &CondRetEsp ) ;
-
-            if ( numLidos != 6 )
+            if ( numLidos != 3 )
             {
                return TST_CondRetParm ;
             } 
 
-            pDado = ( char * ) malloc( strlen( StringDado ) + 1 ) ;
-			S1 = ( char * ) malloc( strlen( String1 ) + 1 ) ;
-			S2 = ( char * ) malloc( strlen( String2 ) + 1 ) ;
-			S3 = ( char * ) malloc( strlen( String3 ) + 1 ) ;
-            if ( pDado == NULL || S1 == NULL || S2 == NULL || S3 == NULL)
+            pDado = ( char * ) malloc( strlen( StringDado  ) ) ;
+            if ( pDado == NULL )
             {
                return TST_CondRetMemoria ;
-            } 
+            } /* if */
 
-            strcpy_s( pDado , strlen( StringDado ) + 1, StringDado) ;
-			strcpy_s( S1 , strlen( String1 ) + 1, String1) ;
-			strcpy_s( S2 , strlen( String2 ) + 1, String2) ;
-			strcpy_s( S3 , strlen( String3 ) + 1, String3) ;
-			
-            vtListas[ inxLista ] = LIC_CriarLista( DestruirValor ) ;
-			LIC_InserirApos( vtListas[ inxLista ] , S1 );
-			LIC_InserirApos( vtListas[ inxLista ] , S2 );
-			LIC_InserirApos( vtListas[ inxLista ] , S3 );
+            strcpy( pDado , StringDado ) ;
+            printf("pdado: ");
+            for (i=0 ; i < strlen( StringDado  ) ; i++)
+            {               
+               printf("%c", pDado[i]);
+            }
+            printf("\n");
+            printf("StringDado: ");
+            for ( i=0 ; i < strlen( StringDado  ) ; i++)
+            {
+               printf("%c", StringDado[i]);
+            }
+            printf("\n");
+            printf("\n");
 
-			if(strcmp(pDado,S1)==0){
-				CondRet = LIC_ProcurarValor( vtListas[ inxLista ] , (void *)S1 )  ;
-			}
-			else if(strcmp(pDado,S2)==0){
-				CondRet = LIC_ProcurarValor( vtListas[ inxLista ] , (void *)S2 )  ;
-			}
-			else if(strcmp(pDado,S3)==0){
-				CondRet = LIC_ProcurarValor( vtListas[ inxLista ] , (void *)S3 )  ;
-			}
-			else{
-				CondRet = LIC_ProcurarValor( vtListas[ inxLista ] , (void *)pDado )  ;
-			}
-            free( pDado ) ;
-			free( S1 ) ;
-			free( S2 ) ;
-			free( S3 ) ;
+            CondRet =  LIC_ProcurarValor( vtListas[ inxLista ] , (void*) pDado ) ;
+
+            if ( CondRet != LIC_CondRetOK )
+            {
+               free( pDado ) ;
+            } /* if */
 
             return TST_CompararInt( CondRetEsp , CondRet ,
-                      "Condicao de retorno errada ao buscar por elemento" ) ;
-
+                      "Condicao de retorno errada ao buscar por elemento" ) ; 
+         
          } /* fim ativa: LIC  &Procurar elemento contendo valor */
 
 
