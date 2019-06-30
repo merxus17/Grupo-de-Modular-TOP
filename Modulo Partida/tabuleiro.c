@@ -51,8 +51,8 @@ void yellowB();
 void greenB();
 void blueB();
 void reset();
-void qualPeca(TAB_Head * tabuleiro, CasaNormal * casa, Cor cor, int nPeca[4]);
-void qualPecaEsp (TAB_Head * tabuleiro, CasaEspecial * casa, Cor cor, int nPeca[4]);
+TAB_tpCondRet qualPeca(TAB_Head * tabuleiro, CasaNormal * casa, Cor cor, int nPeca[4]);
+TAB_tpCondRet qualPecaEsp (TAB_Head * tabuleiro, CasaEspecial * casa, Cor cor, int nPeca[4]);
 void zerar (int x[4]);
 
 
@@ -144,17 +144,20 @@ TAB_Head* TAB_criaTabuleiro()
 
 TAB_tpCondRet TAB_destroiTabuleiro(TAB_Head * tab)
 {
-	if( !tab )
+	if( tab == NULL )
 	{
-		LIC_DestruirLista(tab->tab->Tab_principal);
-		LIS_DestruirLista(tab->tab->Reta_Final_Vermelha);
-		LIS_DestruirLista(tab->tab->Reta_Final_Verde);
-		LIS_DestruirLista(tab->tab->Reta_Final_Amarela);
-		LIS_DestruirLista(tab->tab->Reta_Final_Azul);
-		free(tab->tab);
-		free(tab);
-		tab = NULL;
+		return TAB_CondRetTABNULL;
 	}
+	
+	LIC_DestruirLista(tab->tab->Tab_principal);
+	LIS_DestruirLista(tab->tab->Reta_Final_Vermelha);
+	LIS_DestruirLista(tab->tab->Reta_Final_Verde);
+	LIS_DestruirLista(tab->tab->Reta_Final_Amarela);
+	LIS_DestruirLista(tab->tab->Reta_Final_Azul);
+	free(tab->tab);
+	free(tab);
+	tab = NULL;
+
 	return TAB_CondRetOK;
 }
 
@@ -232,7 +235,8 @@ TAB_tpCondRet TAB_showTab (TAB_Head * tabuleiro){
 	CasaNormal* casa;
 	CasaEspecial* casaEspecial;
 
-	if (tabuleiro == NULL){
+	if (tabuleiro == NULL)
+	{
 		return TAB_CondRetTABNULL;
 	}
 
@@ -451,6 +455,16 @@ TAB_tpCondRet TAB_showTab (TAB_Head * tabuleiro){
 
 TAB_tpCondRet TAB_MoverVermelha (TAB_Head* tabuleiro, int nPeca, int casas){
 	// Função responsável pelo movimento das peças Vermelhas e por permitir que as mesmas comam uma às outras(ou não)
+	if( tabuleiro == NULL )
+	{
+		return TAB_CondRetTABNULL;
+	}
+
+	if (nPeca < 0 || nPeca >4)
+	{
+		return TAB_CondRetNumDePecasInvalida;
+	}
+
 	if((casas == 1 || casas ==6) && P_getCasa(tabuleiro->pecasVermelhas[nPeca]) == NULL){
 		CasaNormal* Casa;
 		LIC_IrInicioLista(tabuleiro->tab->Tab_principal);
@@ -550,6 +564,16 @@ TAB_tpCondRet TAB_MoverVermelha (TAB_Head* tabuleiro, int nPeca, int casas){
 
 TAB_tpCondRet TAB_MoverAzul (TAB_Head* tabuleiro, int nPeca, int casas){
 	// Função responsável pelo movimento das peças Azuis e por permitir que as mesmas comam uma às outras(ou não)
+	if( tabuleiro == NULL )
+	{
+		return TAB_CondRetTABNULL;
+	}
+
+	if (nPeca < 0 || nPeca >4)
+	{
+		return TAB_CondRetNumDePecasInvalida;
+	}
+
 	if((casas == 1 || casas ==6) && P_getCasa(tabuleiro->pecasAzuis[nPeca]) == NULL){
 		CasaNormal* Casa;
 		LIC_IrInicioLista(tabuleiro->tab->Tab_principal);
@@ -650,6 +674,16 @@ TAB_tpCondRet TAB_MoverAzul (TAB_Head* tabuleiro, int nPeca, int casas){
 
 TAB_tpCondRet TAB_MoverAmarela (TAB_Head* tabuleiro, int nPeca, int casas){
 	// Função responsável pelo movimento das peças Amarelas e por permitir que as mesmas comam uma às outras(ou não)
+	if( tabuleiro == NULL )
+	{
+		return TAB_CondRetTABNULL;
+	}
+
+	if (nPeca < 0 || nPeca >4)
+	{
+		return TAB_CondRetNumDePecasInvalida;
+	}
+
 	if((casas == 1 || casas ==6) && P_getCasa(tabuleiro->pecasAmarelas[nPeca]) == NULL){
 		CasaNormal* Casa;
 		LIC_IrInicioLista(tabuleiro->tab->Tab_principal);
@@ -752,6 +786,16 @@ TAB_tpCondRet TAB_MoverAmarela (TAB_Head* tabuleiro, int nPeca, int casas){
 
 TAB_tpCondRet TAB_MoverVerde (TAB_Head* tabuleiro, int nPeca, int casas){
 	// Função responsável pelo movimento das peças Verdes e por permitir que as mesmas comam uma às outras(ou não)
+	if( tabuleiro == NULL )
+	{
+		return TAB_CondRetTABNULL;
+	}
+
+	if (nPeca < 0 || nPeca >4)
+	{
+		return TAB_CondRetNumDePecasInvalida;
+	}
+
 	if((casas == 1 || casas ==6) && P_getCasa(tabuleiro->pecasVerdes[nPeca]) == NULL){
 		CasaNormal* Casa;
 		LIC_IrInicioLista(tabuleiro->tab->Tab_principal);
@@ -917,8 +961,14 @@ void reset () {
   SetConsoleTextAttribute(hConsole, 7);
 }
 
-void qualPeca (TAB_Head * tabuleiro, CasaNormal * casa, Cor cor, int nPeca[4]){
+TAB_tpCondRet qualPeca (TAB_Head * tabuleiro, CasaNormal * casa, Cor cor, int nPeca[4]){
 	int i;
+
+	if( tabuleiro == NULL )
+	{
+		return TAB_CondRetTABNULL;
+	}
+
 	for(i = 0; i < 4; i++){
 		if(cor == Amarelo && P_getCasa(tabuleiro->pecasAmarelas[i]) == casa)
 			nPeca[i] = 1;
@@ -929,10 +979,17 @@ void qualPeca (TAB_Head * tabuleiro, CasaNormal * casa, Cor cor, int nPeca[4]){
 		if(cor == Verde && P_getCasa(tabuleiro->pecasVerdes[i]) == casa)
 			nPeca[i] = 1;
 	}
+	return TAB_CondRetOK;
 }
 
-void qualPecaEsp (TAB_Head * tabuleiro, CasaEspecial * casa, Cor cor, int nPeca[4]){
+TAB_tpCondRet qualPecaEsp (TAB_Head * tabuleiro, CasaEspecial * casa, Cor cor, int nPeca[4]){
 	int i;
+	
+	if( tabuleiro == NULL )
+	{
+		return TAB_CondRetTABNULL;
+	}
+
 	for(i = 0; i < 4; i++){
 		if(cor == Amarelo && P_getCasa(tabuleiro->pecasAmarelas[i]) == casa)
 			nPeca[i] = 1;
@@ -943,6 +1000,7 @@ void qualPecaEsp (TAB_Head * tabuleiro, CasaEspecial * casa, Cor cor, int nPeca[
 		if(cor == Verde && P_getCasa(tabuleiro->pecasVerdes[i]) == casa)
 			nPeca[i] = 1;
 	}
+	return TAB_CondRetOK;
 }
 
 void zerar (int x[4]){

@@ -1,0 +1,21 @@
+
+[Diretorios]
+
+Nome        =  TestePartida
+PathDefault =  .
+err         =  .
+
+[Modulos]
+App.c
+Tabuleiro
+LISTA
+lista_circular
+Pecas
+Partida
+
+[BuildInicio]
+/OUT:TestePartida.exe
+/INCREMENTAL:NO
+/MACHINE:IX86
+
+[Fim]
