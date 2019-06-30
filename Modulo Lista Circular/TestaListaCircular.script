@@ -4,11 +4,6 @@
 // Prop�sito: Testar o m�dulo lista circular gen�rica duplamente encadeada
 //
 
-
-== Iniciar controle de espa�o din�mico
-=inicializarcontadores  "."
-
-
 == Inicializar valores
 =declararparm   lista0  int 0
 =declararparm   lista1  int 1
@@ -50,12 +45,13 @@
 =declararparm   pNaoNULL       int  1
 
 
+=declararparm   ModoProcura    int  0
+=declararparm   ModoNULL       int  1
+=declararparm   ModoVazio      int  2
 
 
-
-
-
-
+== Iniciar contadores
+=inicializarcontadores  "."
 
 == Criar a lista 0
 =criarlista      lista0 
@@ -354,22 +350,18 @@
 //ProcurarValor **********()
 
 
-== Procurar str1 em lista que não existe
-=procurarelem	 lista99	  str1   ListaVazia
+== Procurar str1 em lista que não existe 
+=procurarelem	 lista99	str1 str0 str2 str3  ModoNULL ListaVazia
 
 == Procurar str3 em lista que existe porém está vazia
-=procurarelem	 lista14	  str3   ListaVazia
+=procurarelem	 lista14	  str1 str0 str2 str3  ModoVazio ListaVazia
 
 == Procurar str2 em lista que existe e possui o str2
-=procurarelem	 lista13	  str2   OK
+=procurarelem	 lista13	 str0 str1 str2 str1  ModoProcura  OK
 
 == Procurar str3 em lista que existe e não possui o str3
-=procurarelem	 lista13	  str3   NaoAchou
+=procurarelem	 lista13	str1 str0 str2 str3  ModoProcura  NaoAchou
 
-== Criar a lista 50 com str5 e procurar o str5
-=criarlista      lista50
-=inselemapos    lista50   str5   OK
-=procurarelem	 lista50   str5   OK
 
 
 

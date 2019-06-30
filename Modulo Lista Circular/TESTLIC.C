@@ -174,8 +174,7 @@ LIC_Lista   vtListas[ DIM_VT_LISTA ] ;
             numLidos = LER_LerParametros( "ii" ,
                                &inxLista , &CondRetEsp ) ;
 
-            if ( ( numLidos != 2 )
-              || ( ! ValidarInxLista( inxLista , NAO_VAZIO )))
+            if ( ( numLidos != 2 ))
             {
                return TST_CondRetParm ;
             } /* if */
