@@ -121,7 +121,7 @@
 
    LIC_CondRet LIC_DestruirLista( LIC_Lista Lista )
    {
-      if (Lista==NULL)
+      if (Lista == NULL)
       {
       #ifdef _DEBUG
          CNT_CONTAR( "LIC_DestruirLista - Inicio" ) ;
@@ -500,7 +500,7 @@
 
       if (Lista==NULL)
       {
-         	   #ifdef _DEBUG
+      #ifdef _DEBUG
          CNT_CONTAR( "LIC_IrInicioLista - inicio" ) ;
       #endif
 		  return LIC_CondRetListaVazia;

@@ -174,8 +174,7 @@ LIC_Lista   vtListas[ DIM_VT_LISTA ] ;
             numLidos = LER_LerParametros( "ii" ,
                                &inxLista , &CondRetEsp ) ;
 
-            if ( ( numLidos != 2 )
-              || ( ! ValidarInxLista( inxLista , NAO_VAZIO )))
+            if ( ( numLidos != 2 ))
             {
                return TST_CondRetParm ;
             } /* if */
@@ -363,44 +362,86 @@ LIC_Lista   vtListas[ DIM_VT_LISTA ] ;
 
           else if ( strcmp( ComandoTeste , PROCURAR_VALOR_CMD ) == 0 )
          {
-            int i;
- 			   numLidos = LER_LerParametros( "isi" , &inxLista , StringDado , &CondRetEsp ) ;
+			int  Modo;
+			char   String1[  DIM_VALOR ] ;
+			char   String2[  DIM_VALOR ] ;
+			char   String3[  DIM_VALOR ] ;
+			
+			char * S1;
+			char * S2;
+			char * S3;
+			String1[ 0 ] = 0 ;
+			String2[ 0 ] = 0 ;
+			String3[ 0 ] = 0 ;
 
-            if ( numLidos != 3 )
+            numLidos = LER_LerParametros( "issssii" , &inxLista , String1 , String2 
+            , String3 , StringDado, &Modo , &CondRetEsp ) ;
+
+            if ( numLidos != 7 )
             {
                return TST_CondRetParm ;
             } 
 
-            pDado = ( char * ) malloc( strlen( StringDado  ) ) ;
-            if ( pDado == NULL )
+           if( Modo == 0 )
             {
-               return TST_CondRetMemoria ;
-            } /* if */
+                     pDado = ( char * ) malloc( strlen( StringDado ) + 1 ) ;
+               S1 = ( char * ) malloc( strlen( String1 ) + 1 ) ;
+               S2 = ( char * ) malloc( strlen( String2 ) + 1 ) ;
+               S3 = ( char * ) malloc( strlen( String3 ) + 1 ) ;
+                  if ( pDado == NULL || S1 == NULL || S2 == NULL || S3 == NULL)
+                  {
+                     return TST_CondRetMemoria ;
+                  } 
 
-            strcpy( pDado , StringDado ) ;
-            printf("pdado: ");
-            for (i=0 ; i < strlen( StringDado  ) ; i++)
-            {               
-               printf("%c", pDado[i]);
+                  strcpy_s( pDado , strlen( StringDado ) + 1, StringDado) ;
+               strcpy_s( S1 , strlen( String1 ) + 1, String1) ;
+               strcpy_s( S2 , strlen( String2 ) + 1, String2) ;
+               strcpy_s( S3 , strlen( String3 ) + 1, String3) ;
+               
+                  vtListas[ inxLista ] = LIC_CriarLista( DestruirValor ) ;
+               LIC_InserirApos( vtListas[ inxLista ] , S1 );
+               LIC_InserirApos( vtListas[ inxLista ] , S2 );
+               LIC_InserirApos( vtListas[ inxLista ] , S3 );
+
+               if(strcmp(pDado,S1)==0){
+                  CondRet = LIC_ProcurarValor( vtListas[ inxLista ] , (void *)S1 )  ;
+               }
+               else if(strcmp(pDado,S2)==0){
+                  CondRet = LIC_ProcurarValor( vtListas[ inxLista ] , (void *)S2 )  ;
+               }
+               else if(strcmp(pDado,S3)==0){
+                  CondRet = LIC_ProcurarValor( vtListas[ inxLista ] , (void *)S3 )  ;
+               }
+               else{
+                  CondRet = LIC_ProcurarValor( vtListas[ inxLista ] , (void *)pDado )  ;
+               }
+                  free( pDado ) ;
+               free( S1 ) ;
+               free( S2 ) ;
+               free( S3 ) ;
+
+                  return TST_CompararInt( CondRetEsp , CondRet ,
+                           "Condicao de retorno errada ao buscar por elemento" ) ;
             }
-            printf("\n");
-            printf("StringDado: ");
-            for ( i=0 ; i < strlen( StringDado  ) ; i++)
+            else if ( Modo == 1 )
             {
-               printf("%c", StringDado[i]);
+               LIC_Lista ListaNULL = NULL ;
+               pDado = ( char * ) malloc( strlen( StringDado ) + 1 ) ;
+               strcpy_s( pDado , strlen( StringDado ) + 1, StringDado) ;
+               CondRet = LIC_ProcurarValor ( ListaNULL , pDado );
+               return TST_CompararInt( CondRetEsp , CondRet ,
+                           "Condicao de retorno errada ao buscar por elemento" ) ;
             }
-            printf("\n");
-            printf("\n");
-
-            CondRet =  LIC_ProcurarValor( vtListas[ inxLista ] , (void*) pDado ) ;
-
-            if ( CondRet != LIC_CondRetOK )
+            else if ( Modo == 2 )
             {
-               free( pDado ) ;
-            } /* if */
-
-            return TST_CompararInt( CondRetEsp , CondRet ,
-                      "Condicao de retorno errada ao buscar por elemento" ) ; 
+               LIC_Lista ListaVazia = LIC_CriarLista( DestruirValor ) ;
+               pDado = ( char * ) malloc( strlen( StringDado ) + 1 ) ;
+               strcpy_s( pDado , strlen( StringDado ) + 1, StringDado) ;
+              
+               CondRet = LIC_ProcurarValor ( ListaVazia , pDado );
+               return TST_CompararInt( CondRetEsp , CondRet ,
+                           "Condicao de retorno errada ao buscar por elemento" ) ;
+            }
          
          } /* fim ativa: LIC  &Procurar elemento contendo valor */
 
