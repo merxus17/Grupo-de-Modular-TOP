@@ -1,6 +1,4 @@
-Instruções para utilizar módulos:
-
-obs1:Executar comandos no Prompt de Comando
+Instruções para rodar os testes:
 
 1-  Colocar o ArcaboucoTeste.lib compilado no seu computador na pasta do módulo
 2 - Colocar vsvars32(Arquivo do Visual Studios) na pasta do módulo e executar 
@@ -9,8 +7,50 @@ obs1:Executar comandos no Prompt de Comando
 5 - Executar TestaTudo
 
 Ou
+
 1-  Colocar o ArcaboucoTeste.lib compilado no seu computador na pasta do módulo
 2 - Colocar vsvars32(Arquivo do Visual Studios)  , e na pasta do módulo e executar
 3 - Executar Tudo.bat
 
-Obs: Casos deseje executar um script de teste sua autoria abrir o bat TestaTudo e modificar o parametro /s"Nome do seu script aki" 
+
+ Módulo partida: Como é um módulo que possui apenas funções encapsuladas exceto uma, não é possível criar um scrip de teste automatizado para o mesmo. Devido a essas circunstancias tivemos que testar manualmente o módulo(Fomos instruidos a fazer assim), seguem os testes feitos:
+
+ 1 - Partida com dois jogadores
+ 2 - Partida com três jogadores
+ 3 - Partida com quatro jogadores
+ 4 - Vitória de cada uma das quatro cores
+ 5 - Colocar 2 peças de cores distintas na mesma casa em uma casa neutra
+ 6 - Colocar 2 peças de cores distintas na mesma casa em uma inicial sendo que a peça que com a cor da casa é a primeira a chegar na mesma (Testar se a peça não é comida)
+ 7 - Colocar uma terceira peça, da mesma cor da segunda peça a entrar Ex:(1 azul e 2 vermelhas Nenhuma peça é comida)
+ 8 - Colocar peças da mesma cor na mesma casa neutra (2, 3 e depois 4 peças)
+ 9 - Colocar peças da mesma cor na mesma casa na reta final (2, 3 e depois 4 peças)
+ 10 - Colocar peças da mesma cor na mesma casa inicial de outra cor (2, 3 e depois 4 peças)
+ 11 - Jogar consecutivas vezes ao tirar 6 consecutivas vezes
+ 12 - Turno sem jogadas válidas (Nenhuma peça pode entrar em jogo ou se mover para o espaço final)
+ 13 - Testar se todas as peças de todas as cores entram na reta final ao completarem a volta
+ 14 - Testar entrar em jogo com todas cada peça com 1 ou 6 
+ 15 - Testar 3 peças de cores distindas em uma casa inicial Ex:(Casa Azul, primeiro chega a peça azul e em seguida Amarela e por último uma vermelha, o esperado é que a vermelha coma a amarela e só isso aconteça)
+ 16 - Testar se duas,três e quatro peças da mesma cor(com todas as cores) ao estarem em uma casa neutra podem ser comidas por uma peça de outra cor (Não podem)
+ 17 - Testar se duas,três e quatro peças da mesma cor(com todas as cores) ao estarem em uma casa inicial da mesma cor podem ser comidas por uma peça de outra cor (Não podem)
+ 18 - Testar se uma peça de uma cor x que está na casa inicial de cor y é comida ao entrar uma peça da cor y em jogo (Não é comida)
+ 19 - Tentar escolher peça de número inválido para andar Ex:(Peça 5)
+ 20 - Tentar andar com uma peça que não pode mover no turno Ex:(Tentar entrar com 2 no dado)
+ 21 - Testar a ordem dos jogadores no inicio do jogo, decidida pelo dado
+ 22 - Testar o que acontece quando na decisão da ordem de jogadores dois ou mais jogadores tiram o mesmo valor no dado
+ 23 - Testar entrar em jogo com o valor 6 e jogar novamente em seguida
+
+
+Contadores - Casos especiais:
+
+1 ->
+LIC_CriarLista- MEMORIA  , settar -2 \=-2
+LIC_InserirAntes - MEMORIA \=-2
+LIC_InserirApos - MEMORIA \=-2
+CriarElemento - dentro Elem == NULL\=-2
+
+Nesses quatro casos temos o uso da função malloc e sem seguida testamos se houve falta de memória. Como nos foi solicitado, colocamos os contadores como -2 de modo que nunca fiquem como 0 uma vez que o script de teste não cobre esses casos.
+
+2 ->
+LimparCabeca - Inicio\=-2
+
+Nesse caso, Temos que A função LimparCabeca só é chamada dentro de funções que fazem o teste LISTA == NULL antes de chamar a LimparCabeça, ou seja, é impossível a partir dos testes chamar essa função enviando uma lista NULL, devido a isso tivemos que colocar o -2 para não ficar como 0.
