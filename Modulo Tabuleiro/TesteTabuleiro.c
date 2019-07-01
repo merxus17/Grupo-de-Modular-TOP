@@ -106,18 +106,19 @@ TAB_Head*   vtTAB[ DIM_VT_TAB ] ;
 
          else if ( strcmp( ComandoTeste , DESTRUIR_TAB_CMD ) == 0 )
          {
-            numLidos = LER_LerParametros( "i" ,
-                               &inxLista ) ;
+            numLidos = LER_LerParametros( "ii" ,
+                               &inxLista , &CondRetEsp ) ;
 
-            if ( ( numLidos != 1 )
-              || ( ! ValidarInxLista( inxLista , NAO_VAZIO )))
+            if ( ( numLidos != 2 ))
             {
                return TST_CondRetParm ;
             } /* if */
 
-            TAB_destroiTabuleiro( vtTAB[ inxLista ] ) ;
+            CondRet = TAB_destroiTabuleiro( vtTAB[ inxLista ] ) ;
+            vtTAB[ inxLista ] = NULL ;
 
-            return TST_CondRetOK ;
+            return TST_CompararInt( CondRetEsp , CondRet ,
+               "Condicao de retorno errada ao destruir."  ) ;
 
          } /* fim ativa: Testar Destruir Peça */
 

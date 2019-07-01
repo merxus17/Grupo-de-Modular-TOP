@@ -83,11 +83,11 @@
 =TAB_destroiTabuleiro     tab0   OK
 
 == Destruir o Tabuleiro que ja foi destruido
-=TAB_destroiTabuleiro     tab0   OK
+=TAB_destroiTabuleiro     tab0   PonteiroTABNULL
 
 == Destruir Tabuleiro que não foi criado
-=TAB_destroiTabuleiro     tab1   OK
-=recuperar
+=TAB_destroiTabuleiro     tab1   PonteiroTABNULL
+
 
 == Criar Tabuleiro (Para testar vitoria)
 =TAB_criaTabuleiro      tab3
