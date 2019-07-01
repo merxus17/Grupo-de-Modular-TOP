@@ -1,7 +1,7 @@
 
 [Diretorios]
 
-Nome        =  TestePartida
+Nome        =  TestePartidaSemInstrumentacao
 PathDefault =  .
 err         =  .
 
@@ -14,7 +14,7 @@ Pecas
 Partida 
 
 [BuildInicio]
-/OUT:TestePartida.exe
+/OUT:TRAB4-0.exe
 /INCREMENTAL:NO
 /MACHINE:IX86
 

@@ -6,5 +6,4 @@ Cls
 Call  Limpatudo
 Call  Geratudo
 Call  Compilatudo
-Call  TestePartida
 

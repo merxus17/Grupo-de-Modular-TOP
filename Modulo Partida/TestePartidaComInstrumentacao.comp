@@ -1,0 +1,25 @@
+
+[Diretorios]
+
+Nome        =  TestePartidaComInstrumentacao
+PathDefault =  .
+err         =  .
+
+[Modulos]
+TESTLIC.c /D_DEBUG
+App.c   /D_DEBUG
+Tabuleiro   /D_DEBUG
+LISTA   /D_DEBUG
+lista_circular  /D_DEBUG
+Pecas   /D_DEBUG
+Partida /D_DEBUG
+
+[BuildInicio]
+/OUT:TRAB4-1.exe
+/INCREMENTAL:NO
+/MACHINE:IX86
+
+[BuildFim]
+ArcaboucoTeste.lib
+
+[Fim]

@@ -1,16 +1,21 @@
 @ECHO  OFF
 REM  Compila todos os exemplos simples 
 
-pushd  .
 
 del *.err
-del TestePartida.exe
+del *.obj
+
+pushd  .
+nmake /FTestePartidaComInstrumentacao.make 
+popd
 
 del *.obj
-nmake /FTestePartida.make 
+pushd . 
+nmake /FTestePartidaSemInstrumentacao.make
+del *.obj
+
+popd
 
 copy  *.err  tudo.err
 
 notepad tudo.err
-
-popd
