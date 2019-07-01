@@ -6,12 +6,12 @@ PathDefault =  .
 err         =  .
 
 [Modulos]
-App.c
-Tabuleiro
-LISTA
-lista_circular
-Pecas
-Partida
+App.c   
+Tabuleiro   
+LISTA   
+lista_circular  
+Pecas   
+Partida 
 
 [BuildInicio]
 /OUT:TestePartida.exe

@@ -132,12 +132,12 @@ PAR_tpCondRet  PAR_Set (int *players, Cor cor[4], char ** colors){
 	srand(time(NULL));
 
 	printf("\n");
-
+	zera(d);
 	for(i=0; i<*players; i++){
 		d[i] = PAR_Dice();
 		printf("\tDado inicial do %s: %i\n", colors[i] ,d[i]); 
 	}
-	 
+
 	first = PAR_First(same, d, *players, colors);
 
 	if(first > 4 || first <0){
