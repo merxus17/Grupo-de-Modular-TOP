@@ -1,4 +1,4 @@
-T2:
+﻿T2:
 20/04; 1h     ;  projetar                                               : realiza��o do modelo estrutural do programa
 21/04; 5h20min;  codificar m�dulo          				: implementa��o do m�dulo lista circular
 		 revisar c�digo do m�dulo                               : revis�o do m�dulo lista circular
@@ -15,3 +15,4 @@ T4:
 06/06; 3h30   ; codificar m�dulo, realizar os testes                    : implementa��o do m�dulo partida com testes manuais usando uma fun��o main
 11/06; 4h30   ; codificar m�dulo, realizar os testes                    : implementa��o do m�dulo partida com testes manuais usando uma fun��o main
 18/06; 7h     ; codificar m�dulo, realizar os testes                    : implementa��o do m�dulo partida com testes manuais usando uma fun��o main
+30/06; 5h     ; correção de erros                                       : correção dos erros encontrados no módulo partida
