@@ -1,1 +1,1 @@
-TestePeca.exe  /sTestePeca    /lTestePeca   /aestatisticas
+TRAB4-3.exe  /sTestePeca    /lTestePeca   /aestatisticas

@@ -10,7 +10,7 @@ Teste_Pecas
 Pecas
 
 [BuildInicio]
-/OUT:TestePeca.exe
+/OUT:TRAB4-3.exe
 /INCREMENTAL:NO
 /MACHINE:IX86
 

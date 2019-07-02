@@ -1,12 +1,12 @@
 cls
 
-TesteListaCircular.exe  /sTestaListaCircular    /lTestaListaCircular   /aestatisticas
+TRAB4-1.exe  /sTestaListaCircular    /lTestaListaCircular   /aestatisticas
 
 
-TesteListaCircularDebug.exe   /sTestaListaCircular  /lTestaListaCircularDebug  /aestatisticas
+TRAB4-2.exe   /sTestaListaCircular  /lTestaListaCircularDebug  /aestatisticas
 
 
-TesteListaCircularDebug.exe   /sTesteContador  /lTesteContador   /aestatisticas
+TRAB4-2.exe   /sTesteContador  /lTesteContador   /aestatisticas
 
 
 :sai

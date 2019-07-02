@@ -10,7 +10,7 @@ TESTLIC
 lista_circular
 
 [BuildInicio]
-/OUT:TesteListaCircular.exe
+/OUT:TRAB4-1.exe
 /INCREMENTAL:NO
 /MACHINE:IX86
 

@@ -10,4 +10,4 @@ del *.build
 del *.list
 del *.estat
 del *.pdb
-del TestePeca*.exe
+del TRAB4-3*.exe

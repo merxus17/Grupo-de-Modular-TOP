@@ -1,0 +1,20 @@
+﻿T2:
+20/04; 1h     ;  projetar                                               : realiza��o do modelo estrutural do programa
+21/04; 5h20min;  codificar m�dulo          				: implementa��o do m�dulo lista circular
+		 revisar c�digo do m�dulo                               : revis�o do m�dulo lista circular
+29/04; 2h     ;  codificar m�dulo          				: implementa��o do m�dulo de teste da lista circular
+		 revisar c�digo do m�dulo                               : revis�o do m�dulo de teste da lista circular
+01/05; 6h20min;  realizar os testes        				: teste realizado no m�dulo lista circular, diversos erros foram encontrados
+		 diagnosticar e corrigir os problemas encontrados	: quase todos os problemas foram corrigidos, menos um que na verdade foi causado por faltas no pr�rpio m�dulo de teste
+10/05; 1h40min;  diagnosticar e corrigir os problemas encontrados	: corre��es de faltas no m�dulo de teste da lista circular   
+12/05; 10h    ;	 codificar m�dulo          				: implementa��o da fun��o MovePe�a no m�dulo tabuleiro
+13/05; 10h    ;  realizar os testes					: teste realizado no m�dulo Tabuleiro, diversos erros foram encontrados
+		 diagnosticar e corrigir os problemas encontrados       : os erros encontrados foram corrigidos
+=============================================================================================================================================================================================================
+T4:
+06/06; 3h30   ; codificar m�dulo, realizar os testes, corrigir erros    : implementa��o do m�dulo partida com testes manuais usando uma fun��o main
+11/06; 4h30   ; codificar m�dulo, realizar os testes, corrigir erros    : implementa��o do m�dulo partida com testes manuais usando uma fun��o main
+15/06; 5h     ; codificar m�dulo, realizar os testes, corrigir erros    : implementa��o do m�dulo partida com testes manuais usando uma fun��o main
+18/06; 7h     ; codificar m�dulo, realizar os testes, corrigir erros    : implementa��o do m�dulo partida com testes manuais usando uma fun��o main
+25/06; 5h     ; codificar m�dulo, realizar os testes, corrigir erros    : implementa��o do m�dulo partida com testes manuais usando uma fun��o main
+30/06; 5h     ; corrigir de erros                                       : correção dos erros encontrados no módulo partida

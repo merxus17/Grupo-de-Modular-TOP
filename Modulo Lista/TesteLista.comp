@@ -10,7 +10,7 @@ TESTLIS
 LISTA
 
 [BuildInicio]
-/OUT:TesteLista.exe
+/OUT:TRAB4-0.exe
 /INCREMENTAL:NO
 /MACHINE:IX86
 
