@@ -12,9 +12,9 @@
 		 diagnosticar e corrigir os problemas encontrados       : os erros encontrados foram corrigidos
 =============================================================================================================================================================================================================
 T4:
-06/06; 3h30   ; codificar m�dulo, realizar os testes                    : implementa��o do m�dulo partida com testes manuais usando uma fun��o main
+06/06; 3h30   ; codificar m�dulo, realizar os testes, corrigir erros    : implementa��o do m�dulo partida com testes manuais usando uma fun��o main
 11/06; 4h30   ; codificar m�dulo, realizar os testes, corrigir erros    : implementa��o do m�dulo partida com testes manuais usando uma fun��o main
-15/06; 4h     ; codificar m�dulo, realizar os testes, corrigir erros    : implementa��o do m�dulo partida com testes manuais usando uma fun��o main
+15/06; 5h     ; codificar m�dulo, realizar os testes, corrigir erros    : implementa��o do m�dulo partida com testes manuais usando uma fun��o main
 18/06; 7h     ; codificar m�dulo, realizar os testes, corrigir erros    : implementa��o do m�dulo partida com testes manuais usando uma fun��o main
-20/06; 6h     ; codificar m�dulo, realizar os testes, corrigir erros    : implementa��o do m�dulo partida com testes manuais usando uma fun��o main
+25/06; 5h     ; codificar m�dulo, realizar os testes, corrigir erros    : implementa��o do m�dulo partida com testes manuais usando uma fun��o main
 30/06; 5h     ; corrigir de erros                                       : correção dos erros encontrados no módulo partida
