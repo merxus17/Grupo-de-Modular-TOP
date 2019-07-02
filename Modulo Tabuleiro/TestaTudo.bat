@@ -1,1 +1,1 @@
-TesteTabuleiro.exe  /sTesteTabuleiro    /lTesteTabuleiro   /aestatisticas
+TRAB4-4.exe  /sTesteTabuleiro    /lTesteTabuleiro   /aestatisticas

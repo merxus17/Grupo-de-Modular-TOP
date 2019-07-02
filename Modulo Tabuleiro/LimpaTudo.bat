@@ -10,4 +10,4 @@ del *.build
 del *.list
 del *.estat
 del *.pdb
-del TesteTabuleiro*.exe
+del TRAB4-4*.exe

@@ -13,7 +13,7 @@ lista_circular
 Pecas
 
 [BuildInicio]
-/OUT:TesteTabuleiro.exe
+/OUT:TRAB4-4.exe
 /INCREMENTAL:NO
 /MACHINE:IX86
 

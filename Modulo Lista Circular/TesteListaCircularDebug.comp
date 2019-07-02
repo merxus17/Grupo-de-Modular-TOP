@@ -10,7 +10,7 @@ TESTLIC         /D_DEBUG
 lista_circular  /D_DEBUG
 
 [BuildInicio]
-/OUT:TesteListaCircularDebug.exe
+/OUT:TRAB4-2.exe
 /INCREMENTAL:NO
 /MACHINE:IX86
 
