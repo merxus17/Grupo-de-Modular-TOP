@@ -1,1 +1,1 @@
-TesteLista.exe  /sTesteLista    /lTesteLista   /aestatisticas
+TRAB4-0.exe  /sTesteLista    /lTesteLista   /aestatisticas
