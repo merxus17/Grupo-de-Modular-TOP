@@ -1,0 +1,75 @@
+﻿Data - Horas trabalhadas - Tipo de tarefa - Descrição da tarefa
+
+*****T2 *****
+
+10/04 - 1h - Estudar - Pesquisei na internet as regras e como jogar Ludo, encontrei formas alternativas nas quais o jogo é jogado mas optei pela mais simples
+
+
+10/04 - 1h -  - Escrevi a especificação de requisitos funcionais a partir daquilo que vi estudando o jogo
+
+
+17/04 - 1h - Estudar - li o Módulo lista contido na pasta do arcabouço e estudei cada uma das funções
+
+
+19/04 - 3h - Planejar teste - fiz os testes necessários para o módulo lista, partindo dos testes que já existiam
+
+
+27/04 -2h - Planejar teste - Fiz os testes para o módulo lista circular
+
+
+29/04 -1h - Revisar especificações - Fiz alguns ajustes no nas especificações, usando como base a correção do professor e o email que recebemos
+
+
+10/05 - 1h -Planejar teste - Preparei uma base para o script de teste do módulo peças
+
+
+11/05 - 3h - Revisar código do Módulo - Fiz ajustes no módulo peças, criando o enum e ajustando as funções. Além disso junto ao Rodrigo tentar melhorar o código do módulo Tabuleiro
+
+
+11/05 - 2h -Planejar teste - Criei os casos de teste para o Módulo peça
+
+
+12/05 - 1h -Revisar código do módulo - Implementei comentários nos .h peça e  tabuleiro 
+
+
+12/05 - 2h-Revisar código do módulo- adicionei condições de retorno e casos de contorno de exceção  no tabuleiro.c e  peça.c
+
+
+12/05 - 1h -Planejar teste - Criei os casos de teste básicos(criar, destruir, etc) para o Módulo Tabuleiro
+
+
+12/05 - 2h -Planejar teste - Criei os casos de teste mais específicos (como testar caso de vitoria e comer peças) para o módulo tabuleiro 
+
+
+13/05 - 7h - Diagnosticar e corrigir os problemas encontrados - Junto do grupo estamos modificando os módulos tabuleiro/peca e os scripts de acordo para resolver os erros e para tratar todos os casos de teste
+
+*****T4 *****
+
+12/06 - 1h - revisar especificações - Atualizei as especificações uma vez que ao seguirmos com o jogo percebemos que haviam algumas ambiguidades e alguns itens que faltavam.
+
+
+12/06 - 1h - revisar script de teste - Modifiquei o script de teste do módulo tabuleiro para testar modificações feitas no mesmo
+
+
+19/06 - 1h - realizar testes - Testei Manualmente o módulo partida com o objetivo de encontrar erros no mesmo, além disso ajustei alguns pequenos detalhes que estavam errados.
+
+
+26/06 - 1h - revisar código do módulo - Fiz pequenas mudanças nas condições de retorno após inspeção do módulo ListaCircular
+
+
+26/06 - 5h - redigir script de teste - Essas horas foram dedicadas para conseguir criar o fluxograma do ListaCircular para que eu de fato consiga fazer os testes
+
+
+27/06 - 5h - redigir script de teste -  Essas horas foram usadas para de fato criar os testes de cobertura de arestas para o módulo lista circular e também para fazer alguns ajustes no módulo em si 
+
+
+27/06 - 3h - especificar as funções - Esse tempo foi investido em colocar contadores em todas as funções do Módulo ListaCircular de modo a verificar os testes de cobertura de arestas
+
+
+28/06 - 1h - revisar script de teste - Revisamos o script de modo a encotrar problemas que ainda geravam erros e contadores zerados 
+
+
+28/06 - 2h - diagnosticar e corrigir os problemas encontrados- Fizemos ajustes necessários no script para acabar com os erros que restavam, e para entrar em todas as arestas que faltavam. 
+
+
+30/06 - 2h - realizar os testes - Testes manuais do módulo partida novamente após atualizações do mesmo e documentar os testes
