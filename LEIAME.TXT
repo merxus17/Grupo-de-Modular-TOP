@@ -54,3 +54,20 @@ Nesses quatro casos temos o uso da função malloc e sem seguida testamos se hou
 LimparCabeca - Inicio\=-2
 
 Nesse caso, Temos que A função LimparCabeca só é chamada dentro de funções que fazem o teste LISTA == NULL antes de chamar a LimparCabeça, ou seja, é impossível a partir dos testes chamar essa função enviando uma lista NULL, devido a isso tivemos que colocar o -2 para não ficar como 0.
+
+
+Os executáveis: 
+
+Cada executável está localizado na sua referente pasta.
+
+TRAB4-0 -  Modulo Lista 
+
+TRAB4-1 -  Modulo Lista Circular com instrumentação desligada
+
+TRAB4-2 -  Modulo Lista Circular com instrumentação ligada
+
+TRAB4-3 -  Modulo Peças 
+
+TRAB4-4 -  Modulo Tabuleiro
+
+TRAB4-5 -  Modulo Partida
